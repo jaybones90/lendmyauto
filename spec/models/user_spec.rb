@@ -6,4 +6,6 @@ describe User do
   it { should validate_presence_of :email }
   it { should validate_presence_of :age }
   it { should validate_presence_of :phone_number }
+
+  it { should have_many :addresses }
 end

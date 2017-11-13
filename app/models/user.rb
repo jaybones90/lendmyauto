@@ -6,5 +6,6 @@ class User < ApplicationRecord
          :confirmable
 
   validates :first_name, :last_name, :email, :age, :phone_number, :presence => true
-  
+
+  has_many :addresses
 end
