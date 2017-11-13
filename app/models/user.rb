@@ -8,4 +8,5 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :email, :age, :phone_number, :presence => true
 
   has_many :addresses
+  has_many :vehicles
 end

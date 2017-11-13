@@ -8,4 +8,5 @@ describe User do
   it { should validate_presence_of :phone_number }
 
   it { should have_many :addresses }
+  it { should have_many :vehicles }
 end

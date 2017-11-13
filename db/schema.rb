@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113194510) do
+ActiveRecord::Schema.define(version: 20171113200014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,25 @@ ActiveRecord::Schema.define(version: 20171113194510) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vehicles", force: :cascade do |t|
+    t.string "make"
+    t.string "model"
+    t.integer "year"
+    t.integer "milage"
+    t.string "transmission"
+    t.string "color"
+    t.integer "seats"
+    t.string "category"
+    t.boolean "all_wheel_drive"
+    t.boolean "pets_allowed"
+    t.boolean "smoking_allowed"
+    t.integer "daily_price"
+    t.bigint "user_id"
+    t.datetime "availability_start"
+    t.datetime "availability_end"
+    t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
 end
