@@ -9,4 +9,6 @@ class User < ApplicationRecord
 
   has_many :addresses
   has_many :vehicles
+  has_many :rentals, :class_name => "Reservation", :foreign_key => "renter_id"
+  has_many :loans, :class_name => "Reservation", :foreign_key => "lender_id"
 end
