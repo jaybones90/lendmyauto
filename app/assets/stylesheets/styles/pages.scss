@@ -1,0 +1,20 @@
+.hero {
+  background-image: asset_url("bg1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 600px;
+  width: 100%;
+  h1, p {
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 10px black;
+  }
+  h1 {
+    padding-top: .5em;
+    font-size: 10em;
+  }
+  p {
+    font-size: 3em;
+  }
+}
