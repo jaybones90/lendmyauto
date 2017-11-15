@@ -10,4 +10,10 @@ class RegistrationsController < Devise::RegistrationsController
     params.require(:user).permit(:first_name, :last_name, :age, :phone_number, :email, :password, :password_confirmation, :current_password)
   end
 
+  protected
+
+  def after_sign_up_path_for(resource)
+    new_user_address_path(resource)
+  end
+
 end

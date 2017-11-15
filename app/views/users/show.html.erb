@@ -1,7 +1,13 @@
 <section>
-  <h1> <%= @user.first_name %>'s Profile </h1>
   <div class="container">
-
-
+    <h1> Profile </h1>
+    <p><strong>Name:</strong>  <%= @user.first_name %> <%= @user.last_name %> </p>
+    <p><strong>Age:</strong> <%= @user.age %> </p>
+    <p><strong>Email:</strong> <%= @user.email %> </p>
+    <hr>
+    <% if @user.addresses %>
+      <%= render "address" %>
+    <% end %>
+    <%= link_to "Edit Profile", edit_user_registration_path %>
   </div>
 </section>
