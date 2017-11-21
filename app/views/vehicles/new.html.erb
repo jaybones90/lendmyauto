@@ -21,6 +21,22 @@
       <%= f.number_field :seats %>
       <%= f.label :category %>
       <%= f.select :category, ["Suv","Truck", "Sedan", "Coupe", "Van", "Wagon", "Convertible","Sports Car", "Hybrid/Electric",  "Luxury"] %><br>
+
+
+      Features:
+      <ul>
+        <%= f.fields_for :features do |features_form| %>
+          <li>
+            <%= features_form.label :all_wheel_drive %>
+            <%= features_form.check_box :all_wheel_drive %>
+
+            <%= features_form.label :smoking_allowed %>
+            <%= features_form.check_box :smoking_allowed %>
+          </li>
+        <% end %>
+      </ul>
+
+
       <%= f.label :start_date %>
       <%= select_date Date.today, prefix: :start_date %>
       <br>

@@ -3,6 +3,7 @@ class VehiclesController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @vehicle = @user.vehicles.new()
+    @features = @vehicle.features.new()
   end
 
   def create
@@ -10,6 +11,7 @@ class VehiclesController < ApplicationController
     @vehicle = @user.vehicles.new(vehicle_params)
     @vehicle.availability_start = availability_start_params
     @vehicle.availability_end = availability_end_params
+binding.pry
     if @vehicle.save
       redirect_to user_path(@user)
     else
@@ -20,7 +22,7 @@ class VehiclesController < ApplicationController
   private
 
   def vehicle_params
-    params.require(:vehicle).permit(:make, :model, :year, :milage, :transmission, :color, :seats, :category)
+    params.require(:vehicle).permit(:make, :model, :year, :milage, :transmission, :color, :seats, :category, features_attributes: [:all_wheel_drive, :smoking_allowed])
   end
 
   def availability_start_params
