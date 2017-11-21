@@ -2,14 +2,7 @@
   <div class="container">
     <h1>Enter Your Vechicle Details</h1>
 
-    <% if @vehicle.errors.any? %>
-      <h3>Looks like there was an error:</h3>
-      <ul>
-        <% @vehicle.errors.full_messages.each do |message| %>
-          <li> <%= message %> </li>
-        <% end %>
-      </ul>
-    <% end %>
+    <%= render "layouts/errors", :object => @vehicle %>
 
     <%= form_for [@user, @vehicle] do |f| %>
       <%= f.label :make %>

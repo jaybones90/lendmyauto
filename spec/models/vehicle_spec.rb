@@ -17,4 +17,8 @@ describe Vehicle do
   it { should validate_presence_of :availability_end }
 
   it { should belong_to :user }
+
+  it { should have_many :features }
+
+
 end

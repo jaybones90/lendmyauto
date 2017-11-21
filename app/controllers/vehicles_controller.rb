@@ -10,7 +10,6 @@ class VehiclesController < ApplicationController
     @vehicle = @user.vehicles.new(vehicle_params)
     @vehicle.availability_start = availability_start_params
     @vehicle.availability_end = availability_end_params
-    binding.pry
     if @vehicle.save
       redirect_to user_path(@user)
     else

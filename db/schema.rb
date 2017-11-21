@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113201742) do
+ActiveRecord::Schema.define(version: 20171121034655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,26 @@ ActiveRecord::Schema.define(version: 20171113201742) do
     t.bigint "vehicle_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
     t.index ["vehicle_id"], name: "index_addresses_on_vehicle_id"
+  end
+
+  create_table "features", force: :cascade do |t|
+    t.boolean "pets_allowed"
+    t.boolean "smoking_allowed"
+    t.boolean "all_wheel_drive"
+    t.boolean "gps"
+    t.boolean "ski_rack"
+    t.boolean "bike_rack"
+    t.boolean "bluetooth"
+    t.boolean "audio_input"
+    t.boolean "sunroof"
+    t.boolean "snowtires_or_chains"
+    t.boolean "rear_camera"
+    t.boolean "navigation"
+    t.boolean "heated_seats"
+    t.bigint "vehicle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["vehicle_id"], name: "index_features_on_vehicle_id"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -71,9 +91,6 @@ ActiveRecord::Schema.define(version: 20171113201742) do
     t.string "color"
     t.integer "seats"
     t.string "category"
-    t.boolean "all_wheel_drive"
-    t.boolean "pets_allowed"
-    t.boolean "smoking_allowed"
     t.integer "daily_price"
     t.bigint "user_id"
     t.datetime "availability_start"
