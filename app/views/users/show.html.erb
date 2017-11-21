@@ -8,6 +8,25 @@
     <% if @user.addresses %>
       <%= render "address" %>
     <% end %>
+
+    <hr>
+    <h3>Your Vehicles</h3>
+    <% if @user.vehicles %>
+      <% @user.vehicles.each do |vehicle| %>
+      <%= link_to vehicle.make, user_vehicle_path(vehicle) %>
+        <div class="row">
+        <% vehicle.images.each do |image| %>
+          <div class="col-md-4">
+            <%= image_tag image.avatar.url(:thumb)%>
+          </div>
+          <% end %>
+        </div>
+        <br>
+        <%= link_to "Add Images", new_vehicle_image_path(vehicle) %>
+      <% end %>
+    <% end %>
+    <hr>
+    <br>
     <%= link_to "Edit Profile", edit_user_registration_path %>
     <br>
     <%= link_to "List Your Vehicle", new_user_vehicle_path(@user) %>

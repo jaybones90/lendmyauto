@@ -5,8 +5,11 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :vehicles do
-      resources :features
     end
     resources :addresses
+  end
+  resources :vehicles do
+    resources :features
+    resources :images
   end
 end

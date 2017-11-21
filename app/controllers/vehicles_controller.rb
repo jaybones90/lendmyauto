@@ -3,6 +3,7 @@ class VehiclesController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @vehicle = @user.vehicles.new()
+    @image = @vehicle.images.new()
     @features = @vehicle.features.new()
   end
 
@@ -22,6 +23,10 @@ class VehiclesController < ApplicationController
 
   def vehicle_params
     params.require(:vehicle).permit(:make, :model, :year, :milage, :transmission, :color, :seats, :category, features_attributes: [:all_wheel_drive, :smoking_allowed, :pets_allowed, :gps, :ski_rack, :bike_rack, :bluetooth, :sunroof, :audio_input, :snowtires_or_chains, :rear_camera, :navigation, :heated_seats])
+  end
+
+  def image_params
+    params.require(:image).permit(:avatar)
   end
 
   def availability_start_params
