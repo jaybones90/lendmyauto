@@ -1,0 +1,22 @@
+<h1>Vehicle Stats</h1>
+
+<%= link_to "Add Images", new_vehicle_image_path(@vehicle) %>
+
+<ul>
+  <li><%= @vehicle.make %> </li>
+  <li><%= @vehicle.model %> </li>
+  <li><%= @vehicle.year %> </li>
+  <li><%= @vehicle.milage %> </li>
+  <li><%= @vehicle.transmission %> </li>
+  <li><%= @vehicle.color %> </li>
+  <li><%= @vehicle.seats %> </li>
+  <li><%= @vehicle.category %> </li>
+</ul>
+
+<% if @vehicle.images.any? %>
+  <ul>
+    <% @vehicle.images.each do |image| %>
+    <li><%= image_tag image.avatar(:thumb) %></li>
+    <% end %>
+  </ul>
+<% end %>

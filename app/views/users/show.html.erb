@@ -13,7 +13,7 @@
     <h3>Your Vehicles</h3>
     <% if @user.vehicles %>
       <% @user.vehicles.each do |vehicle| %>
-      <%= link_to vehicle.make, user_vehicle_path(vehicle) %>
+      <%= link_to vehicle.make, user_vehicle_path(@user, vehicle) %>
         <div class="row">
         <% vehicle.images.each do |image| %>
           <div class="col-md-4">
