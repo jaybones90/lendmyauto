@@ -1,7 +1,6 @@
 class AddressesController < ApplicationController
 
   def new
-    binding.pry
     @user = User.find(params[:user_id])
     @address = @user.addresses.new()
   end
