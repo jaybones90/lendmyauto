@@ -11,7 +11,6 @@ class VehiclesController < ApplicationController
     @vehicle = @user.vehicles.new(vehicle_params)
     @vehicle.availability_start = availability_start_params
     @vehicle.availability_end = availability_end_params
-binding.pry
     if @vehicle.save
       redirect_to user_path(@user)
     else
@@ -22,7 +21,7 @@ binding.pry
   private
 
   def vehicle_params
-    params.require(:vehicle).permit(:make, :model, :year, :milage, :transmission, :color, :seats, :category, features_attributes: [:all_wheel_drive, :smoking_allowed])
+    params.require(:vehicle).permit(:make, :model, :year, :milage, :transmission, :color, :seats, :category, features_attributes: [:all_wheel_drive, :smoking_allowed, :pets_allowed, :gps, :ski_rack, :bike_rack, :bluetooth, :sunroof, :audio_input, :snowtires_or_chains, :rear_camera, :navigation, :heated_seats])
   end
 
   def availability_start_params
