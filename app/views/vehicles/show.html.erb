@@ -16,11 +16,3 @@
   <li><%= @vehicle.seats %> </li>
   <li><%= @vehicle.category %> </li>
 </ul>
-
-<% if @vehicle.images.any? %>
-  <ul>
-    <% @vehicle.images.each do |image| %>
-    <li><%= image_tag image.avatar(:thumb) %></li>
-    <% end %>
-  </ul>
-<% end %>

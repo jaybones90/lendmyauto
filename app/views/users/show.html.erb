@@ -13,16 +13,14 @@
     <h3>Your Vehicles</h3>
     <% if @user.vehicles %>
       <% @user.vehicles.each do |vehicle| %>
-      <%= link_to vehicle.make, user_vehicle_path(@user, vehicle) %>
-        <div class="row">
-        <% vehicle.images.each do |image| %>
-          <div class="col-md-4">
-            <%= image_tag image.avatar.url(:thumb)%>
-          </div>
-          <% end %>
-        </div>
-        <br>
+      <%= link_to user_vehicle_path(@user, vehicle) do %>
+        <%= vehicle.model %>
         <%= link_to "Add Images", new_vehicle_image_path(vehicle) %>
+        <% if vehicle.images.any? %>
+          <%= image_tag vehicle.images.last.avatar(:thumb) %>
+        <% end %>
+      <% end %>
+        <br>
       <% end %>
     <% end %>
     <hr>
