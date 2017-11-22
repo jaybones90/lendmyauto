@@ -30,11 +30,14 @@
       <div class="row featurette">
         <div class="col-md-7">
           <h2 class="featurette-heading">
-            <%= @vehicles[0].make %> <%= @vehicles[0].model %>
+            <%= link_to "test", new_user_reservation_path(:user_id => current_user.id, :vehicle_id => @vehicles[0].id) %>
           </h2>
-          <p class="lead">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id felis augue. Proin a mi quis ligula efficitur eleifend ut in augue. Integer vitae lacinia magna. Donec aliquam, justo id maximus accumsan, eros massa iaculis augue, vitae porttitor libero est quis nisl. Praesent egestas libero nec tellus iaculis porta.
-          </p>
+          <ul class="lead">
+            <li> <%= @vehicles[0].make %> </li>
+            <li> <%= @vehicles[0].model %> </li>
+            <li> <%= @vehicles[0].year %> </li>
+            <li> <%= @vehicles[0].milage %> </li>
+          </ul>
         </div>
         <div class="col-md-5">
           <%= image_tag @vehicles[0].images.first.avatar.url, class: "featurette-image img-fluid mx-auto" %>
@@ -50,7 +53,9 @@
           </h2>
           <ul class="lead">
             <li> <%= @vehicles[1].make %> </li>
-
+            <li> <%= @vehicles[1].model %> </li>
+            <li> <%= @vehicles[1].year %> </li>
+            <li> <%= @vehicles[1].milage %> </li>
           </ul>
         </div>
         <div class="col-md-5 order-md-1">
@@ -65,9 +70,12 @@
           <h2 class="featurette-heading">
             <%= @vehicles[2].make %> <%= @vehicles[2].model %>
           </h2>
-          <p class="lead">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id felis augue. Proin a mi quis ligula efficitur eleifend ut in augue. Integer vitae lacinia magna. Donec aliquam, justo id maximus accumsan, eros massa iaculis augue, vitae porttitor libero est quis nisl. Praesent egestas libero nec tellus iaculis porta.
-          </p>
+          <ul class="lead">
+            <li> <%= @vehicles[2].make %> </li>
+            <li> <%= @vehicles[2].model %> </li>
+            <li> <%= @vehicles[2].year %> </li>
+            <li> <%= @vehicles[2].milage %> </li>
+          </ul>
         </div>
         <div class="col-md-5">
           <%= image_tag @vehicles[2].images.first.avatar.url, class: "featurette-image img-fluid mx-auto" %>

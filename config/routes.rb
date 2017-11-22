@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :users do
-    resources :vehicles do
-    end
+    resources :reservations 
+    resources :vehicles
     resources :addresses
   end
   resources :vehicles do

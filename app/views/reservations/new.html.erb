@@ -1,0 +1,13 @@
+<section class="reservation-container">
+  <div class="container">
+    <div class="image-grid">
+      <div class="row">
+        <% @vehicle_to_rent.images.each do |image| %>
+        <div class="col-md-3">
+          <%= image_tag image.avatar(:medium) %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
