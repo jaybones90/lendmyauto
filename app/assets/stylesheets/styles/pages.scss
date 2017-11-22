@@ -22,3 +22,18 @@
 .how-it-works {
   margin: 4em auto;
 }
+
+.popular-cars {
+  .popular-car:nth-child(2) {
+    text-align: right;
+  }
+}
+
+.featurette {
+  margin: 3em auto;
+}
+
+.divider {
+  width: 100%;
+  color: grey;
+}

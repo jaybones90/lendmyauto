@@ -22,3 +22,58 @@
     </div>
   </div>
 </section>
+
+<section class="popular-cars">
+  <div class="container">
+    <div class="row">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">
+            <%= @vehicles[0].make %> <%= @vehicles[0].model %>
+          </h2>
+          <p class="lead">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id felis augue. Proin a mi quis ligula efficitur eleifend ut in augue. Integer vitae lacinia magna. Donec aliquam, justo id maximus accumsan, eros massa iaculis augue, vitae porttitor libero est quis nisl. Praesent egestas libero nec tellus iaculis porta.
+          </p>
+        </div>
+        <div class="col-md-5">
+          <%= image_tag @vehicles[0].images.first.avatar.url, class: "featurette-image img-fluid mx-auto" %>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+          <h2 class="featurette-heading">
+            <%= @vehicles[1].make %> <%= @vehicles[1].model %>
+          </h2>
+          <ul class="lead">
+            <li> <%= @vehicles[1].make %> </li>
+
+          </ul>
+        </div>
+        <div class="col-md-5 order-md-1">
+          <%= image_tag @vehicles[1].images.first.avatar.url, class: "featurette-image img-fluid mx-auto" %>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">
+            <%= @vehicles[2].make %> <%= @vehicles[2].model %>
+          </h2>
+          <p class="lead">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id felis augue. Proin a mi quis ligula efficitur eleifend ut in augue. Integer vitae lacinia magna. Donec aliquam, justo id maximus accumsan, eros massa iaculis augue, vitae porttitor libero est quis nisl. Praesent egestas libero nec tellus iaculis porta.
+          </p>
+        </div>
+        <div class="col-md-5">
+          <%= image_tag @vehicles[2].images.first.avatar.url, class: "featurette-image img-fluid mx-auto" %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
