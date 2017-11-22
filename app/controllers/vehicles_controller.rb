@@ -13,7 +13,7 @@ class VehiclesController < ApplicationController
     @vehicle.availability_start = availability_start_params
     @vehicle.availability_end = availability_end_params
     if @vehicle.save
-      redirect_to user_path(@user)
+      redirect_to new_vehicle_image_path(@vehicle)
     else
       render :new
     end

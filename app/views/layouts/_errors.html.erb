@@ -2,7 +2,7 @@
   <h3>Looks like there was an error:</h3>
   <ul>
     <% object.errors.full_messages.each do |message| %>
-      <li> <% message %> </li>
+      <li> <%= message %> </li>
     <% end %>
   </ul>
 <% end %>
