@@ -3,8 +3,7 @@ class ReservationsController < ApplicationController
 
   def new
     @vehicle = Vehicle.find(params[:vehicle_id])
-    @features = Feature.where(vehicle_id: @vehicle.id).as_json
-
+    @features = @vehicle.features
     @reservation = @vehicle.reservations.new()
   end
 

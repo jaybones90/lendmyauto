@@ -13,14 +13,22 @@
 
     <div class="vehicle-details">
       <h1>Vehicle Details </h1>
-      <h5> <%= @vehicle.make %> </h5>
+      <ul>
+        <li> <%= @vehicle.year %> </li>
+        <li> <%= @vehicle.make %> </li>
+        <li> <%= @vehicle.model %> </li>
+        <li> <%= @vehicle.color %> </li>
+        <li> <%= @vehicle.milage %> </li>
+      </ul>
     </div>
 
     <div class="vehicle-features">
-
-
-
-
+      <h5>Features</h5>
+      <ul>
+        <% @features.each do |feature| %>
+          <li> <%= feature.description %> </li>
+        <% end %>
+      </ul>
     </div>
 
   </div>

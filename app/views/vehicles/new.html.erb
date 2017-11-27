@@ -23,41 +23,17 @@
       <%= f.select :category, ["Suv","Truck", "Sedan", "Coupe", "Van", "Wagon", "Convertible","Sports Car", "Hybrid/Electric",  "Luxury"] %><br>
       <br>
 
-      
 
-      Features:
-      <ul>
-        <%= f.fields_for :features do |features_form| %>
-          <li>
-            <%= features_form.label :all_wheel_drive %>
-            <%= features_form.check_box :all_wheel_drive %>
-            <%= features_form.label :smoking_allowed %>
-            <%= features_form.check_box :smoking_allowed %>
-            <%= features_form.label :pets_allowed %>
-            <%= features_form.check_box :pets_allowed %>
-            <%= features_form.label :gps %>
-            <%= features_form.check_box :gps %>
-            <%= features_form.label :ski_rack %>
-            <%= features_form.check_box :ski_rack %>
-            <%= features_form.label :bike_rack %>
-            <%= features_form.check_box :bike_rack %>
-            <%= features_form.label :bluetooth %>
-            <%= features_form.check_box :bluetooth %>
-            <%= features_form.label :sunroof %>
-            <%= features_form.check_box :sunroof %>
-            <%= features_form.label :audio_input %>
-            <%= features_form.check_box :audio_input %>
-            <%= features_form.label :snowtires_or_chains %>
-            <%= features_form.check_box :snowtires_or_chains %>
-            <%= features_form.label :rear_camera %>
-            <%= features_form.check_box :rear_camera %>
-            <%= features_form.label :navigation %>
-            <%= features_form.check_box :navigation %>
-            <%= features_form.label :heated_seats %>
-            <%= features_form.check_box :heated_seats %>
-          </li>
-        <% end %>
-      </ul>
+
+      <%= f.label "Select All Features" %><br />
+      <%= f.collection_check_boxes :feature_ids, Feature.all, :id, :description do |b| %>
+
+        <%= b.check_box %>
+        <%= b.label %>
+
+      <% end %>
+
+      <br>
 
 
       <%= f.label :start_date %>
