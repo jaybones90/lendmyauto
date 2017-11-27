@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :users do
-    resources :reservations 
     resources :vehicles
     resources :addresses
   end
+  
+  resources :reservations
+
   resources :vehicles do
     resources :features
     resources :images

@@ -1,9 +1,11 @@
 class ReservationsController < ApplicationController
 
+
   def new
-    @user = current_user
-    @vehicle_to_rent = Vehicle.find(params[:vehicle_id])
-    @reservation = @user.rentals.new()
+    @vehicle = Vehicle.find(params[:vehicle_id])
+    @features = Feature.where(vehicle_id: @vehicle.id).as_json
+
+    @reservation = @vehicle.reservations.new()
   end
 
   def create

@@ -30,7 +30,7 @@
       <div class="row featurette">
         <div class="col-md-7">
           <h2 class="featurette-heading">
-            <%= link_to "test", new_user_reservation_path(:user_id => current_user.id, :vehicle_id => @vehicles[0].id) %>
+            <%= link_to "test", new_reservation_path(vehicle_id: @vehicles[0].id) %>
           </h2>
           <ul class="lead">
             <li> <%= @vehicles[0].make %> </li>
