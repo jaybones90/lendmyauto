@@ -1,6 +1,6 @@
 class Vehicle < ApplicationRecord
+  has_and_belongs_to_many :features
   has_many :images
-  has_many :features
   has_many :reservations
 
   accepts_nested_attributes_for :features, :images

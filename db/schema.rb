@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127223803) do
+ActiveRecord::Schema.define(version: 20171127230217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,11 +27,16 @@ ActiveRecord::Schema.define(version: 20171127223803) do
   end
 
   create_table "features", force: :cascade do |t|
-    t.string "name"
-    t.bigint "vehicle_id"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["vehicle_id"], name: "index_features_on_vehicle_id"
+  end
+
+  create_table "features_vehicles", id: false, force: :cascade do |t|
+    t.bigint "vehicle_id"
+    t.bigint "feature_id"
+    t.index ["feature_id"], name: "index_features_vehicles_on_feature_id"
+    t.index ["vehicle_id"], name: "index_features_vehicles_on_vehicle_id"
   end
 
   create_table "images", force: :cascade do |t|
