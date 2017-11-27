@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171122022229) do
+ActiveRecord::Schema.define(version: 20171127223803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,19 +27,7 @@ ActiveRecord::Schema.define(version: 20171122022229) do
   end
 
   create_table "features", force: :cascade do |t|
-    t.boolean "pets_allowed"
-    t.boolean "smoking_allowed"
-    t.boolean "all_wheel_drive"
-    t.boolean "gps"
-    t.boolean "ski_rack"
-    t.boolean "bike_rack"
-    t.boolean "bluetooth"
-    t.boolean "audio_input"
-    t.boolean "sunroof"
-    t.boolean "snowtires_or_chains"
-    t.boolean "rear_camera"
-    t.boolean "navigation"
-    t.boolean "heated_seats"
+    t.string "name"
     t.bigint "vehicle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
