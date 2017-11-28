@@ -6,6 +6,10 @@
     <p><strong>Email:</strong> <%= @user.email %> </p>
     <hr>
 
+    <% if @account.addresses %>
+      <%= render "address" %>
+    <% end %>
+
 
     <hr>
     <h3>Your Vehicles</h3>

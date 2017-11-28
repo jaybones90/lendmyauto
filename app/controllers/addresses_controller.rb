@@ -5,9 +5,10 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @address = Address.new(address_params)
-    if @address.save
-      redirect_to user_path(current_user)
+    @account = current_user.account
+    @address = @account.addresses.new(address_params)
+    if @address.save!
+      redirect_to account_path(@account)
     else
       render :new
     end
