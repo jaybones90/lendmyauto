@@ -5,9 +5,10 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :vehicles
-    resources :addresses
   end
-  
+
+  resources :addresses
+
   resources :reservations
 
   resources :vehicles do

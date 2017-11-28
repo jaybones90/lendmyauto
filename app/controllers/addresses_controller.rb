@@ -1,15 +1,13 @@
 class AddressesController < ApplicationController
 
   def new
-    @user = User.find(params[:user_id])
-    @address = @user.addresses.new()
+    @address = Address.new()
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @address = @user.addresses.new(address_params)
+    @address = Address.new(address_params)
     if @address.save
-      redirect_to user_path(@user)
+      redirect_to user_path(current_user)
     else
       render :new
     end

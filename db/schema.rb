@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127230217) do
+ActiveRecord::Schema.define(version: 20171127235905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20171127230217) do
     t.integer "zip_code"
     t.bigint "user_id"
     t.bigint "vehicle_id"
+    t.integer "current_location_id"
+    t.integer "dropoff_location_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
     t.index ["vehicle_id"], name: "index_addresses_on_vehicle_id"
   end
