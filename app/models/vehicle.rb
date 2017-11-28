@@ -8,7 +8,7 @@ class Vehicle < ApplicationRecord
 
   accepts_nested_attributes_for :images
 
-  belongs_to :user
+  belongs_to :account
 
   validates :make, :model, :year, :milage, :transmission, :color, :seats, :category, :availability_start, :presence => true
 

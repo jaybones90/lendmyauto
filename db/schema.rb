@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128193343) do
+ActiveRecord::Schema.define(version: 20171128194942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,11 +27,11 @@ ActiveRecord::Schema.define(version: 20171128193343) do
     t.string "city"
     t.string "state"
     t.integer "zip_code"
-    t.bigint "user_id"
-    t.bigint "vehicle_id"
     t.integer "current_location_id"
     t.integer "dropoff_location_id"
-    t.index ["user_id"], name: "index_addresses_on_user_id"
+    t.bigint "account_id"
+    t.bigint "vehicle_id"
+    t.index ["account_id"], name: "index_addresses_on_account_id"
     t.index ["vehicle_id"], name: "index_addresses_on_vehicle_id"
   end
 
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20171128193343) do
     t.integer "pickup_location_id"
     t.integer "dropoff_location_id"
     t.bigint "total_price"
-    t.integer "renter_id"
-    t.integer "lender_id"
+    t.integer "renter_account_id"
+    t.integer "lender_account_id"
     t.integer "vehicle_id"
   end
 
@@ -105,10 +105,10 @@ ActiveRecord::Schema.define(version: 20171128193343) do
     t.integer "seats"
     t.string "category"
     t.integer "daily_price"
-    t.bigint "user_id"
+    t.bigint "account_id"
     t.datetime "availability_start"
     t.datetime "availability_end"
-    t.index ["user_id"], name: "index_vehicles_on_user_id"
+    t.index ["account_id"], name: "index_vehicles_on_account_id"
   end
 
   add_foreign_key "accounts", "users"
