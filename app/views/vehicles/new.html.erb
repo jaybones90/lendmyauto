@@ -4,7 +4,7 @@
 
     <%= render "layouts/errors", :object => @vehicle %>
 
-    <%= form_for [@user, @vehicle] do |f| %>
+    <%= form_for [@account, @vehicle] do |f| %>
       <%= f.label :make %>
       <%= f.text_field :make %>
       <%= f.label :model %>

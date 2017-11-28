@@ -9,10 +9,10 @@
 
     <hr>
     <h3>Your Vehicles</h3>
-    <% if @user.vehicles %>
-      <% @user.vehicles.each do |vehicle| %>
+    <% if @account.vehicles %>
+      <% @account.vehicles.each do |vehicle| %>
       <div class="user-vehicle-block">
-        <%= link_to vehicle.model, user_vehicle_path(@user, vehicle) %>
+        <%= link_to vehicle.model, account_vehicle_path(@account, vehicle) %>
 
         <br>
         <% if vehicle.images.any? %>
@@ -26,6 +26,6 @@
     <br>
     <%= link_to "Edit Profile", edit_user_registration_path %>
     <br>
-    <%= link_to "List Your Vehicle", new_user_vehicle_path(@user) %>
+    <%= link_to "List Your Vehicle", new_account_vehicle_path(@account) %>
   </div>
 </section>

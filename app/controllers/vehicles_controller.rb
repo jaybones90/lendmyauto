@@ -1,15 +1,15 @@
 class VehiclesController < ApplicationController
 
   def new
-    @user = User.find(params[:user_id])
-    @vehicle = @user.vehicles.new()
+    @account = current_user.account
+    @vehicle = @account.vehicles.new()
     @image = @vehicle.images.new()
     @features = @vehicle.features.new()
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @vehicle = @user.vehicles.new(vehicle_params)
+    @account = current_user.account
+    @vehicle = @account.vehicles.new(vehicle_params)
     @vehicle.availability_start = availability_start_params
     @vehicle.availability_end = availability_end_params
     if @vehicle.save
@@ -29,8 +29,9 @@ class VehiclesController < ApplicationController
 
   def update
     @vehicle = Vehicle.find(params[:id])
+    @account = current_user.account
     if @vehicle.update(vehicle_params)
-      redirect_to user_path(@vehicle.user)
+      redirect_to account_path(@account)
     else
       render :edit
     end
@@ -38,9 +39,9 @@ class VehiclesController < ApplicationController
 
   def destroy
     @vehicle = Vehicle.find(params[:id])
-    @user = @vehicle.user
+    @account = current_user.account
     @vehicle.destroy
-    redirect_to user_path(@user)
+    redirect_to account_path(@account)
   end
 
   private

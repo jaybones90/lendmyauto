@@ -10,4 +10,13 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :email, :age, :phone_number, :presence => true
 
 
+  after_create :save_account
+
+  private
+
+  def save_account
+    account = Account.create!(:user_id => self.id)
+    self.account_id = account.id
+  end
+
 end
