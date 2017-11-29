@@ -47,7 +47,7 @@ class VehiclesController < ApplicationController
   private
 
   def vehicle_params
-    params.require(:vehicle).permit(:make, :model, :year, :milage, :transmission, :color, :seats, :category, feature_ids:[])
+    params.require(:vehicle).permit(:make, :model, :year, :milage, :transmission, :color, :doors, :seats, :category, feature_ids:[])
   end
 
   def image_params

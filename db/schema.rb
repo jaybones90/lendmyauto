@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128194942) do
+ActiveRecord::Schema.define(version: 20171129010544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20171128194942) do
     t.bigint "account_id"
     t.datetime "availability_start"
     t.datetime "availability_end"
+    t.integer "doors"
     t.index ["account_id"], name: "index_vehicles_on_account_id"
   end
 

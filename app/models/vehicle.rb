@@ -10,7 +10,7 @@ class Vehicle < ApplicationRecord
 
   belongs_to :account
 
-  validates :make, :model, :year, :milage, :transmission, :color, :seats, :category, :availability_start, :presence => true
+  validates :make, :model, :year, :milage, :transmission, :color, :doors, :seats, :category, :availability_start, :presence => true
 
   scope :popular_cars, -> {limit(3)}
 end

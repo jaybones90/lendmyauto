@@ -30,15 +30,28 @@ class Seed
         city: Faker::Address.city,
         state: Faker::Address.state,
         zip_code: Faker::Address.zip_code,
-        account_id: i
+        account_id: i + 1
       )
       puts "created #{Address.all.count} account addresses"
     end
   end
 
   def create_vehicles
+    doors = [2,4]
+    transmissions = ["Automatic", "Manual"]
     5.times do |i|
-      Vehicle.create!()
+      Vehicle.create!(
+        make: Faker::Vehicle.make,
+        model: Faker::Vehicle.model,
+        year: Faker::Vehicle.year,
+        milage: Faker::Vehicle.mileage,
+        color: Faker::Vehicle.color,
+        transmission: transmissions.sample
+        doors:
+        category:
+        daily_price:
+        account_id: i + 1
+      )
     end
   end
 
