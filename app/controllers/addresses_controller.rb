@@ -14,6 +14,20 @@ class AddressesController < ApplicationController
     end
   end
 
+  def edit
+    @address = Address.find(params[:id])
+  end
+
+  def update
+    @account = current_user.account
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+      redirect_to account_path(@account)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def address_params

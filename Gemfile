@@ -46,6 +46,8 @@ group :development, :test do
   gem 'launchy'
   gem 'pry'
   gem 'shoulda-matchers'
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+  gem 'faker-vehicle', :git => 'https://github.com/devmynd/faker-vehicle'
 end
 
 group :development do

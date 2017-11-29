@@ -4,4 +4,5 @@
   <p><strong>City:</strong> <%= address.city %> </p>
   <p><strong>State:</strong> <%= address.state %> </p>
   <p><strong>Zip Code</strong> <%= address.zip_code %> </p>
+  <%= link_to "Edit Address", edit_address_path(address) %>
 <% end %>

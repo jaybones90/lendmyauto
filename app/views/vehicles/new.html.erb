@@ -1,51 +1,10 @@
 <section>
   <div class="container">
-    <h1>Enter Your Vechicle Details</h1>
+    <h1>Enter Your Vehicle Details</h1>
 
     <%= render "layouts/errors", :object => @vehicle %>
 
-    <%= form_for [@account, @vehicle] do |f| %>
-      <%= f.label :make %>
-      <%= f.text_field :make %>
-      <%= f.label :model %>
-      <%= f.text_field :model %>
-      <%= f.label :year %>
-      <%= f.number_field :year %>
-      <%= f.label :milage %>
-      <%= f.number_field :milage %>
-      <%= f.label :transmission %>
-      <%= f.select :transmission, ["Automatic", "Manual"]%>
-      <%= f.label :color %>
-      <%= f.text_field :color %>
-      <%= f.label "Number Of Seats" %>
-      <%= f.number_field :seats %>
-      <%= f.label :category %>
-      <%= f.select :category, ["Suv","Truck", "Sedan", "Coupe", "Van", "Wagon", "Convertible","Sports Car", "Hybrid/Electric",  "Luxury"] %><br>
-      <br>
-
-
-
-      <%= f.label "Select All Features" %><br />
-      <%= f.collection_check_boxes :feature_ids, Feature.all, :id, :description do |b| %>
-
-        <%= b.check_box %>
-        <%= b.label %>
-
-      <% end %>
-
-      <br>
-
-
-      <%= f.label :start_date %>
-      <%= select_date Date.today, prefix: :start_date %>
-      <br>
-      <%= f.label :end_date %>
-      <%= select_date Date.today, prefix: :end_date %>
-      <br>
-      <%= f.submit %>
-    <% end %>
-
-
+    <%= render "form" %>
 
   </div>
 </section>
