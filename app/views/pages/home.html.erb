@@ -27,7 +27,62 @@
   <div class="container">
     <div class="row">
 
-  
+      <% if @vehicles.any? %>
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">
+              <%= link_to "test", new_reservation_path(:vehicle_id => @vehicles[0].id) %>
+            </h2>
+            <ul class="lead">
+              <li> <%= @vehicles[0].make %> </li>
+              <li> <%= @vehicles[0].model %> </li>
+              <li> <%= @vehicles[0].year %> </li>
+              <li> <%= @vehicles[0].milage %> </li>
+            </ul>
+          </div>
+          <div class="col-md-5">
+            <%= image_tag @vehicles[0].images.first.avatar.url, class: "featurette-image img-fluid mx-auto" %>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">
+              <%= @vehicles[1].make %> <%= @vehicles[1].model %>
+            </h2>
+            <ul class="lead">
+              <li> <%= @vehicles[1].make %> </li>
+              <li> <%= @vehicles[1].model %> </li>
+              <li> <%= @vehicles[1].year %> </li>
+              <li> <%= @vehicles[1].milage %> </li>
+            </ul>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <%= image_tag @vehicles[1].images.first.avatar.url, class: "featurette-image img-fluid mx-auto" %>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">
+              <%= @vehicles[2].make %> <%= @vehicles[2].model %>
+            </h2>
+            <ul class="lead">
+              <li> <%= @vehicles[2].make %> </li>
+              <li> <%= @vehicles[2].model %> </li>
+              <li> <%= @vehicles[2].year %> </li>
+              <li> <%= @vehicles[2].milage %> </li>
+            </ul>
+          </div>
+          <div class="col-md-5">
+            <%= image_tag @vehicles[2].images.first.avatar.url, class: "featurette-image img-fluid mx-auto" %>
+          </div>
+        </div>
+      <% end %>
 
 
     </div>

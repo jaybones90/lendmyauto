@@ -1,8 +1,11 @@
 class VehiclesController < ApplicationController
+  wrap_parameters :vehicles, include: [:pickup_address]
 
   def new
     @account = current_user.account
     @vehicle = @account.vehicles.new()
+    @vehicle.build_pickup_address()
+    @vehicle.build_dropoff_address()
     @image = @vehicle.images.new()
     @features = @vehicle.features.new()
   end
@@ -12,7 +15,9 @@ class VehiclesController < ApplicationController
     @vehicle = @account.vehicles.new(vehicle_params)
     @vehicle.availability_start = availability_start_params
     @vehicle.availability_end = availability_end_params
-    if @vehicle.save
+    @pickup = @vehicle.build_pickup_address(vehicle_params[:pickup_address_attributes])
+    @dropoff = @vehicle.build_dropoff_address(vehicle_params[:dropoff_address_attributes])
+    if @vehicle.save! && @pickup.save! && @dropoff.save!
       redirect_to new_vehicle_image_path(@vehicle)
     else
       render :new
@@ -21,6 +26,7 @@ class VehiclesController < ApplicationController
 
   def show
     @vehicle = Vehicle.find(params[:id])
+    @pickup = @vehicle.pickup_address
   end
 
   def edit
@@ -47,7 +53,7 @@ class VehiclesController < ApplicationController
   private
 
   def vehicle_params
-    params.require(:vehicle).permit(:make, :model, :year, :milage, :transmission, :color, :doors, :seats, :category, feature_ids:[])
+    params.require(:vehicle).permit(:make, :model, :year, :milage, :transmission, :color, :doors, :seats, :category, :pickup_address_attributes => [:id, :street, :city, :state, :zip_code, :_delete], :dropoff_address_attributes => [:id, :street, :city, :state, :zip_code, :_delete], feature_ids:[])
   end
 
   def image_params

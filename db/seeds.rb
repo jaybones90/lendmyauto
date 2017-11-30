@@ -29,8 +29,7 @@ class Seed
         street: Faker::Address.street_address,
         city: Faker::Address.city,
         state: Faker::Address.state,
-        zip_code: Faker::Address.zip_code,
-        account_id: (i + 1)
+        zip_code: Faker::Address.zip_code
       )
       puts "created #{Address.all.count} account addresses"
     end
@@ -38,6 +37,7 @@ class Seed
 
   def create_vehicles
     transmissions = ["Automatic", "Manual"]
+    images_array = ['app/assets/images/4runner.jpg', 'app/assets/images/forester1.jpg', 'app/assets/images/lexus.jpg']
     random = Random.new()
     doors = [2,4]
     seats = [2,4,5,6,7,8]
@@ -45,7 +45,8 @@ class Seed
     models = ["Accord", "Dakota", "Forester", "A4", "Suburban"]
     categories = ["Suv","Truck", "Sedan", "Coupe", "Van", "Wagon", "Convertible","Sports Car", "Hybrid/Electric",  "Luxury"]
     5.times do |i|
-      Vehicle.create!(
+      image = images_array.sample
+      vehicle = Vehicle.create!(
         make: makes.sample,
         model: models.sample,
         year: random.rand(1998..2018),
@@ -60,6 +61,11 @@ class Seed
         availability_start: Date.civil(2017, 12, random.rand(30)),
         availability_end: Date.civil(2018, random.rand(12), random.rand(30))
       )
+      2.times do |i|
+        vehicle.images.create!(
+          avatar: File.new("#{image}")
+        )
+      end
     end
     puts "created #{Vehicle.all.count} vehicles"
   end

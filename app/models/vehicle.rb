@@ -3,8 +3,11 @@ class Vehicle < ApplicationRecord
   has_many :images, dependent: :destroy
   has_many :reservations
 
-  has_many :current_location, :class_name => "Address", :foreign_key => 'current_location_id'
-  has_many :dropoff_location, :class_name => "Address", :foreign_key => 'dropoff_location_id'
+  has_one :pickup_address, -> { where(addressable_scope: :pickup_address) }, as: :addressable,  class_name: "Address", dependent: :destroy
+  accepts_nested_attributes_for :pickup_address, allow_destroy: true
+
+  has_one :dropoff_address, -> { where(addressable_scope: :dropoff_address) }, as: :addressable,  class_name: "Address", dependent: :destroy
+  accepts_nested_attributes_for :dropoff_address, allow_destroy: true
 
   accepts_nested_attributes_for :images
 

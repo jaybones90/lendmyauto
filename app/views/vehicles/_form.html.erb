@@ -1,6 +1,6 @@
 
 
-<%= form_for [@account, @vehicle] do |f| %>
+<%= form_for (@vehicle) do |f| %>
   <%= f.label :make %>
   <%= f.text_field :make %>
   <%= f.label :model %>
@@ -15,6 +15,8 @@
   <%= f.text_field :color %>
   <%= f.label "Number Of Seats" %>
   <%= f.number_field :seats %>
+  <%= f.label "Number Of Doors" %>
+  <%= f.number_field :doors %>
   <%= f.label :category %>
   <%= f.select :category, ["Suv","Truck", "Sedan", "Coupe", "Van", "Wagon", "Convertible","Sports Car", "Hybrid/Electric",  "Luxury"] %><br>
   <br>
@@ -31,6 +33,34 @@
 
   <br>
 
+  <%= f.fields_for :pickup_address do |pickup| %>
+    <h5>Enter Vehicle Pickup Address</h5>
+    <%= pickup.label :street %>
+    <%= pickup.text_field :street %>
+    <%= pickup.label :city %>
+    <%= pickup.text_field :city %>
+    <%= pickup.label :state %>
+    <%= pickup.text_field :state %>
+    <%= pickup.label :zip_code %>
+    <%= pickup.text_field :zip_code %>
+  <% end %>
+
+  <%= f.fields_for :dropoff_address do |dropoff| %>
+    <h5>Enter Vehicle Dropoff Address</h5>
+    <%= dropoff.label :street %>
+    <%= dropoff.text_field :street %>
+    <%= dropoff.label :city %>
+    <%= dropoff.text_field :city %>
+    <%= dropoff.label :state %>
+    <%= dropoff.text_field :state %>
+    <%= dropoff.label :zip_code %>
+    <%= dropoff.text_field :zip_code %>
+  <% end %>
+
+
+
+
+  <br>
 
   <%= f.label :start_date %>
   <%= select_date Date.today, prefix: :start_date %>
@@ -38,5 +68,8 @@
   <%= f.label :end_date %>
   <%= select_date Date.today, prefix: :end_date %>
   <br>
+
+
+
   <%= f.submit %>
 <% end %>
