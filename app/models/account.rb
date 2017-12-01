@@ -16,4 +16,6 @@ class Account < ApplicationRecord
 
   has_many :owned_vehicles, :foreign_key => "owner_account_id", class_name: "Vehicle", inverse_of: :owner_account, dependent: :destroy
 
+  validates :user_first_name, :user_last_name, :user_birth_date, :user_phone_number, presence: true, on: :edit
+
 end

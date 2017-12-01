@@ -1,19 +1,23 @@
-<div class="field">
-  <%= f.label :first_name %><br />
-  <%= f.text_field :first_name, autofocus: true %>
-</div>
 
-<div class="field">
-  <%= f.label :last_name %><br />
-  <%= f.text_field :last_name%>
-</div>
+<%= form_for @account do |f| %>
+  <div class="field">
+    <%= f.label "First Name" %><br />
+    <%= f.text_field :user_first_name, autofocus: true %>
+  </div>
 
-<div class="field">
-  <%= f.label :age %><br />
-  <%= f.number_field :age %>
-</div>
+  <div class="field">
+    <%= f.label "Last Name"  %><br />
+    <%= f.text_field :user_last_name %>
+  </div>
 
-<div class="field">
-  <%= f.label :phone_number %><br />
-  <%= f.text_field :phone_number, placeholder: "i.e. 4153934433" %>
-</div>
+  <div class="field">
+    <%= f.label "Enter Date of Birth" %><br />
+    <%= f.date_select :user_birth_date, {start_year: 1920, use_month_numbers: true, use_two_digit_numbers: true }%>
+  </div>
+
+  <div class="field">
+    <%= f.label "Phone Number" %><br />
+    <%= f.text_field :user_phone_number, placeholder: "i.e. 4153934433" %>
+  </div>
+  <%= f.submit %>
+<% end %>
