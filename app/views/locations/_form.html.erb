@@ -1,11 +1,25 @@
-<%= form_for [@user, @address] do |f| %>
-  <%= f.label :street %>
-  <%= f.text_field :street %>
-  <%= f.label :city %>
-  <%= f.text_field :city %>
-  <%= f.label :state %>
-  <%= f.text_field :state %>
-  <%= f.label :zip_code %>
-  <%= f.number_field :zip_code %>
-  <p><%= f.submit "Submit" %></p>
+<%= form_for @location do |f| %>
+  <div class="field">
+    <%= f.label :street_address %>
+    <%= f.text_field :street_address %>
+  </div>
+  <div class="field">
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :state %>
+    <%= f.text_field :state %>
+  </div>
+  <div class="field">
+    <%= f.label :zip_code %>
+    <%= f.number_field :zip_code %>
+  </div>
+  <div class="field">
+    <%= f.label :country %>
+    <%= f.number_field :country %>
+  </div>
+  <div class="field">
+    <p><%= f.submit "Submit" %></p>
+  </div>
 <% end %>

@@ -4,4 +4,6 @@ class Location < ApplicationRecord
 
   has_many :reservations, inverse_of: :location, dependent: :nullify
 
+  validates :street_address, :city, :state, :zip_code, :country, :presence => true
+
 end

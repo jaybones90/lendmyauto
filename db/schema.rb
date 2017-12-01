@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201201519) do
+ActiveRecord::Schema.define(version: 20171201213220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20171201201519) do
     t.string "street_address", limit: 255
     t.string "city", limit: 255
     t.string "state", limit: 255
-    t.integer "zip_code"
+    t.string "zip_code"
     t.string "country", limit: 255
   end
 
