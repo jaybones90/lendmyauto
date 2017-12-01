@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201195307) do
+ActiveRecord::Schema.define(version: 20171201201519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,8 +36,10 @@ ActiveRecord::Schema.define(version: 20171201195307) do
     t.string "number"
     t.date "expiration_date"
     t.date "issue_date"
+    t.bigint "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_drivers_licenses_on_account_id"
   end
 
   create_table "features", force: :cascade do |t|
@@ -58,8 +60,9 @@ ActiveRecord::Schema.define(version: 20171201195307) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.bigint "vehicle_id"
-    t.index ["vehicle_id"], name: "index_images_on_vehicle_id"
+    t.integer "imageable_id"
+    t.string "imageable_type"
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -124,6 +127,7 @@ ActiveRecord::Schema.define(version: 20171201195307) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "drivers_licenses", "accounts"
   add_foreign_key "features_vehicles", "features"
   add_foreign_key "features_vehicles", "vehicles"
   add_foreign_key "reservations", "accounts", column: "lender_account_id"

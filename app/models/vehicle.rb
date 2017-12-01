@@ -8,7 +8,7 @@ class Vehicle < ApplicationRecord
 
   has_and_belongs_to_many :features, dependent: :delete_all
 
-  has_many :images, dependent: :delete_all
+  has_many :images, as: :imageable, dependent: :delete_all
 
   has_many :reservations, inverse_of: :vehicle, dependent: :nullify
 
