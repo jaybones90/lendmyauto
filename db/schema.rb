@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201074636) do
+ActiveRecord::Schema.define(version: 20171201075338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,12 +108,20 @@ ActiveRecord::Schema.define(version: 20171201074636) do
     t.integer "doors"
     t.integer "daily_price"
     t.bigint "current_location_id"
-    t.bigint "vehicle_category_id"
+    t.bigint "category_id"
     t.bigint "owner_account_id"
+    t.index ["category_id"], name: "index_vehicles_on_category_id"
     t.index ["current_location_id"], name: "index_vehicles_on_current_location_id"
     t.index ["owner_account_id"], name: "index_vehicles_on_owner_account_id"
-    t.index ["vehicle_category_id"], name: "index_vehicles_on_vehicle_category_id"
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "features_vehicles", "features"
+  add_foreign_key "features_vehicles", "vehicles"
+  add_foreign_key "reservations", "accounts", column: "lender_account_id"
+  add_foreign_key "reservations", "accounts", column: "renter_account_id"
+  add_foreign_key "reservations", "vehicles"
+  add_foreign_key "vehicles", "categories"
+  add_foreign_key "vehicles", "locations", column: "current_location_id"
+  add_foreign_key "vehicles", "locations", column: "owner_account_id"
 end
