@@ -4,7 +4,7 @@ class Vehicle < ApplicationRecord
 
   belongs_to :category, inverse_of: :vehicle
 
-  belongs_to :owner_account, inverse_of: :vehicles, class_name: "Account", optional: true, foreign_key: 'owner_account_id'
+  belongs_to :owner_account, inverse_of: :owned_vehicles, class_name: "Account", optional: true, foreign_key: 'owner_account_id'
 
   has_and_belongs_to_many :features, dependent: :delete_all
 
