@@ -1,5 +1,7 @@
 class Vehicle < ApplicationRecord
-  belongs_to :location, inverse_of: :vehicles
+
+  belongs_to :current_location, class_name: "Location", inverse_of: :vehicle
+
   belongs_to :vehicle_category
   belongs_to :account, inverse_of: :vehicles, class_name: "Account", optional: true, foreign_key: 'owner_account_id'
 
@@ -14,5 +16,5 @@ class Vehicle < ApplicationRecord
 
   validates :make, :model, :year, :milage, :transmission, :color, :seats, :doors, :daily_price,  :presence => true
 
-  
+
 end
