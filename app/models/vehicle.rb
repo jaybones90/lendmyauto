@@ -10,13 +10,12 @@ class Vehicle < ApplicationRecord
 
   has_many :images, dependent: :delete
 
-  has_many :reservations, inverse_of: :vehicle
+  has_many :reservations, inverse_of: :vehicle, dependent: :nullify
 
-  has_many :rental_accounts, :through => :reservations, source: :account, foreign_key: 'renter_account_id'
+  has_many :rental_accounts, :through => :reservations, source: :account, foreign_key: 'renter_account_id', dependent: :nullify
 
   accepts_nested_attributes_for :images
 
   validates :make, :model, :year, :milage, :transmission, :color, :seats, :doors, :daily_price,  :presence => true
-
 
 end
