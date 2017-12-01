@@ -1,3 +1,5 @@
+<%= render "layouts/errors", :object => @location %>
+
 <%= form_for @location do |f| %>
   <div class="field">
     <%= f.label :street_address %>
@@ -17,7 +19,7 @@
   </div>
   <div class="field">
     <%= f.label :country %>
-    <%= f.country_select :country, { include_blank: 'Select a country' } %>
+    <%= f.country_select :country, { selected: "US" } %>
   </div>
   <div class="field">
     <p><%= f.submit "Submit" %></p>
