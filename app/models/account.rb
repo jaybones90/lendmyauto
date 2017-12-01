@@ -10,6 +10,6 @@ class Account < ApplicationRecord
 
   has_many :loaned_vehicles, :through => :reservations, source: :vehicle, :foreign_key => "lender_account_id", dependent: :nullify
 
-  has_many :owned_vehicles, :foreign_key => "owner_account_id", inverse_of: :owner_account, dependent: :destroy
+  has_many :owned_vehicles, :foreign_key => "owner_account_id", inverse_of: :owner_account, dependent: :destroy_all
 
 end
