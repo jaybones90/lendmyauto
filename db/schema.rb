@@ -10,22 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127235905) do
+ActiveRecord::Schema.define(version: 20171130233331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "addresses", force: :cascade do |t|
-    t.string "street"
-    t.string "city"
-    t.string "state"
-    t.integer "zip_code"
+  create_table "accounts", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "vehicle_id"
-    t.integer "current_location_id"
-    t.integer "dropoff_location_id"
-    t.index ["user_id"], name: "index_addresses_on_user_id"
-    t.index ["vehicle_id"], name: "index_addresses_on_vehicle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id", unique: true
   end
 
   create_table "features", force: :cascade do |t|
@@ -50,15 +44,24 @@ ActiveRecord::Schema.define(version: 20171127235905) do
     t.index ["vehicle_id"], name: "index_images_on_vehicle_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "street_address", limit: 255
+    t.string "city", limit: 255
+    t.string "state", limit: 255
+    t.integer "zip_code"
+    t.string "country", limit: 255
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer "pickup_location_id"
-    t.integer "dropoff_location_id"
     t.bigint "total_price"
-    t.integer "renter_id"
-    t.integer "lender_id"
-    t.integer "vehicle_id"
+    t.bigint "renter_account_id"
+    t.bigint "lender_account_id"
+    t.bigint "vehicle_id"
+    t.index ["lender_account_id"], name: "index_reservations_on_lender_account_id"
+    t.index ["renter_account_id"], name: "index_reservations_on_renter_account_id"
+    t.index ["vehicle_id"], name: "index_reservations_on_vehicle_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -82,9 +85,14 @@ ActiveRecord::Schema.define(version: 20171127235905) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vehicle_categories", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "vehicles", force: :cascade do |t|
@@ -95,12 +103,15 @@ ActiveRecord::Schema.define(version: 20171127235905) do
     t.string "transmission"
     t.string "color"
     t.integer "seats"
-    t.string "category"
+    t.integer "doors"
     t.integer "daily_price"
-    t.bigint "user_id"
-    t.datetime "availability_start"
-    t.datetime "availability_end"
-    t.index ["user_id"], name: "index_vehicles_on_user_id"
+    t.bigint "current_location_id"
+    t.bigint "vehicle_category_id"
+    t.bigint "owner_account_id"
+    t.index ["current_location_id"], name: "index_vehicles_on_current_location_id"
+    t.index ["owner_account_id"], name: "index_vehicles_on_owner_account_id"
+    t.index ["vehicle_category_id"], name: "index_vehicles_on_vehicle_category_id"
   end
 
+  add_foreign_key "accounts", "users"
 end

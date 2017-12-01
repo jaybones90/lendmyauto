@@ -1,16 +1,18 @@
 class Vehicle < ApplicationRecord
+  belongs_to :location, inverse_of: :vehicles
+  belongs_to :vehicle_category
+  belongs_to :account, inverse_of: :vehicles, class_name: "Account", optional: true, foreign_key: 'owner_account_id'
+
   has_and_belongs_to_many :features, dependent: :destroy
   has_many :images, dependent: :destroy
-  has_many :reservations
 
-  has_many :current_location, :class_name => "Address", :foreign_key => 'current_location_id'
-  has_many :dropoff_location, :class_name => "Address", :foreign_key => 'dropoff_location_id'
+  has_many :reservations, inverse_of: :vehicle
+  has_many :rental_accounts, :through => :reservations, source: :account
+
 
   accepts_nested_attributes_for :images
 
-  belongs_to :user
+  validates :make, :model, :year, :milage, :transmission, :color, :seats, :doors, :daily_price,  :presence => true
 
-  validates :make, :model, :year, :milage, :transmission, :color, :seats, :category, :availability_start, :presence => true
-
-  scope :popular_cars, -> {limit(3)}
+  
 end
