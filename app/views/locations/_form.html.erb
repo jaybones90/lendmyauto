@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :country %>
-    <%= f.number_field :country %>
+    <%= f.country_select :country, { include_blank: 'Select a country' } %>
   </div>
   <div class="field">
     <p><%= f.submit "Submit" %></p>
