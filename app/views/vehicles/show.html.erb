@@ -6,6 +6,12 @@
 <br>
 <%= link_to "Add Images", new_vehicle_image_path(@vehicle) %>
 
+<% if @vehicle.images %>
+  <% @vehicle.images.each do |image| %>
+  <%= image_tag image.avatar(:medium) %>
+  <% end%>
+<% end %>
+
 <ul>
   <li><%= @vehicle.make %> </li>
   <li><%= @vehicle.model %> </li>
@@ -14,5 +20,5 @@
   <li><%= @vehicle.transmission %> </li>
   <li><%= @vehicle.color %> </li>
   <li><%= @vehicle.seats %> </li>
-  <li><%= @vehicle.category %> </li>
+  <li><%= @vehicle.category.name %> </li>
 </ul>

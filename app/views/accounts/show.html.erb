@@ -11,8 +11,8 @@
     <hr>
     <h3>Your Vehicles</h3>
     <% if @vehicles %>
-      <%= @vehicles.each do |vehicle| %>
-        <%= vehicle.make %>
+      <% @vehicles.each do |vehicle| %>
+        <%= link_to vehicle.make, vehicle_path(vehicle) %>
       <% end %>
     <% end %>
     <hr>
