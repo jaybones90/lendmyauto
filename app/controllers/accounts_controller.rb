@@ -14,7 +14,11 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:id])
     @account.update(account_params)
     if @account.save!
-      redirect_to account_path(@account)
+      if @account.drivers_license.nil?
+        redirect_to new_account_drivers_license_path(@account)
+      else
+        redirect_to account_path(@account)
+      end
     else
       render :edit
     end

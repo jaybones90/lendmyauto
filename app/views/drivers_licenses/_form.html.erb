@@ -1,0 +1,27 @@
+<%= render "layouts/errors", :object => @license %>
+
+<%= form_for [@account, @license] do |f| %>
+  <div class="field">
+    <%= f.label :number %>
+    <%= f.text_field :number %>
+  </div>
+  <div class="field">
+    <%= f.label :expiration_date %>
+    <%= f.date_select :expiration_date %>
+  </div>
+  <div class="field">
+    <%= f.label :issue_date %>
+    <%= f.date_select :issue_date %>
+  </div>
+  <div class="field">
+
+    <%= f.fields_for :image, @license.build_image do |image_form| %>
+      <%= image_form.label :avatar %>
+      <%= image_form.file_field :avatar %>
+    <% end %>
+
+  </div>
+  <div class="field">
+    <%= f.submit %>
+  </div>
+<% end %>

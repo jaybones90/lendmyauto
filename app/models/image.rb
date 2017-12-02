@@ -1,6 +1,6 @@
 class Image < ApplicationRecord
-  
-  belongs_to :imageable, polymorphic: true
+
+  belongs_to :imageable, polymorphic: true, optional: true
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }
 
