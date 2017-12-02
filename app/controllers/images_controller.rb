@@ -1,25 +1,38 @@
 class ImagesController < ApplicationController
+  before_action :load_imageable
 
   def new
-    @vehicle = Vehicle.find(params[:vehicle_id])
-    @image = @vehicle.images.new()
+    if @imageable.is_a?(Account || DriversLicense )
+      @image = @imageable.build_image()
+    else
+      @image = @imageable.images.new()
+    end
   end
 
   def create
-    @vehicle = Vehicle.find(params[:vehicle_id])
-    @user = @vehicle.user
-    @image = @vehicle.images.new(image_params)
-    if @image.save
-      redirect_to user_path(@user)
+    if @imageable.is_a?(Account || DriversLicense )
+      @image = @imageable.build_image(image_params)
+    else
+      @image = @imageable.images.new(image_params)
+    end
+
+    if @image.save!
+      redirect_to account_path(current_user.account)
     else
       render :new
     end
+
   end
 
   private
 
   def image_params
     params.require(:image).permit(:avatar)
+  end
+
+  def load_imageable
+    resource, id = request.path.split('/')[1,2]
+    @imageable = resource.singularize.classify.constantize.find(id)
   end
 
 end
