@@ -6,8 +6,9 @@
 
     <%= f.input :email, autofocus: true %>
     <%= f.input :password, autocomplete: "off" %>
-
-    <%= f.input :remember_me, autocomplete: "off" if devise_mapping.rememberable? %>
+    <% if devise_mapping.rememberable?  %>
+      <%= f.input :remember_me, as: :boolean, checked_value: true, unchecked_value: false %>
+    <% end %>
 
     <%= f.button :submit %>
   <% end %>
