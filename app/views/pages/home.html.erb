@@ -7,7 +7,7 @@
 <section class="how-it-works">
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4" >
         <h1>Test</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id felis augue. Proin a mi quis ligula efficitur eleifend ut in augue. Integer vitae lacinia magna. Donec aliquam, justo id maximus accumsan, eros massa iaculis augue, vitae porttitor libero est quis nisl. Praesent egestas libero nec tellus iaculis porta.</p>
       </div>
@@ -23,20 +23,24 @@
   </div>
 </section>
 
+
+
 <section>
   <ul class="example-orbit" data-orbit>
     <li>
-      <%= image_tag @image.avatar(:medium) %>
+      <%= image_tag @image.avatar %>
       <div class="orbit-caption">
         Caption One.
       </div>
     </li>
     <li class="active">
+      <%= image_tag @image.avatar %>
       <div class="orbit-caption">
         Caption Two.
       </div>
     </li>
     <li>
+      <%= image_tag @image.avatar %>
       <div class="orbit-caption">
         Caption Three.
       </div>

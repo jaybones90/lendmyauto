@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201213220) do
+ActiveRecord::Schema.define(version: 20171202213355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20171201213220) do
     t.string "color"
     t.integer "seats"
     t.integer "doors"
-    t.integer "daily_price"
+    t.decimal "daily_price"
     t.bigint "current_location_id"
     t.bigint "category_id"
     t.bigint "owner_account_id"
