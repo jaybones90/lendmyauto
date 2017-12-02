@@ -9,8 +9,8 @@ class LocationsController < ApplicationController
     if @location.save!
       redirect_to new_location_vehicle_path(@location)
     else
-      flash[:alert] = "Something went wrong, please try again"
       render :new
+      flash[:alert] = "Something went wrong, please try again"
     end
   end
 
