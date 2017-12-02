@@ -1,5 +1,3 @@
-<%= render "layouts/errors", :object => @vehicle %>
-
 <%= simple_form_for [@location, @vehicle] do |f| %>
   <%= f.simple_fields_for :category, @vehicle.build_category do |c| %>
     <%= c.input :name, collection: ["Suv","Truck", "Sedan", "Coupe", "Van", "Wagon", "Convertible","Sports Car", "Hybrid/Electric",  "Luxury"] %>

@@ -1,5 +1,3 @@
-<%= render "layouts/errors", :object => @license %>
-
 <%= simple_form_for [@account, @license] do |f| %>
   <%= f.input :number, autofocus: true %>
   <%= f.input :expiration_date %>
