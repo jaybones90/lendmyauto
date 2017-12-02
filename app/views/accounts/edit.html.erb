@@ -1,0 +1,8 @@
+<div class="container">
+  <% if @account.user_first_name %>
+    Edit Your Profile Details
+  <% else %>
+    Please Enter Your Profile Details
+  <% end %>
+  <%= render "form" %>
+</div>

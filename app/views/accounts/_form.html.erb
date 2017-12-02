@@ -1,0 +1,12 @@
+<%= simple_form_for @account do |f| %>
+  <%= f.input :user_first_name, autofocus: true %>
+  <%= f.input :user_last_name %>
+  <%= f.input :user_birth_date, as: :date, start_year: Date.today.year - 90,
+                            end_year: Date.today.year - 12, discard_day: false,
+                            order: [:month, :day, :year] %>
+  <%= f.input :user_phone_number, placeholder: "i.e. 4153934433" %>
+  <%= f.simple_fields_for :image, @account.build_image do |image_form| %>
+    <%= image_form.input :avatar %>
+  <% end %>
+  <%= f.button :submit %>
+<% end %>

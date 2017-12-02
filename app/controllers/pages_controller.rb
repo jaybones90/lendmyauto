@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def home
-    @vehicles = Vehicle.popular_cars
+    @vehicles = Vehicle.all.limit(3)
   end
 
 end

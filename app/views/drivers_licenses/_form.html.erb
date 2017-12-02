@@ -1,0 +1,9 @@
+<%= simple_form_for [@account, @license] do |f| %>
+  <%= f.input :number, autofocus: true %>
+  <%= f.input :expiration_date %>
+  <%= f.input :issue_date %>
+  <%= f.simple_fields_for :image, @license.build_image do |image_form| %>
+    <%= image_form.input :avatar %>
+  <% end %>
+  <%= f.button :submit %>
+<% end %>

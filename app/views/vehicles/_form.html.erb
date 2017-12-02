@@ -1,0 +1,19 @@
+<%= simple_form_for [@location, @vehicle] do |f| %>
+  <%= f.simple_fields_for :category, @vehicle.build_category do |c| %>
+    <%= c.input :name, collection: ["Suv","Truck", "Sedan", "Coupe", "Van", "Wagon", "Convertible","Sports Car", "Hybrid/Electric",  "Luxury"] %>
+  <% end %>
+  <%= f.input :make %>
+  <%= f.input :model %>
+  <%= f.input :year %>
+  <%= f.input :milage %>
+  <%= f.input :transmission, collection: ["Automatic", "Manual"] %>
+  <%= f.input :color %>
+  <%= f.input :seats, collection: [2,3,4,5,6,7,8] %>
+  <%= f.input :doors, collection: [2,3,4,5,6,7,8]  %>
+  <%= f.association :features, label_method: :description, value_method: :id, as: :radio_buttons %>
+  <%= f.input :daily_price %>
+  <%= f.simple_fields_for :images, @vehicle.images.new do |image_form| %>
+    <%= image_form.input :avatar %>
+  <% end %>
+  <%= f.button :submit %>
+<% end %>

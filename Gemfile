@@ -38,6 +38,12 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# foundation library
+gem 'foundation-rails'
+# gem for add form functionality
+gem 'simple_form'
+# gem that provides html select with list of countries
+gem 'country_select'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -46,6 +52,7 @@ group :development, :test do
   gem 'launchy'
   gem 'pry'
   gem 'shoulda-matchers'
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 end
 
 group :development do

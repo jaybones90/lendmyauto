@@ -1,0 +1,9 @@
+<%= simple_form_for @location do |f| %>
+  <%= f.input :street_address, autofocus: true %>
+  <%= f.input :city %>
+  <%= f.input :state %>
+  <%= f.input :zip_code %>
+  <%= f.country_select :country, { selected: "US" } %>
+
+  <%= f.button :submit %>
+<% end %>

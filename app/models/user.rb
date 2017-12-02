@@ -4,11 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  after_create :save_account
 
-  validates :first_name, :last_name, :email, :age, :phone_number, :presence => true
+  has_one :account, dependent: :destroy
 
-  has_many :addresses
-  has_many :vehicles, dependent: :destroy
-  has_many :rentals, :class_name => "Reservation", :foreign_key => "renter_id"
-  has_many :loans, :class_name => "Reservation", :foreign_key => "lender_id"
+  validates :email, :presence => true
+
+  def save_account
+    self.create_account!()
+  end
+
+
 end

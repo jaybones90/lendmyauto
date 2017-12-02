@@ -1,0 +1,22 @@
+<section>
+  <div class="container">
+    <h1> Profile </h1>
+    <%= link_to "Edit Password", edit_user_registration_path(@user) %>
+    <br>
+    <%= link_to "Edit Profile Details", edit_account_path(@account) %>
+    <br>
+    <%= link_to "List Your Vehicle", new_location_path() %>
+
+
+    <hr>
+    <h3>Manage Vehicles</h3>
+    <% if @vehicles %>
+      <% @vehicles.each do |vehicle| %>
+        <%= link_to vehicle.make, vehicle_path(vehicle) %>
+        <br>
+      <% end %>
+    <% end %>
+    <hr>
+
+  </div>
+</section>

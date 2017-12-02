@@ -3,11 +3,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "pages#home"
 
-  resources :users do
+  resources :accounts do
+    resources :drivers_licenses
+    resources :images, only: [:new, :create]
+  end
+
+  resources :locations do
     resources :vehicles
   end
 
-  resources :addresses
 
   resources :reservations
 

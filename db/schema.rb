@@ -10,22 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127235905) do
+ActiveRecord::Schema.define(version: 20171202213355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "addresses", force: :cascade do |t|
-    t.string "street"
-    t.string "city"
-    t.string "state"
-    t.integer "zip_code"
+  create_table "accounts", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "vehicle_id"
-    t.integer "current_location_id"
-    t.integer "dropoff_location_id"
-    t.index ["user_id"], name: "index_addresses_on_user_id"
-    t.index ["vehicle_id"], name: "index_addresses_on_vehicle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "user_first_name"
+    t.string "user_last_name"
+    t.date "user_birth_date"
+    t.string "user_phone_number"
+    t.index ["user_id"], name: "index_accounts_on_user_id", unique: true
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "drivers_licenses", force: :cascade do |t|
+    t.string "number"
+    t.date "expiration_date"
+    t.date "issue_date"
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_drivers_licenses_on_account_id"
   end
 
   create_table "features", force: :cascade do |t|
@@ -46,26 +60,32 @@ ActiveRecord::Schema.define(version: 20171127235905) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.bigint "vehicle_id"
-    t.index ["vehicle_id"], name: "index_images_on_vehicle_id"
+    t.integer "imageable_id"
+    t.string "imageable_type"
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "street_address", limit: 255
+    t.string "city", limit: 255
+    t.string "state", limit: 255
+    t.string "zip_code"
+    t.string "country", limit: 255
   end
 
   create_table "reservations", force: :cascade do |t|
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer "pickup_location_id"
-    t.integer "dropoff_location_id"
     t.bigint "total_price"
-    t.integer "renter_id"
-    t.integer "lender_id"
-    t.integer "vehicle_id"
+    t.bigint "renter_account_id"
+    t.bigint "lender_account_id"
+    t.bigint "vehicle_id"
+    t.index ["lender_account_id"], name: "index_reservations_on_lender_account_id"
+    t.index ["renter_account_id"], name: "index_reservations_on_renter_account_id"
+    t.index ["vehicle_id"], name: "index_reservations_on_vehicle_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "phone_number"
-    t.integer "age"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -82,6 +102,7 @@ ActiveRecord::Schema.define(version: 20171127235905) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -95,12 +116,24 @@ ActiveRecord::Schema.define(version: 20171127235905) do
     t.string "transmission"
     t.string "color"
     t.integer "seats"
-    t.string "category"
-    t.integer "daily_price"
-    t.bigint "user_id"
-    t.datetime "availability_start"
-    t.datetime "availability_end"
-    t.index ["user_id"], name: "index_vehicles_on_user_id"
+    t.integer "doors"
+    t.decimal "daily_price"
+    t.bigint "current_location_id"
+    t.bigint "category_id"
+    t.bigint "owner_account_id"
+    t.index ["category_id"], name: "index_vehicles_on_category_id"
+    t.index ["current_location_id"], name: "index_vehicles_on_current_location_id"
+    t.index ["owner_account_id"], name: "index_vehicles_on_owner_account_id"
   end
 
+  add_foreign_key "accounts", "users"
+  add_foreign_key "drivers_licenses", "accounts"
+  add_foreign_key "features_vehicles", "features"
+  add_foreign_key "features_vehicles", "vehicles"
+  add_foreign_key "reservations", "accounts", column: "lender_account_id"
+  add_foreign_key "reservations", "accounts", column: "renter_account_id"
+  add_foreign_key "reservations", "vehicles"
+  add_foreign_key "vehicles", "categories"
+  add_foreign_key "vehicles", "locations", column: "current_location_id"
+  add_foreign_key "vehicles", "locations", column: "owner_account_id"
 end
