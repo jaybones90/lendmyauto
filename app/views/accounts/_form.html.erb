@@ -20,5 +20,15 @@
     <%= f.label "Phone Number" %><br />
     <%= f.text_field :user_phone_number, placeholder: "i.e. 4153934433" %>
   </div>
-  <%= f.submit %>
+
+  <div class="field">
+    <%= f.fields_for :image, @account.build_image do |image_form| %>
+      <%= image_form.label "Profile Photo" %>
+      <%= image_form.file_field :avatar %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.submit "Enter" %>
+  </div>
 <% end %>

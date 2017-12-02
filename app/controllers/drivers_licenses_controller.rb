@@ -8,7 +8,6 @@ class DriversLicensesController < ApplicationController
   def create
     @account = Account.find(params[:account_id])
     @license = @account.build_drivers_license(drivers_license_params)
-    binding.pry
     if @license.save!
       redirect_to account_path(@account)
     else

@@ -5,6 +5,7 @@ class Account < ApplicationRecord
   has_one :drivers_license, dependent: :destroy
 
   has_one :image, as: :imageable, dependent: :destroy
+  accepts_nested_attributes_for :image
 
   has_many :reservations, :foreign_key => "renter_account_id", inverse_of: :renter_account, dependent: :nullify
 
