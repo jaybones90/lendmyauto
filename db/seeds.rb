@@ -20,6 +20,7 @@ class Seed
       account.user_last_name = Faker::Name.last_name
       account.user_phone_number = Faker::PhoneNumber.phone_number
       account.user_birth_date = Faker::Date.between(90.years.ago, 10.years.ago)
+      account.save!
     end
   puts "created #{User.all.count} users"
   end
@@ -86,5 +87,6 @@ end
 seed = Seed.new
 seed.create_features
 seed.create_users_and_account_details
-seed.create_account_addresses
+seed.create_categories
+seed.create_locations
 seed.create_vehicles
