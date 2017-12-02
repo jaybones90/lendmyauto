@@ -1,41 +1,20 @@
 <%= render "layouts/errors", :object => @vehicle %>
 
-<%= form_for [@location, @vehicle] do |f| %>
-  <%= f.fields_for :category, @vehicle.build_category do |c| %>
-    <%= c.label :category %>
-    <%= c.select :name, ["Suv","Truck", "Sedan", "Coupe", "Van", "Wagon", "Convertible","Sports Car", "Hybrid/Electric",  "Luxury"]%>
+<%= simple_form_for [@location, @vehicle] do |f| %>
+  <%= f.simple_fields_for :category, @vehicle.build_category do |c| %>
+    <%= c.input :name, collection: ["Suv","Truck", "Sedan", "Coupe", "Van", "Wagon", "Convertible","Sports Car", "Hybrid/Electric",  "Luxury"] %>
   <% end %>
-  <%= f.label :make %>
-  <%= f.text_field :make %>
-  <%= f.label :model %>
-  <%= f.text_field :model %>
-  <%= f.label :year %>
-  <%= f.select :year, (Time.zone.now.year - 27)..(Time.zone.now.year + 1) %>
-  <%= f.label :milage %>
-  <%= f.number_field :milage %>
-  <%= f.label :transmission %>
-  <%= f.select :transmission, ["Automatic", "Manual"]%>
-  <%= f.label :color %>
-  <%= f.text_field :color %>
-  <%= f.label "Number Of Seats" %>
-  <%= f.select :seats, [2,3,4,5,6,7,8] %>
-  <%= f.label "Number Of Doors" %>
-  <%= f.select :doors, [2,3,4,5,6,7,8] %>
-
-  <br>
-
-  <%= f.label "Select All Features" %><br />
-  <%= f.collection_check_boxes :feature_ids, Feature.all, :id, :description do |b| %>
-    <%= b.check_box %>
-    <%= b.label %>
+  <%= f.input :make %>
+  <%= f.input :model %>
+  <%= f.input :year %>
+  <%= f.input :milage %>
+  <%= f.input :transmission, collection: ["Automatic", "Manual"] %>
+  <%= f.input :color %>
+  <%= f.input :seats, collection: [2,3,4,5,6,7,8] %>
+  <%= f.input :doors, collection: [2,3,4,5,6,7,8]  %>
+  <%= f.association :features, label_method: :description, value_method: :id, as: :radio_buttons %>
+  <%= f.simple_fields_for :images, @vehicle.images.new do |image_form| %>
+    <%= image_form.input :avatar %>
   <% end %>
-  <br>
-  <%= f.fields_for :images, @vehicle.images.new do |image_form| %>
-    <%= image_form.label :avatar %>
-    <%= image_form.file_field :avatar %>
-  <% end %>
-
-  <br>
-
-  <%= f.submit %>
+  <%= f.button :submit %>
 <% end %>
