@@ -7,7 +7,6 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     if @location.save!
-      flash[:notice] = "Location Successfully Entered"
       redirect_to new_location_vehicle_path(@location)
     else
       flash[:alert] = "Something went wrong, please try again"
