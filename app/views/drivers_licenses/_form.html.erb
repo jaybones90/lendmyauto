@@ -16,12 +16,12 @@
   <div class="field">
 
     <%= f.fields_for :image, @license.build_image do |image_form| %>
-      <%= image_form.label :avatar %>
+      <%= image_form.label "Upload A Photo Of Your Drivers License" %>
       <%= image_form.file_field :avatar %>
     <% end %>
 
   </div>
   <div class="field">
-    <%= f.submit %>
+    <%= f.submit "Submit"%>
   </div>
 <% end %>

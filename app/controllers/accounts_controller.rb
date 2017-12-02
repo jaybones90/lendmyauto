@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
 
   def show
     @account = Account.find(params[:id])
-    @user = @account.user
+    @vehicles = @account.owned_vehicles
   end
 
   def edit

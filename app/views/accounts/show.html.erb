@@ -10,8 +10,10 @@
 
     <hr>
     <h3>Your Vehicles</h3>
-    <% if @account.owned_vehicles %>
-
+    <% if @vehicles %>
+      <%= @vehicles.each do |vehicle| %>
+        <%= vehicle.make %>
+      <% end %>
     <% end %>
     <hr>
 

@@ -9,6 +9,7 @@ class VehiclesController < ApplicationController
   def create
     @location = Location.find(params[:location_id])
     @vehicle = @location.vehicles.new(vehicle_params)
+    @vehicle.owner_account_id = current_user.account.id
     if @vehicle.save!
       redirect_to account_path(current_user.account)
     else
