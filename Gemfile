@@ -38,6 +38,10 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# foundation library
+gem 'foundation-rails'
+# gem for add form functionality
+gem 'simple_form'
 # gem that provides html select with list of countries
 gem 'country_select'
 
