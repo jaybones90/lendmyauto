@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :vehicles
   end
 
-
+  resources :reservations, only: :show
 
   resources :vehicles do
     resources :reservations

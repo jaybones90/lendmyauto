@@ -15,7 +15,7 @@ class ReservationsController < ApplicationController
     @reservation.lender_account_id = @vehicle.owner_account_id
     @reservation.location_id = @vehicle.current_location.id
     if @reservation.save!
-      redirect_to account_path(current_user.account)
+      redirect_to reservation_path(@reservation)
     else
       flash[:alert] = "Something went wrong, please try again"
       render :new
