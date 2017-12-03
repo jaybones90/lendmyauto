@@ -1,4 +1,5 @@
-<%= simple_form_for @location, {url: locations_path(), method: :get} do |f| %>
-  <%= f.input :zip_code %>
-  <%= f.button :submit   %>
+<%= form_for(@location, {controller: "locations", action: "index"}) do |f| %>
+  <%= f.text_field :zip_code %><br />
+
+  <%= f.submit %>
 <% end %>
