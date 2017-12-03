@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203001914) do
+ActiveRecord::Schema.define(version: 20171203070922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,17 @@ ActiveRecord::Schema.define(version: 20171203001914) do
     t.index ["vehicle_id"], name: "index_reservations_on_vehicle_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string "content"
+    t.integer "rating"
+    t.integer "reviewer_account_id"
+    t.bigint "vehicle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reviewer_account_id"], name: "index_reviews_on_reviewer_account_id"
+    t.index ["vehicle_id"], name: "index_reviews_on_vehicle_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -136,6 +147,8 @@ ActiveRecord::Schema.define(version: 20171203001914) do
   add_foreign_key "reservations", "accounts", column: "renter_account_id"
   add_foreign_key "reservations", "locations"
   add_foreign_key "reservations", "vehicles"
+  add_foreign_key "reviews", "accounts", column: "reviewer_account_id"
+  add_foreign_key "reviews", "vehicles"
   add_foreign_key "vehicles", "categories"
   add_foreign_key "vehicles", "locations", column: "current_location_id"
   add_foreign_key "vehicles", "locations", column: "owner_account_id"
