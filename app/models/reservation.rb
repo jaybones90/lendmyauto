@@ -10,4 +10,6 @@ class Reservation < ApplicationRecord
 
   belongs_to :location, inverse_of: :reservations, optional: true
 
+
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203224107) do
+ActiveRecord::Schema.define(version: 20171203230903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,8 @@ ActiveRecord::Schema.define(version: 20171203224107) do
     t.bigint "lender_account_id"
     t.bigint "vehicle_id"
     t.integer "location_id"
+    t.string "status"
+    t.boolean "is_confirmed", default: false
     t.index ["lender_account_id"], name: "index_reservations_on_lender_account_id"
     t.index ["location_id"], name: "index_reservations_on_location_id"
     t.index ["renter_account_id"], name: "index_reservations_on_renter_account_id"
