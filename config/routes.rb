@@ -13,10 +13,9 @@ Rails.application.routes.draw do
   end
 
 
-  resources :reservations
 
   resources :vehicles do
-    resources :features
+    resources :reservations
     resources :images
   end
 end

@@ -26,24 +26,27 @@
 
 
 <section>
-  <ul class="example-orbit" data-orbit>
-    <li>
-      <%= image_tag @image.avatar %>
-      <div class="orbit-caption">
-        Caption One.
+  <div class="container">
+    <div class="popular-cars">
+      <% @vehicles.each do |vehicle| %>
+      <div class="row">
+
+          <div class="small-12 large-7 columns">
+            <%= link_to new_vehicle_reservation_path(vehicle) do %>
+              <%= image_tag vehicle.images.first.avatar(:medium) %>
+            <% end %>
+          </div>
+          <div class="small-12 large-5 columns">
+            <ul class="inline-list">
+              <li> <%= vehicle.make %></li>
+              <li> <%= vehicle.model %> </li>
+            </ul>
+          </div>
+
       </div>
-    </li>
-    <li class="active">
-      <%= image_tag @image.avatar %>
-      <div class="orbit-caption">
-        Caption Two.
-      </div>
-    </li>
-    <li>
-      <%= image_tag @image.avatar %>
-      <div class="orbit-caption">
-        Caption Three.
-      </div>
-    </li>
-  </ul>
+      <hr>
+      <% end %>
+    </div>
+  </div>
+
 </section>
