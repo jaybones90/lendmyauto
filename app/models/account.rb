@@ -15,7 +15,10 @@ class Account < ApplicationRecord
 
   has_many :loaned_vehicles, :through => :reservations, source: :vehicle, :foreign_key => "lender_account_id", dependent: :nullify
 
-  has_many :owned_vehicles, :foreign_key => "owner_account_id", class_name: "Vehicle", inverse_of: :owner_account, dependent: :destroy
+  has_many :owned_vehicles, :foreign_key => "owner_account_id", class_name: "Vehicle", inverse_of: :owner_account, dependent:
+ :destroy
+
+  has_many :reviews, inverse_of :reviewer_account, dependent: :nullify
 
   validates :user_first_name, :user_last_name, :user_birth_date, :user_phone_number, presence: true, on: :edit
 
