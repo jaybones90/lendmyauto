@@ -1,0 +1,4 @@
+<%= simple_form_for @location, {url: locations_path(), method: :get} do |f| %>
+  <%= f.input :zip_code %>
+  <%= f.button :submit   %>
+<% end %>

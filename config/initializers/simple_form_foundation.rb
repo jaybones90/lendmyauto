@@ -7,6 +7,19 @@ SimpleForm.setup do |config|
   # doesn't provide styles for hints. You will need to provide your own CSS styles for hints.
   # Uncomment them to enable hints.
 
+  config.wrappers :search_form, tag: "div", class: "row small-9 columns", hint_class: :field_with_hint, error_class: :error do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+    b.use :label_input
+    b.use :error, wrap_with: { tag: :small, class: :error }
+
+  end
+
   config.wrappers :vertical_form, class: :input, hint_class: :field_with_hint, error_class: :error do |b|
     b.use :html5
     b.use :placeholder

@@ -32,7 +32,7 @@
     </div>
 
     <%= simple_form_for [@vehicle, @reservation] do |f| %>
-      <%= f.input :start_date, as: :date, start_year: Date.today.year,
+      <%= f.input_field :start_date, as: :date, start_year: Date.today.year,
                               end_year: Date.today.year + 5,
                               order: [:month, :day, :year] %>
       <%= f.input :end_date, as: :date, start_year: Date.today.year,

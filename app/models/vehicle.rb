@@ -20,4 +20,7 @@ class Vehicle < ApplicationRecord
 
   validates :make, :model, :year, :milage, :transmission, :color, :seats, :doors,  :presence => true
 
+  # scope :get_vehicles, lambda {|zip| joins(:current_location).where(locations: {zip_code: zip})}
+
+
 end

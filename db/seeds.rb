@@ -9,7 +9,7 @@ class Seed
   end
 
   def create_users_and_account_details
-    5.times do |i|
+    20.times do |i|
       user =  User.create!(
         email: Faker::Internet.email,
         password: 1234567,
@@ -35,12 +35,13 @@ class Seed
   end
 
   def create_locations
-    5.times do |i|
+    zip_codes = ["97218", "92109"]
+    20.times do |i|
       Location.create!(
         street_address: Faker::Address.street_address,
         city: Faker::Address.city,
         state: Faker::Address.state,
-        zip_code: Faker::Address.zip_code,
+        zip_code: zip_codes.sample,
         country: Faker::Address.country
       )
     end
@@ -56,7 +57,7 @@ class Seed
     makes = ["Audi", "BMW", "Chevy", "Toyota", "Subaru"]
     models = ["Accord", "Dakota", "Forester", "A4", "Suburban"]
     categories = ["Suv","Truck", "Sedan", "Coupe", "Van", "Wagon", "Convertible","Sports Car", "Hybrid/Electric",  "Luxury"]
-    5.times do |i|
+    20.times do |i|
       image = images_array.sample
       vehicle = Vehicle.create!(
         make: makes.sample,
@@ -70,13 +71,11 @@ class Seed
         category_id: random.rand(1..10),
         daily_price: Faker::Commerce.price,
         owner_account_id: (i + 1),
-        current_location_id: random.rand(1..5)
+        current_location_id: (i + 1),
       )
-      2.times do |i|
-        vehicle.images.create!(
-          avatar: File.new("#{image}")
-        )
-      end
+      vehicle.images.create!(
+        avatar: File.new("#{image}")
+      )
     end
     puts "created #{Vehicle.all.count} vehicles"
   end
