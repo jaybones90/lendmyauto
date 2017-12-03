@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203070922) do
+ActiveRecord::Schema.define(version: 20171203224107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,16 @@ ActiveRecord::Schema.define(version: 20171203070922) do
     t.string "state", limit: 255
     t.string "zip_code"
     t.string "country", limit: 255
+  end
+
+  create_table "reservation_invoices", force: :cascade do |t|
+    t.bigint "reservation_id"
+    t.decimal "service_tax"
+    t.decimal "vat"
+    t.decimal "total_amount"
+    t.decimal "discount_amount"
+    t.decimal "net_amount"
+    t.index ["reservation_id"], name: "index_reservation_invoices_on_reservation_id"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -143,6 +153,7 @@ ActiveRecord::Schema.define(version: 20171203070922) do
   add_foreign_key "drivers_licenses", "accounts"
   add_foreign_key "features_vehicles", "features"
   add_foreign_key "features_vehicles", "vehicles"
+  add_foreign_key "reservation_invoices", "reservations"
   add_foreign_key "reservations", "accounts", column: "lender_account_id"
   add_foreign_key "reservations", "accounts", column: "renter_account_id"
   add_foreign_key "reservations", "locations"
