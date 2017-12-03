@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202213355) do
+ActiveRecord::Schema.define(version: 20171203001914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,7 +80,9 @@ ActiveRecord::Schema.define(version: 20171202213355) do
     t.bigint "renter_account_id"
     t.bigint "lender_account_id"
     t.bigint "vehicle_id"
+    t.integer "location_id"
     t.index ["lender_account_id"], name: "index_reservations_on_lender_account_id"
+    t.index ["location_id"], name: "index_reservations_on_location_id"
     t.index ["renter_account_id"], name: "index_reservations_on_renter_account_id"
     t.index ["vehicle_id"], name: "index_reservations_on_vehicle_id"
   end
@@ -132,6 +134,7 @@ ActiveRecord::Schema.define(version: 20171202213355) do
   add_foreign_key "features_vehicles", "vehicles"
   add_foreign_key "reservations", "accounts", column: "lender_account_id"
   add_foreign_key "reservations", "accounts", column: "renter_account_id"
+  add_foreign_key "reservations", "locations"
   add_foreign_key "reservations", "vehicles"
   add_foreign_key "vehicles", "categories"
   add_foreign_key "vehicles", "locations", column: "current_location_id"

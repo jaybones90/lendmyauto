@@ -11,8 +11,15 @@ class ReservationsController < ApplicationController
   def create
     @vehicle = Vehicle.find(params[:vehicle_id])
     @reservation = @vehicle.reservations.new(reservation_params)
-
-
+    @reservation.renter_account_id = current_user.account.id
+    @reservation.lender_account_id = @vehicle.owner_account_id
+    @reservation.location_id = @vehicle.current_location.id
+    if @reservation.save!
+      redirect_to account_path(current_user.account)
+    else
+      flash[:alert] = "Something went wrong, please try again"
+      render :new
+    end
   end
 
   private
