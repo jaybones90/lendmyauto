@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
   def update
     @account = Account.find(params[:id])
     @account.update(account_params)
-    if @account.save!
+    if @account.save
       if @account.drivers_license.nil?
         redirect_to new_account_drivers_license_path(@account)
       else

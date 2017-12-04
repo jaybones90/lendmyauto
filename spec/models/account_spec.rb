@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe Account do
+
   it { should belong_to :user }
   it { should have_one :drivers_license }
   it { should have_one :image }
@@ -12,5 +13,13 @@ describe Account do
   it "adds an account to newly created user" do
     user = FactoryBot.create(:user)
     expect(user.account.id).not_to be(nil)
+  end
+
+  it "validates the users age" do
+     user = FactoryBot.create(:user)
+     account = user.account
+     account.user_birth_date = Faker::Date.between(10.years.ago, 1.years.ago)
+     account.save
+     binding.pry
   end
 end
