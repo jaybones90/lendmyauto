@@ -20,7 +20,7 @@ class Account < ApplicationRecord
   validates_associated :owned_vehicles
 
   has_many :reviews, inverse_of: :reviewer_account, dependent: :nullify
-  validates_associated :reivews
+  validates_associated :reviews
 
   validates :user_first_name, :user_last_name, :user_birth_date, :user_phone_number, presence: true, on: :edit
 
