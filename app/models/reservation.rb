@@ -1,4 +1,5 @@
 class Reservation < ApplicationRecord
+  before_create :update_status
 
   has_one :reservation_invoice, inverse_of: :reservation, dependent: :nullify
 
@@ -10,6 +11,10 @@ class Reservation < ApplicationRecord
 
   belongs_to :location, inverse_of: :reservations, optional: true
 
-
+  def update_status
+    if self.status.nil?
+      self.status = "In Progress"
+    end
+  end
 
 end

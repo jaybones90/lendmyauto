@@ -53,6 +53,7 @@ group :development, :test do
   gem 'pry'
   gem 'shoulda-matchers'
   gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+  gem 'factory_bot_rails'
 end
 
 group :development do

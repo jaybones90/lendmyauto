@@ -1,5 +1,5 @@
 require 'rails_helper'
 
 describe Feature do
-  it { should belong_to :vehicle }
+  it { should have_and_belong_to_many :vehicles }
 end

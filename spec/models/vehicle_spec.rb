@@ -7,18 +7,20 @@ describe Vehicle do
   it { should validate_presence_of :milage }
   it { should validate_presence_of :color }
   it { should validate_presence_of :seats }
+  it { should validate_presence_of :doors }
   it { should validate_presence_of :transmission }
-  it { should validate_presence_of :category }
-  it { should validate_presence_of :all_wheel_drive }
-  it { should validate_presence_of :pets_allowed }
-  it { should validate_presence_of :smoking_allowed }
   it { should validate_presence_of :daily_price }
-  it { should validate_presence_of :availability_start }
-  it { should validate_presence_of :availability_end }
 
-  it { should belong_to :user }
+  it { should belong_to :current_location }
+  it { should belong_to :category }
+  it { should belong_to :owner_account }
 
-  it { should have_many :features }
+  it { should have_and_belong_to_many :features }
+  it { should have_many :images }
+  it { should have_many(:reservations) }
+  it { should have_many :reviews }
+
+
 
 
 end
