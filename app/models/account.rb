@@ -7,10 +7,9 @@ class Account < ApplicationRecord
   has_one :image, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :image
 
+  has_many :reservations, :foreign_key => "renter_account_id", inverse_of: :renter_account, class_name: 'Reservation', dependent: :nullify
 
-  has_many :reservations, :foreign_key => "renter_account_id", inverse_of: :renter_account, dependent: :nullify
-
-  has_many :loans, :foreign_key => "lender_account_id", inverse_of: :lender_account, dependent: :nullify
+  has_many :loans, :foreign_key => "lender_account_id", inverse_of: :lender_account, class_name: 'Reservation', dependent: :nullify
 
   has_many :owned_vehicles, :foreign_key => "owner_account_id", class_name: "Vehicle", inverse_of: :owner_account, dependent:
  :destroy

@@ -1,14 +1,16 @@
 require 'rails_helper'
 
 describe Account do
-  it { should validate_presence_of :user_first_name }
-  it { should validate_presence_of :user_last_name }
-  it { should validate_presence_of :user_birth_date }
-  it { should validate_presence_of :user_phone_number }
   it { should belong_to :user }
+  it { should have_one :drivers_license }
+  it { should have_one :image }
+  it { should have_many(:reservations).with_foreign_key("renter_account_id") }
+  it { should have_many(:loans).with_foreign_key("lender_account_id") }
+  it { should have_many(:owned_vehicles).with_foreign_key("owner_account_id").class_name("Vehicle") }
+  it { should have_many(:reviews) }
 
   it "adds an account to newly created user" do
     user = FactoryBot.create(:user)
-    user.account.id.should_not eq(nil)
+    expect(user.account.id).not_to be(nil)
   end
 end
