@@ -10,11 +10,13 @@ class Vehicle < ApplicationRecord
 
   has_many :images, as: :imageable, dependent: :delete_all
   accepts_nested_attributes_for :images
+  validates_associated :image
 
   has_many :reviews, inverse_of: :vehicle, dependent: :destroy
-
+  validates_associated :reivews
 
   has_many :reservations, inverse_of: :vehicle, dependent: :nullify
+
 
   belongs_to :owner_account, inverse_of: :owned_vehicles, class_name: "Account", optional: true, foreign_key: 'owner_account_id'
 

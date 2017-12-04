@@ -2,6 +2,7 @@ class Reservation < ApplicationRecord
   before_create :update_status
 
   has_one :reservation_invoice, inverse_of: :reservation, dependent: :nullify
+  validates_associated :reservation_invoice
 
   belongs_to :renter_account, inverse_of: :reservations, optional: true, class_name: "Account", :foreign_key => "renter_account_id"
 
