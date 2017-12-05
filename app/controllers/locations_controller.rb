@@ -1,7 +1,6 @@
 class LocationsController < ApplicationController
 
   def index
-    @location
     @vehicles = Vehicle.joins(:current_location).where(locations: { zip_code: location_params[:zip_code] })
   end
 

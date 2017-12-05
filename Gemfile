@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 # user registration
 gem 'devise'
+# Facebook authentication
+gem 'omniauth-facebook'
 # image uploads
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 # Use Redis adapter to run Action Cable in production
@@ -44,6 +46,8 @@ gem 'foundation-rails'
 gem 'simple_form'
 # gem that provides html select with list of countries
 gem 'country_select'
+# ENV variable gem
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

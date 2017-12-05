@@ -1,5 +1,7 @@
 class Account < ApplicationRecord
 
+  attr_accessor :skip_birthdate_validation, :skip_phone_validation
+
   belongs_to :user, inverse_of: :account
 
   has_one :drivers_license, dependent: :destroy
@@ -21,7 +23,10 @@ class Account < ApplicationRecord
 
 
   validate :validate_age_over_18, on: :update
-  validates :user_first_name, :user_last_name, :user_birth_date, :user_phone_number, presence: true, on: :update
+
+  validates :user_birth_date, presence: true, on: :update, unless: :skip_birthdate_validation
+  validates :user_phone_number, presence: true, on: :update, unless: :skip_phone_validation
+  validates :user_first_name, :user_last_name, presence: true, on: :update
 
   private
 
