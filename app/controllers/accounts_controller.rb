@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
   before_action :authenticate_user!, only: [:show]
 
   def show
-    @account = Account.find(params[:id])
+    @account = current_user.account
     @vehicles = @account.owned_vehicles
   end
 
@@ -14,11 +14,7 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:id])
     @account.update(account_params)
     if @account.save
-      if @account.drivers_license.nil?
-        redirect_to new_account_drivers_license_path(@account)
-      else
-        redirect_to account_path(@account)
-      end
+      redirect_if_license_is_nil
     else
       render :edit
     end
@@ -28,6 +24,14 @@ class AccountsController < ApplicationController
 
   def account_params
     params.require(:account).permit(:user_first_name, :user_last_name, :user_birth_date, :user_phone_number, image_attributes: [:id, :avatar, :_delete])
+  end
+
+  def redirect_if_license_is_nil
+    unless @account.drivers_license.nil?
+      redirect_to account_path(@account)
+    else
+      redirect_to new_account_drivers_license_path(@account)
+    end
   end
 
 

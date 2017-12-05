@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Account do
+  let(:user){FactoryBot.create(:user)}
+
 
   it { should belong_to :user }
   it { should have_one :drivers_license }
@@ -11,15 +13,15 @@ describe Account do
   it { should have_many(:reviews) }
 
   it "adds an account to newly created user" do
-    user = FactoryBot.create(:user)
     expect(user.account.id).not_to be(nil)
   end
 
   it "validates the users age" do
-     user = FactoryBot.create(:user)
      account = user.account
-     account.user_birth_date = Faker::Date.between(10.years.ago, 1.years.ago)
+     account.update({user_birth_date: Faker::Date.between(10.years.ago, 1.years.ago)})
      account.save
-     binding.pry
+     account.valid?
+     expect(account.errors[:user_birth_date]).to include("You Must Be Over 18 Years Old To Use This Service")
   end
+
 end
