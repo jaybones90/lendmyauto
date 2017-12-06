@@ -5,12 +5,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
+  # Call method to create a new account once a user is saved to the database
   after_create :save_account
 
+  # Assocations
   has_one :account, dependent: :destroy
 
+  # Validations
   validates :email, :presence => true
 
+  # Create an account for each user after they sucessfully signup
   def save_account
     self.create_account()
   end
@@ -23,19 +27,26 @@ class User < ApplicationRecord
     end
   end
 
+  #
   def self.from_omniauth(auth)
     new_or_found_user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
     end
-    account = new_or_found_user.account
+    found_account = new_or_found_user.account
+    update_account_details(found_account, auth)
+    new_or_found_user
+  end
+
+private
+
+  def self.update_account_details(account, auth)
     account.skip_phone_validation = true
     account.skip_birthdate_validation = true
     account.user_first_name = auth.info.name.split( )[0] if account.user_first_name.nil?
     account.user_last_name = auth.info.name.split( )[1] if account.user_last_name.nil?
     account.remote_image = auth.info.image if auth.info.image?
     account.save!
-    new_or_found_user
   end
 
 
