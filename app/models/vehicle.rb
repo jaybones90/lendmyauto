@@ -16,7 +16,7 @@ class Vehicle < ApplicationRecord
   validates_associated :images
   validates_associated :reviews
 
-  validates :make, :model, :year, :milage, :transmission, :color, :seats, :doors, :daily_price,  :presence => true
+  validates :make, :model, :year, :milage, :transmission, :color, :seats, :doors, :daily_price, :availability_start, :availability_end, :presence => true
 
   # scope :get_vehicles, lambda {|zip| joins(:current_location).where(locations: {zip_code: zip})}
 

@@ -12,6 +12,12 @@
   <%= f.input :doors, collection: [2,3,4,5,6,7,8]  %>
   <%= f.association :features, label_method: :description, value_method: :id, as: :radio_buttons %>
   <%= f.input :daily_price %>
+  <%= f.input :availability_start, as: :date, start_year: Date.today.year - 90,
+                            end_year: Date.today.year - 12, discard_day: false,
+                            order: [:month, :day, :year] %>
+  <%= f.input :availability_end, as: :date, start_year: Date.today.year - 90,
+                            end_year: Date.today.year - 12, discard_day: false,
+                            order: [:month, :day, :year] %>
   <%= f.simple_fields_for :images, @vehicle.images.new do |image_form| %>
     <%= image_form.input :avatar %>
   <% end %>
