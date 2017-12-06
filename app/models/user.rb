@@ -29,10 +29,11 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
     account = new_or_found_user.account
-    account.user_first_name = auth.info.name.split( )[0] if account.user_first_name.nil?
-    account.user_last_name = auth.info.name.split( )[1] if account.user_last_name.nil?
     account.skip_phone_validation = true
     account.skip_birthdate_validation = true
+    account.user_first_name = auth.info.name.split( )[0] if account.user_first_name.nil?
+    account.user_last_name = auth.info.name.split( )[1] if account.user_last_name.nil?
+    account.remote_image = auth.info.image if auth.info.image?
     account.save!
     new_or_found_user
   end
