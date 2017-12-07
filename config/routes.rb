@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :vehicles
   end
 
+  resource :vehicles, only: :index
+
   resources :reservations, only: :show
 
   resources :vehicles do
