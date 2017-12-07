@@ -21,6 +21,11 @@ FactoryBot.define do
     country("US")
   end
 
+  factory(:reservation) do
+    start_date(Faker::Date.between(Date.today + 10.days, Date.today + 20.days))
+    end_date(Faker::Date.between(Date.today + 20.days, Date.today + 30.days))
+  end
+
   factory(:vehicle) do
     make("Dummy")
     model("McDumb")
