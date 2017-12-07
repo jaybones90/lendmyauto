@@ -11,12 +11,13 @@ describe Account do
   it { should have_many(:loans).with_foreign_key("lender_account_id") }
   it { should have_many(:owned_vehicles).with_foreign_key("owner_account_id").class_name("Vehicle") }
   it { should have_many(:reviews) }
+  it { should accept_nested_attributes_for(:image)}
 
   it "adds an account to newly created user" do
     expect(user.account.id).not_to be(nil)
   end
 
-  it "validates the users age" do
+  it "validates the users age is over 18" do
      account = user.account
      account.update({user_birth_date: Faker::Date.between(10.years.ago, 1.years.ago)})
      account.save
