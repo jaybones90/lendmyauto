@@ -13,6 +13,14 @@ FactoryBot.define do
     user_phone_number("4158103075")
   end
 
+  factory(:location) do
+    street_address("6415 NE Killingsworth St")
+    city("Portland")
+    state("OR")
+    zip_code("97218")
+    country("US")
+  end
+
   factory(:vehicle) do
     make("Dummy")
     model("McDumb")
