@@ -10,6 +10,8 @@ describe Vehicle do
   it { should validate_presence_of :doors }
   it { should validate_presence_of :transmission }
   it { should validate_presence_of :daily_price }
+  it { should validate_presence_of :availability_start }
+  it { should validate_presence_of :availability_end }
 
   it { should belong_to :current_location }
   it { should belong_to :category }
@@ -19,6 +21,9 @@ describe Vehicle do
   it { should have_many :images }
   it { should have_many(:reservations) }
   it { should have_many :reviews }
+
+  it { should accept_nested_attributes_for :images }
+  it { should accept_nested_attributes_for :category }
 
 
 

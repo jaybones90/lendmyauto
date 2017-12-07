@@ -11,7 +11,6 @@ class Vehicle < ApplicationRecord
 
   accepts_nested_attributes_for :category
   accepts_nested_attributes_for :images
-  accepts_nested_attributes_for :images
 
   validates_associated :images
   validates_associated :reviews
