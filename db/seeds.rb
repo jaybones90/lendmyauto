@@ -35,15 +35,11 @@ class Seed
   end
 
   def create_locations
-    zip_codes = ["97218", "92109"]
-    20.times do |i|
-      Location.create!(
-        street_address: Faker::Address.street_address,
-        city: Faker::Address.city,
-        state: Faker::Address.state,
-        zip_code: zip_codes.sample,
-        country: Faker::Address.country
-      )
+    10.times do |i|
+      FactoryBot.create(:location)
+    end
+    10.times do |i|
+      FactoryBot.create(:location, :city => "San Diego")
     end
   end
 
@@ -70,6 +66,8 @@ class Seed
         doors: doors.sample,
         category_id: random.rand(1..10),
         daily_price: Faker::Commerce.price,
+        availability_start: Faker::Date.between(Date.today, Date.today + 5.days),
+        availability_end: Faker::Date.between(Date.today + 10.days, Date.today + 20.days),
         owner_account_id: (i + 1),
         current_location_id: (i + 1),
       )

@@ -14,10 +14,10 @@ FactoryBot.define do
   end
 
   factory(:location) do
-    street_address("6415 NE Killingsworth St")
+    street_address(Faker::Address.street_address)
     city("Portland")
     state("OR")
-    zip_code("97218")
+    zip_code(Faker::Address.zip)
     country("US")
   end
 
@@ -25,6 +25,7 @@ FactoryBot.define do
     start_date(Faker::Date.between(Date.today + 10.days, Date.today + 20.days))
     end_date(Faker::Date.between(Date.today + 20.days, Date.today + 30.days))
   end
+
 
   factory(:vehicle) do
     make("Dummy")
@@ -36,8 +37,8 @@ FactoryBot.define do
     seats(5)
     doors(4)
     daily_price(44.00)
-    availability_start(Faker::Date.between(4.years.ago, 3.years.ago))
-    availability_end(Faker::Date.between(2.years.ago, 1.years.ago))
+    availability_start(Date.today)
+    availability_end(Date.today + 30.days)
   end
 
 
