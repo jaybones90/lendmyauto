@@ -19,10 +19,8 @@ FactoryBot.define do
     state("OR")
     zip_code(Faker::Address.zip)
     country("US")
-    trait :location_with_vehicles do
-      vehicles
-    end
   end
+
 
   factory(:reservation) do
     start_date(Faker::Date.between(Date.today + 10.days, Date.today + 20.days))

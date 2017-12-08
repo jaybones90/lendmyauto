@@ -26,7 +26,23 @@ describe Vehicle do
   it { should accept_nested_attributes_for :images }
   it { should accept_nested_attributes_for :category }
 
-  
+  context "vehicle search" do
+    let!(:location1){FactoryBot.create(:location)}
+    let!(:location2){FactoryBot.create(:location, city: "San Diego")}
+    let!(:location3){FactoryBot.create(:location, city: "New York City")}
+    let!(:vehicle1){FactoryBot.create(:vehicle, current_location_id: location1.id)}
+    let!(:vehicle2){FactoryBot.create(:vehicle, current_location_id: location2.id)}
+    let!(:vehicle3){FactoryBot.create(:vehicle, current_location_id: location3.id)}
+
+    describe ".in_city" do
+      it "returns vehicles that match a specific city" do
+        found_vehicles = Vehicle.in_city("San Diego")
+        expect(found_vehicles.first.current_location_id).to eq(location2.id)
+        expect(found_vehicles.count).to eq(1)
+      end
+    end
+  end
+
 
 
 end

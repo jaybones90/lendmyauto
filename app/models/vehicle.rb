@@ -25,7 +25,7 @@ class Vehicle < ApplicationRecord
     .merge(Reservation.with_availability(start_date, end_date))
   }
 
-  scope :within_city, -> (city) {
+  scope :in_city, -> (city) {
     joins(:current_location)
     .merge(Location.in_city(city))
   }
