@@ -15,4 +15,15 @@ describe Location do
   it "returns a country name from the country abbrevation" do
     expect(location.country_name).to eq("United States")
   end
+
+  # describe ".in_city" do
+  #   let(:location1){FactoryBot.create(:location)}
+  #   let(:location2){FactoryBot.create(:location, city: "San Diego")}
+  #   it "returns locations with matching city" do
+  #     found_locations = Location.in_city("Portland")
+  #     expect(found_locations.count).to eq(1)
+  #     expect(found_locations.first.city).to eq("Portland")
+  #   end
+  # end
+
 end

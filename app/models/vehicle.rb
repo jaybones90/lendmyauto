@@ -20,9 +20,9 @@ class Vehicle < ApplicationRecord
   private
 
   scope :with_availability, -> (start_date, end_date) {
-    joins(:reservations)
-    .where.not(reservations: { start_date: start_date..end_date, end_date: start_date..end_date })
-    .where( "availability_start <= ? and availability_end >= ?", start_date, end_date )
+    where( "availability_start <= ? and availability_end >= ?", start_date, end_date )
+    .joins(:reservations)
+    .merge(Reservation.with_availability(start_date, end_date))
   }
 
   scope :within_city, -> (city) {

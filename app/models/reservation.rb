@@ -13,9 +13,13 @@ class Reservation < ApplicationRecord
   belongs_to :location, inverse_of: :reservations, optional: true
 
   def update_status
-    if self.status.nil?
-      self.status = "In Progress"
-    end
+    self.status = "In Progress" if self.status.nil?
   end
+
+  private
+
+  scope :with_availability, -> (start_date, end_date) {
+    where.not( start_date: start_date..end_date, end_date: start_date..end_date )
+  }
 
 end
