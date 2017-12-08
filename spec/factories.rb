@@ -24,8 +24,6 @@ FactoryBot.define do
     end
   end
 
-
-
   factory(:reservation) do
     start_date(Faker::Date.between(Date.today + 10.days, Date.today + 20.days))
     end_date(Faker::Date.between(Date.today + 20.days, Date.today + 30.days))
