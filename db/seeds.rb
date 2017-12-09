@@ -53,9 +53,9 @@ class Seed
         :owner_account_id => (i + 1),
         :current_location_id => (i + 1)
       )
-      # vehicle.images.create!(
-      #   avatar: File.new("#{image}")
-      # )
+      vehicle.images.create!(
+        avatar: File.new("#{image}")
+      )
     end
     puts "created #{Vehicle.all.count} vehicles"
   end

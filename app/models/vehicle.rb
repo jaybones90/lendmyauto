@@ -39,5 +39,9 @@ class Vehicle < ApplicationRecord
     .merge(Location.in_city(city))
   }
 
+  def self.get_available_vehicles(search_params)
+    
+  end
+
 
 end

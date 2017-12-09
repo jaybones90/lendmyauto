@@ -1,4 +1,4 @@
-<%= simple_form_for("/vehicles", method: "get") do %>
+<%= simple_form_for :search, url: vehicles_path, method: :get do %>
   <%= text_field_tag(:city) %>
   <%= submit_tag("Search") %>
 <% end %>
