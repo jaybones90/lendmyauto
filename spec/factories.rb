@@ -27,17 +27,26 @@ FactoryBot.define do
     end_date(Faker::Date.between(Date.today + 20.days, Date.today + 30.days))
   end
 
-  
+
+  transmissions = ["Automatic", "Manual"]
+  images_array = ['app/assets/images/4runner.jpg', 'app/assets/images/forester1.jpg', 'app/assets/images/lexus.jpg']
+  random = Random.new()
+  doors = [2,4]
+  seats = [2,4,5,6,7,8]
+  makes = ["Audi", "BMW", "Chevy", "Toyota", "Subaru"]
+  models = ["Accord", "Dakota", "Forester", "A4", "Suburban"]
+
   factory(:vehicle) do
-    make("Dummy")
-    model("McDumb")
-    year(2001)
-    transmission("Manual")
-    color("Black")
-    milage(100900)
-    seats(5)
-    doors(4)
-    daily_price(44.00)
+    make(makes.sample)
+    model(models.sample)
+    year(random.rand(1998..2018))
+    transmission(transmissions.sample)
+    color(Faker::Color.color_name)
+    milage(random.rand(0..120000))
+    seats(seats.sample)
+    doors(doors.sample)
+    daily_price(Faker::Commerce.price)
+    category_id(random.rand(1..10))
     availability_start(Date.today)
     availability_end(Date.today + 30.days)
     factory(:available_vehicles) do
@@ -45,6 +54,7 @@ FactoryBot.define do
       availability_end(Date.today + 10.days)
     end
   end
+
 
 
 
