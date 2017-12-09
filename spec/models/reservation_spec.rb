@@ -15,4 +15,5 @@ describe Reservation do
     expect(reservation.status).to eq("In Progress")
   end
 
+
 end

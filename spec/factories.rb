@@ -27,7 +27,7 @@ FactoryBot.define do
     end_date(Faker::Date.between(Date.today + 20.days, Date.today + 30.days))
   end
 
-
+  
   factory(:vehicle) do
     make("Dummy")
     model("McDumb")
@@ -40,6 +40,10 @@ FactoryBot.define do
     daily_price(44.00)
     availability_start(Date.today)
     availability_end(Date.today + 30.days)
+    factory(:available_vehicles) do
+      availability_start(Date.today)
+      availability_end(Date.today + 10.days)
+    end
   end
 
 

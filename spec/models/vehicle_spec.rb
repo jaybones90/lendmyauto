@@ -33,12 +33,27 @@ describe Vehicle do
     let!(:vehicle1){FactoryBot.create(:vehicle, current_location_id: location1.id)}
     let!(:vehicle2){FactoryBot.create(:vehicle, current_location_id: location2.id)}
     let!(:vehicle3){FactoryBot.create(:vehicle, current_location_id: location3.id)}
-
     describe ".in_city" do
       it "returns vehicles that match a specific city" do
         found_vehicles = Vehicle.in_city("San Diego")
         expect(found_vehicles.first.current_location_id).to eq(location2.id)
         expect(found_vehicles.count).to eq(1)
+      end
+    end
+  end
+
+  describe ".with_availability" do
+    let!(:location){FactoryBot.create(:location)}
+    context "vehicle availability search" do
+      let!(:vehicle1){FactoryBot.create(:available_vehicles,
+                                        current_location_id: location.id,
+                                        availability_end:(Date.today + 5.days))}
+      let!(:vehicle2){FactoryBot.create(:available_vehicles, current_location_id: location.id)}
+      let!(:vehicle3){FactoryBot.create(:available_vehicles, current_location_id: location.id)}
+      it "returns available vehicles for given dates" do
+        found_vehicles = Vehicle.with_availability(Date.today + 1.day, Date.today + 7.days )
+        expect(found_vehicles).to match_array([vehicle2, vehicle3])
+        expect(found_vehicles.count()).to eq(2)
       end
     end
   end
