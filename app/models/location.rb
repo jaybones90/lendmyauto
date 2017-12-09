@@ -15,7 +15,7 @@ class Location < ApplicationRecord
   private
 
   scope :in_city, -> (city) {
-    where( city: city )
+    where( 'city ILIKE ?', city )
   }
 
 end

@@ -2,7 +2,7 @@ class VehiclesController < ApplicationController
   before_action :validate_city_exists, only: :index
 
   def index
-
+    @vehicles = Vehicle.get_available_vehicles(params)
   end
 
   def new
@@ -54,11 +54,11 @@ class VehiclesController < ApplicationController
 
   def validate_city_exists
     city = params[:city] if params[:city]
-    if Location.exists?(['city ILIKE ?', city])
-      return
-    else
+    unless Location.exists?(['city ILIKE ?', city])
       flash[:alert] = "We Are Not Yet Active In #{city}"
       redirect_to root_path
+    else
+      return
     end
   end
 

@@ -45,13 +45,31 @@ class Seed
 
 
   def create_vehicles
+    transmissions = ["Automatic", "Manual"]
     images_array = ['app/assets/images/4runner.jpg', 'app/assets/images/forester1.jpg', 'app/assets/images/lexus.jpg']
+    random = Random.new()
+    doors = [2,4]
+    seats = [2,4,5,6,7,8]
+    makes = ["Audi", "BMW", "Chevy", "Toyota", "Subaru"]
+    models = ["Accord", "Dakota", "Forester", "A4", "Suburban"]
+    categories = ["Suv","Truck", "Sedan", "Coupe", "Van", "Wagon", "Convertible","Sports Car", "Hybrid/Electric",  "Luxury"]
     20.times do |i|
       image = images_array.sample
-      vehicle = FactoryBot.create(
-        :vehicle,
-        :owner_account_id => (i + 1),
-        :current_location_id => (i + 1)
+      vehicle = Vehicle.create!(
+        make: makes.sample,
+        model: models.sample,
+        year: random.rand(1998..2018),
+        milage: random.rand(0..120000),
+        color: Faker::Color.color_name,
+        transmission: transmissions.sample,
+        seats: seats.sample,
+        doors: doors.sample,
+        category_id: random.rand(1..10),
+        daily_price: Faker::Commerce.price,
+        availability_start: Date.today,
+        availability_end: Date.today + 30.days,
+        owner_account_id: (i + 1),
+        current_location_id: (i + 1),
       )
       vehicle.images.create!(
         avatar: File.new("#{image}")
