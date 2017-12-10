@@ -12,7 +12,7 @@
   }
   h1 {
     padding-top: .5em;
-    font-size: 10em;
+    font-size: 5rem;
   }
   p {
     font-size: 3em;
@@ -31,4 +31,27 @@
 .divider {
   width: 100%;
   color: grey;
+}
+
+
+.inline-date {
+  display: inline-flex;
+}
+
+.how-it-works-grid {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: repeat(2, 1fr);
+}
+
+// .search-form-grid {
+//   display: grid;
+//   grid-gap: 10px;
+//   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+// }
+
+.search input[type="text"] {
+  width: 75%;
+  margin-bottom: 0;
 }

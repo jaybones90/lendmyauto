@@ -40,10 +40,10 @@ class Vehicle < ApplicationRecord
   }
 
   def self.get_available_vehicles(search_params)
+    
     if search_params[:city].nil?
       Vehicle.all
     else
-      binding.pry
       Vehicle.in_city(search_params[:city])
     end
   end

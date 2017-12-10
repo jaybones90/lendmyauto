@@ -1,4 +1,10 @@
-<%= simple_form_for :search, url: vehicles_path, method: :get do %>
-  <%= text_field_tag(:city) %>
-  <%= submit_tag("Search") %>
+
+<%= simple_form_for :search, wrapper: :inline_form, html: { class: 'search form-inline' }, url: vehicles_path, method: :get do |f| %>
+
+  <%= f.input :city, placeholder: "City" %>
+  <%= f.input :start_date, as: :date,  start_year: Date.today.year, end_year: Date.today.year + 5,
+  order: [:month, :day,  :year]  %>
+  <%= f.input :end_date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 5,
+  order: [:month, :day,  :year] %>
+  <%= f.button :submit, "Search" %>
 <% end %>
