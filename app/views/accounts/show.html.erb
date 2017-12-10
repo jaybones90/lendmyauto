@@ -1,13 +1,25 @@
 <section>
   <div class="container">
     <h1> Profile </h1>
+    
+    <div class="dropdown show">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dropdown link
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
+
     <%= link_to "Edit Password", edit_user_registration_path(@user) %>
     <br>
     <%= link_to "Edit Profile Details", edit_account_path(@account) %>
     <br>
     <%= link_to "List Your Vehicle", new_location_path() %>
 
-    <%= @account.user_last_name %>
 
     <hr>
     <h3>Manage Vehicles</h3>

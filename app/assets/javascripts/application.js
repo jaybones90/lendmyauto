@@ -11,14 +11,16 @@
 // about supported directives.
 //
 //= require jquery
+//= require popper
+//= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-//= require bootstrap-sprockets
-//= require foundation
 
-document.addEventListener("turbolinks:load", function() {
-  jQuery(function(){
-    $(document).foundation();
-  });
-});
+
+
+// document.addEventListener("turbolinks:load", function() {
+//   jQuery(function(){
+//     $(document).foundation();
+//   });
+// });
