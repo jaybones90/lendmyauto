@@ -3,7 +3,7 @@
   <%= f.input :city %>
   <%= f.input :state %>
   <%= f.input :zip_code %>
-  <%= f.country_select :country, { selected: "US" } %>
+  <%= f.country_select :country, { selected: "US" }, class_name: "form-control" %>
 
   <%= f.button :submit %>
 <% end %>
