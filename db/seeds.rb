@@ -78,6 +78,25 @@ class Seed
     puts "created #{Vehicle.all.count} vehicles"
   end
 
+  def create_reservations
+    10.times do |i|
+      FactoryBot.create(:reservations_one_week_out,
+        lender_account_id: (i + 1),
+        renter_account_id: (i + 11),
+        vehicle_id: (i + 1),
+        location_id: (i + 1)
+      )
+    end
+    10.times do |i|
+      FactoryBot.create(:reservations_one_week_out,
+        lender_account_id: (i + 11),
+        renter_account_id: (i + 1),
+        vehicle_id: (i + 11),
+        location_id: (i + 11)
+      )
+    end
+  end
+
 
 end
 
@@ -87,3 +106,4 @@ seed.create_users_and_account_details
 seed.create_categories
 seed.create_locations
 seed.create_vehicles
+seed.create_reservations

@@ -58,6 +58,25 @@ describe Vehicle do
     end
   end
 
+  describe ".without_reservations" do
+    let!(:location){FactoryBot.create(:location)}
+    context "vehicle search" do
+      let!(:vehicle1){FactoryBot.create(:available_vehicles, current_location_id: location.id)}
+      let!(:reservation){FactoryBot.create(:reservation_for_next_3_days, vehicle_id: vehicle1.id, location_id: location.id)}
+
+      it "returns available vehicles without reservations for given dates" do
+        found_vehicles = Vehicle.without_reservations(Date.today + 5.days, Date.today + 7.days )
+        expect(found_vehicles).to match_array([vehicle1])
+        expect(found_vehicles.count()).to eq(1)
+      end
+    end
+    # it "returns an empty array if all vehicles have reservations" do
+    #   found_vehicles = Vehicle.without_reservations(Date.today + 2.days, Date.today + 7.days )
+    #   expect(found_vehicles).to match_array([])
+    #   expect(found_vehicles.count()).to eq(0)
+    # end
+  end
+
 
 
 end

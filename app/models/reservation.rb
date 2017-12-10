@@ -18,8 +18,8 @@ class Reservation < ApplicationRecord
 
   private
 
-  scope :with_availability, -> (start_date, end_date) {
-    where.not( start_date: start_date..end_date, end_date: start_date..end_date )
+  scope :exclude_existing_reservations, -> (date_start, date_end) {
+    where.not( start_date: date_start..date_end, end_date: date_start..date_end )
   }
 
 end
