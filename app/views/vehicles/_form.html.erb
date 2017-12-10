@@ -12,7 +12,7 @@
   <%= f.input :doors, collection: [2,3,4,5,6,7,8]  %>
   <div class="features">
     <%= f.collection_check_boxes :feature_ids, Feature.all, :id, :description %>
-    
+
   </div>
   <%= f.input :daily_price %>
   <%= f.input :availability_start, as: :date, start_year: Date.today.year, end_year: Date.today.year + 5,
@@ -20,7 +20,7 @@
   <%= f.input :availability_end, as: :date, start_year: Date.today.year,
                             end_year: Date.today.year + 12, order: [:month, :day, :year] %>
   <%= f.simple_fields_for :images, @vehicle.images.new do |image_form| %>
-    <%= image_form.input :avatar %>
+    <%= image_form.input :avatar, label: "Profile Picture", input_html: { class: "btn btn-outline-primary" }  %>
   <% end %>
   <%= f.button :submit %>
 <% end %>

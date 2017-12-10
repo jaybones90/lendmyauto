@@ -128,13 +128,22 @@ SimpleForm.setup do |config|
 
   end
 
+  config.wrappers :file_input, tag: 'label', class: 'form-group custom-file', error_class: 'has-error' do |b|
+    b.use :html5
+    b.optional :readonly
+    b.use :label, class: 'control-label'
+    b.wrapper tag: 'span', class: "custom-file-control" do
+    end
+    b.use :input, class: 'custom-file-input'
+  end
+
 
 
   config.wrappers :multi_select, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.optional :readonly
-    b.use :label, class: 'control-label'
     b.wrapper tag: 'div', class: 'form-inline' do |ba|
+      b.use :label, class: 'control-label'
       ba.use :input, class: 'form-control'
       ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
       ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
