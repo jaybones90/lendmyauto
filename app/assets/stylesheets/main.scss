@@ -1,6 +1,29 @@
 @import "bootstrap";
+@import "base/standards.scss";
 @import "styles/pages.scss";
 @import "styles/vehicles.scss";
+@import "styles/devise.scss";
 
-$primary-color: forestgreen;
-$secondary-color: blue;
+
+
+body {
+  background-color: $primary-dark;
+  color: $secondary-light;
+  font-family: $skinny-font;
+}
+.btn {
+  color: $secondary-light;
+  border: 1px solid $secondary-light;
+  background-color: rgba(0, 0, 0, 0);
+}
+.btn:hover {
+  background-color: $standout-color;
+  color: $primary-dark;
+}
+.navbar {
+  background-color: $secondary-dark;
+
+  a {
+    color: $primary-light;
+  }
+}

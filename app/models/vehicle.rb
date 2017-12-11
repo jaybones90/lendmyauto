@@ -39,7 +39,7 @@ class Vehicle < ApplicationRecord
     if search_params[:city].nil?
       Vehicle.all
     else
-      cars = Vehicle.in_city(search_params[:city])
+      Vehicle.in_city(search_params[:city])
       .with_availability(starting_date, ending_date)
       .without_reservations(starting_date, ending_date)
     end

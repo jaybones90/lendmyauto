@@ -1,0 +1,29 @@
+@import "base/standards.scss";
+$form-width: 50%;
+
+.simple_form.new_user {
+  margin: 0 auto;
+  width: $form-width;
+}
+
+.devise-form {
+  margin-top: 3em;
+  text-align: center;
+  color: $secondary-light;
+}
+
+.devise-links a {
+  color: $secondary-light;
+}
+
+.omniauth-link {
+  padding: .5em 2em;
+  margin: 10px auto 0 auto;
+  text-decoration: none;
+}
+.omniauth-link:hover {
+  background-color: $standout-color;
+  a {
+    color: $primary-dark;
+  }
+}
