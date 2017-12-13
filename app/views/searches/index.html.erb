@@ -2,4 +2,7 @@
 
 <% @vehicles.each do |vehicle| %>
   <%= vehicle.make %>
+  <% vehicle.features.each do |feature| %>
+    <%= feature.description %>
+  <% end %>
 <% end %>

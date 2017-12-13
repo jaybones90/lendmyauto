@@ -48,6 +48,8 @@ gem 'simple_form'
 gem 'country_select'
 # ENV variable gem
 gem 'dotenv-rails'
+# Have access to the attibute method when using ActiveModel 
+gem 'active_model_attributes'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

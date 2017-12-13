@@ -1,9 +1,5 @@
 class VehiclesController < ApplicationController
-  before_action :validate_city_exists, only: :index
 
-  def index
-    @vehicles = Vehicle.get_available_vehicles(params[:search])
-  end
 
   def new
     @location = Location.find(params[:location_id])
@@ -52,12 +48,5 @@ class VehiclesController < ApplicationController
     params.require(:vehicle).permit(:make, :model, :year, :milage, :transmission, :color, :seats, :doors, :category, :daily_price, :availability_start, :availability_end, feature_ids:[], images_attributes: [:id, :avatar, :_delete], category_attributes: [:id, :name, :_delete])
   end
 
-  def validate_city_exists
-    city = params[:search][:city] if params[:search][:city]
-    unless Location.exists?(['city ILIKE ?', city])
-      flash[:alert] = "We Are Not Yet Active In #{city}"
-      redirect_to root_path
-    end
-  end
 
 end

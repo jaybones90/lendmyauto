@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :vehicles
   end
 
-  resource :vehicles, only: :index
+  resources :searches, only: :index
 
   resources :reservations, only: :show
 

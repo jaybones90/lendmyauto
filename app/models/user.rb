@@ -46,7 +46,7 @@ private
     account.user_first_name = auth.info.name.split( )[0] if account.user_first_name.nil?
     account.user_last_name = auth.info.name.split( )[1] if account.user_last_name.nil?
     account.remote_image = auth.info.image if auth.info.image?
-    account.save!
+    account.save
   end
 
 

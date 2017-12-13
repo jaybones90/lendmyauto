@@ -34,15 +34,12 @@ class Vehicle < ApplicationRecord
   }
 
   def self.get_available_vehicles(search_params)
-    starting_date = Date.civil(search_params["start_date(1i)"].to_i, search_params["start_date(2i)"].to_i, search_params["start_date(3i)"].to_i)
-    ending_date = Date.civil(search_params["end_date(1i)"].to_i, search_params["end_date(2i)"].to_i, search_params["end_date(3i)"].to_i)
-    if search_params[:city].nil?
-      Vehicle.all
-    else
-      Vehicle.in_city(search_params[:city])
-      .with_availability(starting_date, ending_date)
-      .without_reservations(starting_date, ending_date)
-    end
+    starting_date = search_params.date_start
+    ending_date = search_params.date_end
+    city = search_params.city
+    Vehicle.includes(:features).in_city(city)
+    .with_availability(starting_date, ending_date)
+    .without_reservations(starting_date, ending_date)
   end
 
 
