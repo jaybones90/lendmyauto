@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!
 
   def show
     @account = current_user.account
