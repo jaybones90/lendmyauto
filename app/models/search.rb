@@ -4,7 +4,7 @@ class Search
 
   attribute :city, :string
   attribute :date_start, :date
-  attribute :date_end, :date
+  attribute :date_end, :datetime, default: -> { 7.days.from_now }
 
   validate :city_exists?
 

@@ -8,11 +8,11 @@ class SearchesController < ApplicationController
     if search_attributes.valid?
       @vehicles = Vehicle.get_available_vehicles(search_attributes)
     else
-      render 'pages/home', :locals => {:@vehicles => Vehicle.all.limit(3),
+      render 'pages/home', :locals => { :@vehicles => Vehicle.all.limit(3),
                                         :@location => Location.new(),
                                         :@reservation => Reservation.new(),
                                         :@search => search_attributes
-                                        }
+                                      }
     end
   end
 
