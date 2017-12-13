@@ -12,6 +12,14 @@ describe Account do
   it { should have_many(:owned_vehicles).with_foreign_key("owner_account_id").class_name("Vehicle") }
   it { should have_many(:reviews) }
   it { should accept_nested_attributes_for(:image)}
+  it { should validate_presence_of(:user_first_name).on(:update) }
+  it { should validate_presence_of(:user_last_name).on(:update) }
+  it { should validate_presence_of(:user_birth_date).on(:update) }
+  it { should validate_numericality_of(:user_phone_number).only_integer.on(:update) }
+  it { should validate_length_of(:user_phone_number).is_equal_to(10).on(:update) }
+  it { should validate_length_of(:user_first_name).is_at_least(2).is_at_most(20).on(:update) }
+  it { should validate_length_of(:user_last_name).is_at_least(2).is_at_most(20).on(:update) }
+
 
   it "adds an account to newly created user" do
     expect(user.account.id).not_to be(nil)
