@@ -12,6 +12,12 @@
   <% end%>
 <% end %>
 
+<% if @vehicle.features %>
+  <% @vehicle.features.each do |feature| %>
+  <%= feature.description %>
+  <% end%>
+<% end %>
+
 <ul>
   <li><%= @vehicle.make %> </li>
   <li><%= @vehicle.model %> </li>

@@ -10,6 +10,13 @@ GIT
       mimemagic (~> 0.3.0)
 
 GIT
+  remote: https://github.com/kristianmandrup/gmaps-autocomplete-rails.git
+  revision: 02b4dc4a5082cca1883b21b0e2ca5fc819dde86a
+  specs:
+    gmaps-autocomplete-rails (0.3.1)
+      rails (>= 3.1.0)
+
+GIT
   remote: https://github.com/stympy/faker.git
   revision: c972b0d791dd99d45058ba4fe625dbd27bb3fbe0
   branch: master
@@ -301,6 +308,7 @@ DEPENDENCIES
   factory_bot_rails
   faker!
   foundation-rails
+  gmaps-autocomplete-rails!
   jbuilder (~> 2.5)
   jquery-rails
   launchy

@@ -9,7 +9,6 @@ class Vehicle < ApplicationRecord
   has_many :reviews, inverse_of: :vehicle, dependent: :destroy
   has_many :reservations, inverse_of: :vehicle, dependent: :nullify
 
-  accepts_nested_attributes_for :category
   accepts_nested_attributes_for :images
 
   validates_associated :images

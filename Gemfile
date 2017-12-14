@@ -27,6 +27,8 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+# autocomplete functionality for locations
+gem 'gmaps-autocomplete-rails', github: "kristianmandrup/gmaps-autocomplete-rails"
 # user registration
 gem 'devise'
 # Facebook authentication
@@ -48,7 +50,7 @@ gem 'simple_form'
 gem 'country_select'
 # ENV variable gem
 gem 'dotenv-rails'
-# Have access to the attibute method when using ActiveModel 
+# Have access to the attibute method when using ActiveModel
 gem 'active_model_attributes'
 
 group :development, :test do

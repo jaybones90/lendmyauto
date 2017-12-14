@@ -44,6 +44,8 @@ class Seed
   end
 
 
+
+
   def create_vehicles
     transmissions = ["Automatic", "Manual"]
     images_array = ['app/assets/images/4runner.jpg', 'app/assets/images/forester1.jpg', 'app/assets/images/lexus.jpg']
