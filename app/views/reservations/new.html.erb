@@ -1,7 +1,7 @@
 <section>
   <div class="image-grid">
     <% @vehicle.images.each do |image| %>
-      <div><%= image_tag image.avatar %></div>
+      <div><%= image_tag image.avatar, class: "responsive-image" %></div>
     <% end %>
   </div>
   <div class="container reservation">

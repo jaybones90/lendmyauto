@@ -112,7 +112,7 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :inline_form, tag: 'div', class: 'form-group col-lg-4 col-12', error_class: 'has-error' do |b|
+  config.wrappers :inline_form, tag: 'div', class: 'form-group col-xs-12 col-sm-8 col-md-6 col-lg-3', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -139,11 +139,11 @@ SimpleForm.setup do |config|
 
 
 
-  config.wrappers :multi_select, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers :multi_select, tag: 'div', class: 'form-group col-xs-12 col-sm-8 col-md-6 col-lg-3', error_class: 'has-error' do |b|
     b.use :html5
     b.optional :readonly
+    b.use :label, class: 'sr-only'
     b.wrapper tag: 'div', class: 'form-inline' do |ba|
-      b.use :label, class: 'control-label'
       ba.use :input, class: 'form-control'
       ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
       ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }

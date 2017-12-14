@@ -9,7 +9,7 @@
       <% @vehicles.each do |vehicle| %>
         <div class="row">
           <div class="col-md-4">
-            <%= image_tag vehicle.images.first.avatar(:medium) %>
+            <%= image_tag vehicle.images.first.avatar, class: "responsive-image" %>
           </div>
           <div class="col-md-8">
             <div class="reservation-vehicle">
