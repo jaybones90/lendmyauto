@@ -1,7 +1,5 @@
-<%= simple_form_for [@location, @vehicle] do |f| %>
-  <%= f.simple_fields_for :category, @vehicle.build_category do |c| %>
-    <%= c.input :name, collection: ["Suv","Truck", "Sedan", "Coupe", "Van", "Wagon", "Convertible","Sports Car", "Hybrid/Electric",  "Luxury"] %>
-  <% end %>
+<%= simple_form_for @vehicle do |f| %>
+  <%= f.input :category_id, collection: Category.all, label_method: :name, value_method: :id %>
   <%= f.input :make %>
   <%= f.input :model %>
   <%= f.input :year %>

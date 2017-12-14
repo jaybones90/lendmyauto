@@ -54,7 +54,6 @@ class Seed
     seats = [2,4,5,6,7,8]
     makes = ["Audi", "BMW", "Chevy", "Toyota", "Subaru"]
     models = ["Accord", "Dakota", "Forester", "A4", "Suburban"]
-    categories = ["Suv","Truck", "Sedan", "Coupe", "Van", "Wagon", "Convertible","Sports Car", "Hybrid/Electric",  "Luxury"]
     20.times do |i|
       image = images_array.sample
       vehicle = Vehicle.create!(

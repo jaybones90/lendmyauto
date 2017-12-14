@@ -29,6 +29,7 @@ class VehiclesController < ApplicationController
 
   def update
     @vehicle = Vehicle.find(params[:id])
+    binding.pry
     if @vehicle.update(vehicle_params)
       redirect_to account_path(current_user.account)
     else
@@ -45,7 +46,7 @@ class VehiclesController < ApplicationController
   private
 
   def vehicle_params
-    params.require(:vehicle).permit(:make, :model, :year, :milage, :transmission, :color, :seats, :doors, :category, :daily_price, :availability_start, :availability_end, feature_ids:[], images_attributes: [:id, :avatar, :_delete])
+    params.require(:vehicle).permit(:make, :model, :year, :milage, :transmission, :color, :seats, :doors, :category_id, :daily_price, :availability_start, :availability_end, feature_ids:[], images_attributes: [:id, :avatar, :_delete])
   end
 
 
