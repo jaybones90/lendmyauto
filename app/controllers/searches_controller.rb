@@ -8,6 +8,7 @@ class SearchesController < ApplicationController
     search_attributes.date_end = @date_end
     if search_attributes.valid?
       @vehicles = Vehicle.get_available_vehicles(search_attributes)
+      flash[:alert] = "No Available Vehicles For #{@date_start} - #{@date_end}" if @vehicles.empty?
     else
       render :index, :locals => { :@search => search_attributes }
     end

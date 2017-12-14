@@ -1,5 +1,6 @@
 
 <%= simple_form_for @search, wrapper: :inline_form,
+                    wrapper_mappings: { date: :multi_select_search_bar },
                     html: { class: 'search form-inline' },
                     url: searches_path, method: :get do |f| %>
   <%= f.input :city, placeholder: "City" %>
