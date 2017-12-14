@@ -1,0 +1,30 @@
+.reservation-vehicle {
+  h1 {
+    padding: 0 5px 0 0;
+    display: inline-block;
+  }
+  li {
+    display: inline-block;
+    padding: 0 0 0 5px;
+  }
+}
+
+.reservation {
+  padding: 3em;
+  margin: 3em auto;
+  border: 1px solid $standout-color;
+}
+
+.reservation-form {
+  margin: 3em 0 0 0;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
+}
+.image-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -18,7 +18,7 @@ class Seed
       account = user.account
       account.user_first_name = Faker::Name.first_name
       account.user_last_name = Faker::Name.last_name
-      account.user_phone_number = Faker::PhoneNumber.phone_number
+      account.user_phone_number = "4158103075"
       account.user_birth_date = Faker::Date.between(90.years.ago, 18.years.ago)
       account.save!
     end
@@ -42,6 +42,7 @@ class Seed
       FactoryBot.create(:location, :city => "San Diego")
     end
   end
+
 
 
 
@@ -72,12 +73,16 @@ class Seed
         owner_account_id: (i + 1),
         current_location_id: (i + 1),
       )
+      8.times do |i|
+        vehicle.features << Feature.find(rand(1..13))
+      end
       vehicle.images.create!(
         avatar: File.new("#{image}")
       )
     end
     puts "created #{Vehicle.all.count} vehicles"
   end
+
 
   def create_reservations
     10.times do |i|

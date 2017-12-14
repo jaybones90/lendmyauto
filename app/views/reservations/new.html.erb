@@ -1,45 +1,50 @@
-<section class="reservation-container">
-  <div class="container">
-
-    <div class="image-grid">
-      <div class="row">
-        <% @vehicle.images.each do |image| %>
-        <div class="col-md-3">
-          <%= image_tag image.avatar(:medium) %>
+<section>
+  <div class="image-grid">
+    <% @vehicle.images.each do |image| %>
+      <div><%= image_tag image.avatar %></div>
+    <% end %>
+  </div>
+  <div class="container reservation">
+    <div class="row">
+      <div class="col-sm-12 col-md-8">
+        <div class="reservation-vehicle">
+          <h1> <%= @vehicle.make %> </h1>
+          <h1> <%= @vehicle.model %></h1>
+          <ul>
+            <li> <%= @vehicle.year %> </li>
+            <li> <%= @vehicle.milage %> </li>
+            <li> <%= @vehicle.color %> </li>
+            <li> <%= @vehicle.seats %> </li>
+            <li> <%= @vehicle.doors %> </li>
+          </ul>
         </div>
-        <% end %>
+        <div class="vehicle-features">
+          <h5>Features</h5>
+          <ul class="row">
+            <% @features.each do |feature| %>
+              <div class="col-sm-3 col-md-4">
+                <li> <%= feature.description %> </li>
+              </div>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="price">
+          <p>Daily Price: <%= @vehicle.daily_price %></p>
+        </div>
+        <div class="reservation-form">
+          <%= simple_form_for [@vehicle, @reservation] do |f| %>
+          <%= f.input_field :start_date, as: :date, start_year: Date.today.year,
+          end_year: Date.today.year + 5,
+          order: [:month, :day, :year] %>
+          <%= f.input :end_date, as: :date, start_year: Date.today.year,
+          end_year: Date.today.year + 5,
+          order: [:month, :day, :year] %>
+          <%= f.button :submit %>
+          <% end %>
+        </div>
       </div>
     </div>
-
-    <div class="vehicle-details">
-      <h1>Vehicle Details </h1>
-      <ul>
-        <li> <%= @vehicle.year %> </li>
-        <li> <%= @vehicle.make %> </li>
-        <li> <%= @vehicle.model %> </li>
-        <li> <%= @vehicle.color %> </li>
-        <li> <%= @vehicle.milage %> </li>
-      </ul>
-    </div>
-
-    <div class="vehicle-features">
-      <h5>Features</h5>
-      <ul>
-        <% @features.each do |feature| %>
-          <li> <%= feature.description %> </li>
-        <% end %>
-      </ul>
-    </div>
-
-    <%= simple_form_for [@vehicle, @reservation] do |f| %>
-      <%= f.input_field :start_date, as: :date, start_year: Date.today.year,
-                              end_year: Date.today.year + 5,
-                              order: [:month, :day, :year] %>
-      <%= f.input :end_date, as: :date, start_year: Date.today.year,
-                              end_year: Date.today.year + 5,
-                              order: [:month, :day, :year] %>
-      <%= f.button :submit %>
-    <% end %>
-
   </div>
 </section>
