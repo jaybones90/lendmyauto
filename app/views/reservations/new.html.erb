@@ -8,14 +8,14 @@
     <div class="row">
       <div class="col-sm-12 col-md-8">
         <div class="reservation-vehicle">
+          <h1> <%= @vehicle.year %> </h1>
           <h1> <%= @vehicle.make %> </h1>
           <h1> <%= @vehicle.model %></h1>
           <ul>
-            <li> <%= @vehicle.year %> </li>
-            <li> <%= @vehicle.milage %> </li>
-            <li> <%= @vehicle.color %> </li>
-            <li> <%= @vehicle.seats %> </li>
-            <li> <%= @vehicle.doors %> </li>
+            <li> Milage: <%= @vehicle.milage %> </li>
+            <li> Color: <%= @vehicle.color %> </li>
+            <li> Seats: <%= @vehicle.seats %> </li>
+            <li> Doors: <%= @vehicle.doors %> </li>
           </ul>
         </div>
         <div class="vehicle-features">

@@ -2,17 +2,14 @@ class SearchesController < ApplicationController
   before_action :format_dates, only: :index
 
   def index
+    @search = Search.new()
     search_attributes = Search.new(search_params)
     search_attributes.date_start = @date_start
     search_attributes.date_end = @date_end
     if search_attributes.valid?
       @vehicles = Vehicle.get_available_vehicles(search_attributes)
     else
-      render 'pages/home', :locals => { :@vehicles => Vehicle.all.limit(3),
-                                        :@location => Location.new(),
-                                        :@reservation => Reservation.new(),
-                                        :@search => search_attributes
-                                      }
+      render :index, :locals => { :@search => search_attributes }
     end
   end
 
