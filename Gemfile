@@ -59,6 +59,8 @@ gem 'stripe'
 # add factorybot and faker gem to production so there is seed data on heroku
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'factory_bot_rails'
+# gem for admin dashboard
+gem 'rails_admin', '~> 1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
