@@ -1,3 +1,6 @@
-<h1><%= @reservation.id %></h1>
-
-<%= render "charge_form" %>
+<section class="reservation-confirmation">
+  <div class="container">
+    <%= render "reservations/vehicle_details" %>
+    <%= render "charge_form" %>
+  </div>
+</section>

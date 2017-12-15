@@ -3,9 +3,10 @@ class ChargesController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @reservation = Reservation.find(params[:reservation_id])
-    @amount = @reservation.total_price
-    @description = format_description(@reservation)
+    reservation = Reservation.find(params[:reservation_id])
+    @vehicle = reservation.vehicle
+    @amount = reservation.total_price
+    @description = format_description(reservation)
   end
 
   def create
