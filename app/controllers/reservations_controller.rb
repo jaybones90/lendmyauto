@@ -15,6 +15,7 @@ class ReservationsController < ApplicationController
     @reservation.lender_account_id = @vehicle.owner_account_id
     @reservation.location_id = @vehicle.current_location.id
     if @reservation.save!
+      session[:current_reservation_id] = @reservation.id
       redirect_to new_charge_path(:reservation_id => @reservation.id)
     else
       flash[:alert] = "Something went wrong, please try again"
