@@ -24,7 +24,7 @@
 
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
 }
 
 .responsive-image {
@@ -34,5 +34,5 @@
 }
 
 .reservation-confirmation {
-  margin: 4em auto; 
+  margin: 4em auto;
 }

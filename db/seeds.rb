@@ -9,7 +9,7 @@ class Seed
   end
 
   def create_users_and_account_details
-    20.times do |i|
+    50.times do |i|
       user =  User.create!(
         email: Faker::Internet.email,
         password: 1234567,
@@ -35,16 +35,13 @@ class Seed
   end
 
   def create_locations
-    10.times do |i|
+    25.times do |i|
       FactoryBot.create(:location)
     end
-    10.times do |i|
+    25.times do |i|
       FactoryBot.create(:location, :city => "San Diego")
     end
   end
-
-
-
 
 
   def create_vehicles
@@ -55,7 +52,7 @@ class Seed
     seats = [2,4,5,6,7,8]
     makes = ["Audi", "BMW", "Chevy", "Toyota", "Subaru"]
     models = ["Accord", "Dakota", "Forester", "A4", "Suburban"]
-    20.times do |i|
+    50.times do |i|
       image = images_array.sample
       vehicle = Vehicle.create!(
         make: makes.sample,
@@ -76,29 +73,35 @@ class Seed
       8.times do |i|
         vehicle.features << Feature.find(rand(1..13))
       end
-      vehicle.images.create!(
-        avatar: File.new("#{image}")
-      )
+      4.times do |i|
+        vehicle.images.create!(
+          avatar: File.new("#{image}")
+        )
+      end
     end
     puts "created #{Vehicle.all.count} vehicles"
   end
 
 
   def create_reservations
-    10.times do |i|
-      FactoryBot.create(:reservations_one_week_out,
+    15.times do |i|
+      Reservation.create(
         lender_account_id: (i + 1),
-        renter_account_id: (i + 11),
+        renter_account_id: (i + 16),
         vehicle_id: (i + 1),
-        location_id: (i + 1)
+        location_id: (i + 1),
+        start_date: Faker::Date.between(Date.today, Date.today + 5.days),
+        end_date: Faker::Date.between(Date.today + 10.days, Date.today + 15.days)
       )
     end
-    10.times do |i|
-      FactoryBot.create(:reservations_one_week_out,
-        lender_account_id: (i + 11),
+    15.times do |i|
+      Reservation.create(
+        lender_account_id: (i + 16),
         renter_account_id: (i + 1),
-        vehicle_id: (i + 11),
-        location_id: (i + 11)
+        vehicle_id: (i + 16),
+        location_id: (i + 16),
+        start_date: Faker::Date.between(Date.today + 15.days, Date.today + 20.days),
+        end_date: Faker::Date.between(Date.today + 25.days, Date.today + 30.days)
       )
     end
   end

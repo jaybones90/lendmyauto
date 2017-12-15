@@ -13,6 +13,9 @@
 !/log/.keep
 !/tmp/.keep
 
+# ignore all the avatars
+/public/system/images/*
+
 /node_modules
 /yarn-error.log
 
