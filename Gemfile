@@ -52,6 +52,8 @@ gem 'country_select'
 gem 'dotenv-rails'
 # Have access to the attibute method when using ActiveModel
 gem 'active_model_attributes'
+# gem to handle currency
+gem 'money-rails', '~>1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

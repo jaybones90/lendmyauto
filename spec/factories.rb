@@ -51,7 +51,7 @@ FactoryBot.define do
     milage(100900)
     seats(5)
     doors(4)
-    daily_price(44.00)
+    daily_price(Faker::Commerce.price)
     availability_start(Date.today)
     availability_end(Date.today + 30.days)
     factory(:available_vehicles) do

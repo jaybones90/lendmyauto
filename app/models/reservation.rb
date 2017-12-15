@@ -1,4 +1,5 @@
 class Reservation < ApplicationRecord
+  before_save :update_total
   before_create :update_status
 
   has_one :reservation_invoice, inverse_of: :reservation, dependent: :nullify
@@ -11,12 +12,7 @@ class Reservation < ApplicationRecord
 
   def calculate_total
     duration = (end_date.to_date - start_date.to_date).to_i
-    total = self.vehicle.daily_price * duration
-    binding.pry
-  end
-
-  def update_status
-    self.status = "In Progress" if self.status.nil?
+    self.vehicle.daily_price * duration
   end
 
   private
@@ -25,6 +21,12 @@ class Reservation < ApplicationRecord
     where.not( start_date: date_start..date_end, end_date: date_start..date_end )
   }
 
+  def update_status
+    self.status = "In Progress" if self.status.nil?
+  end
 
+  def update_total
+    self.total_price = calculate_total
+  end
 
 end
