@@ -56,6 +56,9 @@ gem 'active_model_attributes'
 gem 'money-rails', '~>1'
 # payment processing
 gem 'stripe'
+# add factorybot and faker gem to production so there is seed data on heroku
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'factory_bot_rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -64,8 +67,6 @@ group :development, :test do
   gem 'launchy'
   gem 'pry'
   gem 'shoulda-matchers'
-  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
-  gem 'factory_bot_rails'
   gem 'database_cleaner'
 end
 
