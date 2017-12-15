@@ -54,6 +54,8 @@ gem 'dotenv-rails'
 gem 'active_model_attributes'
 # gem to handle currency
 gem 'money-rails', '~>1'
+# payment processing
+gem 'stripe'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

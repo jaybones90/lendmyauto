@@ -11,7 +11,7 @@ class Reservation < ApplicationRecord
   validates_associated :reservation_invoice
 
   def calculate_total
-    duration = (end_date.to_date - start_date.to_date).to_i
+    duration = (end_date.to_date - start_date.to_date).to_i 
     self.vehicle.daily_price * duration
   end
 

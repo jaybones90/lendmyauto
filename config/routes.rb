@@ -20,4 +20,7 @@ Rails.application.routes.draw do
     resources :reservations
     resources :images
   end
+
+  resources :charges
+  
 end
