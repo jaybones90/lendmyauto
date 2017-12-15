@@ -1,9 +1,11 @@
 class ChargesController < ApplicationController
   before_action :get_reservation, only: :create
+  before_action :authenticate_user!
 
   def new
     @reservation = Reservation.find(params[:reservation_id])
     @amount = @reservation.total_price
+    @description = format_description(@reservation)
   end
 
   def create
@@ -27,6 +29,12 @@ class ChargesController < ApplicationController
   def get_reservation
     reservation = Reservation.find(session[:current_reservation_id])
     @amount = reservation.total_price
+  end
+
+  def format_description(reservation)
+    starting = reservation.start_date.to_date
+    ending = reservation.end_date.to_date
+    "Reservation for #{starting} to #{ending}"
   end
 
 end
