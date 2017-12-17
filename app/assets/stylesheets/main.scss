@@ -8,7 +8,7 @@
 
 
 
-body {
+body,html  {
   background-color: $primary-dark;
   color: $secondary-light;
   font-family: $skinny-font;
@@ -23,7 +23,7 @@ body {
   color: $primary-dark;
 }
 .navbar {
-  background-color: $secondary-dark;
+  background-color: $primary-dark;
 
   a {
     color: $primary-light;

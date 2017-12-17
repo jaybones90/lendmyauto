@@ -1,4 +1,6 @@
-.hero {
+@import "mixins/angle-mixin.scss";
+
+.section-hero {
   background-image: asset_url("bg5.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -19,29 +21,30 @@
   }
 }
 
-.how-it-works {
-  margin: 4em auto;
-}
-
-
-.featurette {
-  margin: 3em auto;
-}
-
-.divider {
-  width: 100%;
-  color: grey;
-}
-
-
 .inline-date {
   display: inline-flex;
 }
 
-.how-it-works-grid {
+.benefits-grid {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 3em;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fit, 1fr);
+}
+
+.section-benefits {
+  text-align: center;
+  padding: 3em 0;
+  background: $primary-light;
+  @include angle(after);
+  margin: 0 0 5em 0;
+  h1 {
+    text-align: left;
+    margin: 0 0 1em 0;
+  }
+  h2 {
+    padding: 1em 0 0 0;
+  }
 }
 
 // .search-form-grid {
@@ -50,7 +53,9 @@
 //   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 // }
 
-
+.section-new {
+  background: #171219;
+}
 
 .search-bar {
   margin: 2em auto;
