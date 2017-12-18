@@ -8,11 +8,12 @@
 
 
 
-body,html  {
+body {
   background-color: $primary-dark;
   color: $secondary-light;
   font-family: $skinny-font;
 }
+
 .btn {
   color: $secondary-light;
   border: 1px solid $secondary-light;
@@ -31,4 +32,55 @@ body,html  {
 }
 hr {
   background-color: $secondary-light;
+}
+
+
+html {
+  font-size: 100%; /* This means 16px */
+  line-height: 1.3;
+}
+
+@media all and (min-width: 800px) {
+  html {
+    font-size: 112.5%; /* This means 18px */
+  }
+}
+
+@media all and (min-width: 1200px) {
+  html {
+    font-size: 125%; /* This means 20px */
+    line-height: 1.4;
+  }
+}
+
+h1 {
+  font-size: 3.129em;
+  line-height: 1.2;
+}
+
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 2.3353em;
+    line-height: 1.3;
+  }
+}
+
+h2 {
+  font-size: 2.3353em;
+}
+
+@media (min-width: 1200px) {
+  h2 {
+    font-size: 1.769em;
+  }
+}
+
+h3 {
+  font-size: 1.769em;
+}
+
+@media (min-width: 1200px) {
+  h3 {
+    font-size: 1.333em;
+  }
 }
