@@ -142,7 +142,7 @@ SimpleForm.setup do |config|
   config.wrappers :multi_select, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.optional :readonly
-    b.use :label, class: 'sr-only'
+    b.use :label, class: 'control-label'
     b.wrapper tag: 'div', class: 'form-inline' do |ba|
       ba.use :input, class: 'form-control'
       ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
