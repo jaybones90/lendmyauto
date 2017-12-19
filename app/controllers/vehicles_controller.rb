@@ -1,4 +1,5 @@
 class VehiclesController < ApplicationController
+  before_action :authenticate_user!
 
 
   def new
@@ -29,7 +30,6 @@ class VehiclesController < ApplicationController
 
   def update
     @vehicle = Vehicle.find(params[:id])
-    binding.pry
     if @vehicle.update(vehicle_params)
       redirect_to account_path(current_user.account)
     else

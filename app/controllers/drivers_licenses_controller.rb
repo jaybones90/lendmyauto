@@ -1,5 +1,5 @@
 class DriversLicensesController < ApplicationController
-
+  before_action :authenticate_user!
   before_action :get_desired_vehicle, only: :create
 
   def new
