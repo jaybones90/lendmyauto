@@ -2,6 +2,8 @@ class Reservation < ApplicationRecord
   before_save :update_total
   before_create :update_status
 
+  attribute :date_range, :string
+
   has_one :reservation_invoice, inverse_of: :reservation, dependent: :nullify
   belongs_to :renter_account, inverse_of: :reservations, optional: true, class_name: "Account", :foreign_key => "renter_account_id"
   belongs_to :lender_account, inverse_of: :loans, optional: true, class_name: "Account", :foreign_key => "lender_account_id"
@@ -11,7 +13,7 @@ class Reservation < ApplicationRecord
   validates_associated :reservation_invoice
 
   def calculate_total
-    duration = (end_date.to_date - start_date.to_date).to_i 
+    duration = (end_date.to_date - start_date.to_date).to_i
     self.vehicle.daily_price * duration
   end
 

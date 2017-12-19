@@ -25,12 +25,7 @@
         </div>
         <div class="reservation-form">
           <%= simple_form_for [@vehicle, @reservation] do |f| %>
-          <%= f.input_field :start_date, as: :date, start_year: Date.today.year,
-          end_year: Date.today.year + 5,
-          order: [:month, :day, :year] %>
-          <%= f.input :end_date, as: :date, start_year: Date.today.year,
-          end_year: Date.today.year + 5,
-          order: [:month, :day, :year] %>
+          <%= f.input :date_range, as: :string, input_html: { name: "date_range" }  %>
           <%= f.button :submit %>
           <% end %>
         </div>

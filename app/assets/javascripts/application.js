@@ -26,7 +26,7 @@ document.addEventListener("turbolinks:load", function() {
     var end = moment().add(7, 'days');
     var lastPossibleDate = moment().add(2, 'years')
 
-    $('input[name="daterange"]').daterangepicker({
+    $('input[name="date_range"]').daterangepicker({
       startDate: start,
       endDate: end,
       minDate: start,
