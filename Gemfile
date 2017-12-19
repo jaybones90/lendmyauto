@@ -27,8 +27,6 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
-# autocomplete functionality for locations
-gem 'gmaps-autocomplete-rails', github: "kristianmandrup/gmaps-autocomplete-rails"
 # user registration
 gem 'devise'
 # Facebook authentication
@@ -42,8 +40,7 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-# foundation library
-gem 'foundation-rails'
+
 # gem for add form functionality
 gem 'simple_form'
 # gem that provides html select with list of countries
@@ -61,6 +58,12 @@ gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'factory_bot_rails'
 # gem for admin dashboard
 gem 'rails_admin', '~> 1.2'
+# bootstrap datepicker
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
+                                  :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
+
+gem 'momentjs-rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

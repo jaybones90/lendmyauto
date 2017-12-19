@@ -4,14 +4,7 @@
                     html: { class: 'search form-inline' },
                     url: searches_path, method: :get do |f| %>
   <%= f.input :city, placeholder: "City" %>
-  <%= f.input :date_start, as: :date,
-              start_year: Date.today.year,
-              end_year: Date.today.year + 5,
-              order: [:month, :day,  :year]  %>
-  <%= f.input :date_end, as: :date,
-              start_year: Date.today.year,
-              end_year: Date.today.year + 5,
-              order: [:month, :day,  :year] %>
+  <%= f.input :date_start, as: :string, input_html: { name: "daterange" }  %>
   <div class="form-group col-xs-12 col-sm-8 col-md-6 col-lg-3">
     <%= f.button :submit, "Search" %>
   </div>

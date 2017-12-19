@@ -12,15 +12,27 @@
 //
 //= require jquery
 //= require popper
-//= require bootstrap
 //= require jquery_ujs
+//= require bootstrap
+//= require moment
 //= require turbolinks
 //= require_tree .
 
 
 
-// document.addEventListener("turbolinks:load", function() {
-//   jQuery(function(){
-//     $(document).foundation();
-//   });
-// });
+document.addEventListener("turbolinks:load", function() {
+  jQuery(function(){
+    var start = moment();
+    var end = moment().add(7, 'days');
+    var lastPossibleDate = moment().add(2, 'years')
+
+    $('input[name="daterange"]').daterangepicker({
+      startDate: start,
+      endDate: end,
+      minDate: start,
+      maxDate: lastPossibleDate,
+      autoApply: true,
+      autoUpdateInput: true
+    });
+  });
+});
