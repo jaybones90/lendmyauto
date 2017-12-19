@@ -3,7 +3,7 @@
     <h1> <%= "#{@account.user_first_name}'s Dashboard" if @account.user_last_name %></h1>
 
     <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-9">
         <%= image_tag @account.remote_image if @account.remote_image %>
         <%= image_tag @account.image.avatar(:thumb) if @account.image %>
         <div class="profile-details">
@@ -15,18 +15,23 @@
         <%= link_to "Edit Password", edit_user_registration_path(@user) %> |
         <%= link_to "Edit Profile Details", edit_account_path(@account) %>
       </div>
-      <div class="col-md-2 ">
+      <div class="col-md-3">
         <% if @vehicles.empty? == false %>
-          <div class="dropdown">
-            <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Manage Vehicles
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <% @vehicles.each do |vehicle| %>
-                <%= link_to vehicle.make, vehicle_path(vehicle), class: "dropdown-item"  %>
-              <% end %>
-            </div>
-          </div>
+          <h3>Your Vehicles</h3>
+          <% @vehicles.each do |vehicle| %>
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <a class="nav-link active" href="#"><%=vehicle.make%></a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Manage</a>
+                <div class="dropdown-menu">
+                  <%= link_to "Edit Vehicle", edit_vehicle_path(vehicle), class: "dropdown-item" %>
+                  <%= link_to "Add Images", new_vehicle_image_path(vehicle), class: "dropdown-item" %>
+                </div>
+              </li>
+            </ul>
+          <% end %>
         <% end %>
       </div>
     </div>
