@@ -6,7 +6,14 @@
 @import "styles/accounts.scss";
 @import "styles/reservations.scss";
 
-
+// reset user stylesheet styles
+* {
+  margin: 0;
+  padding: 0;
+}
+ol, ul {
+  list-style: none;
+}
 
 body {
   background-color: $primary-dark;

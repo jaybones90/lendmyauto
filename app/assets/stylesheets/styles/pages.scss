@@ -111,17 +111,26 @@
   padding: 5em auto;
   @include angle(before);
 }
-
+.popular-cars-header {
+  text-align: center;
+  color: $primary-light;
+}
 .popular-car-image {
   padding: 1em;
   height: 300px;
 }
 .popular-car {
-  padding: 0 1em;
+  padding: 1em;
+  margin: 1em 0;
   border: 1px solid black;
 }
 
 .popular-car-details {
+  color: $primary-light;
+  &:hover { color: blue; }
+  ul {
+    padding: 0 1em;
+  }
   li {
     display: inline-block;
   }

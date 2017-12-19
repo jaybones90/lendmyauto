@@ -79,24 +79,29 @@
 
 <section class="section-popular-cars">
   <div class="container">
+    <div class="popular-cars-header">
+      <h1>Popular Cars</h1>
+    </div>
     <div class="row">
       <% @vehicles.each do |vehicle| %>
-        <div class="col-sm-4">
-          <div class="popular-car">
-            <div class="row popular-car-image">
-              <%= link_to new_vehicle_reservation_path(vehicle) do %>
-                <%= image_tag vehicle.images.first.avatar, class: "responsive-image" %>
-              <% end %>
+        <div class="col-lg-4">
+          <%= link_to new_vehicle_reservation_path(vehicle) do %>
+            <div class="popular-car">
+              <div class="row popular-car-image">
+                  <%= image_tag vehicle.images.first.avatar, class: "responsive-image" %>
+              </div>
+              <div class="row">
+                <div class="popular-car-details">
+                  <ul>
+                    <li> <%= vehicle.make %></li>
+                    <li> <%= vehicle.model %> </li>
+                    <li> <%= vehicle.year %> </li>
+                    <li> <%= number_to_currency vehicle.daily_price %> </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div class="row">
-              <ul class="popular-car-details">
-                <li> <%= vehicle.make %></li>
-                <li> <%= vehicle.model %> </li>
-                <li> <%= vehicle.year %> </li>
-                <li> <%= number_to_currency vehicle.daily_price %> </li>
-              </ul>
-            </div>
-          </div>
+          <% end %>
         </div>
       <% end %>
     </div>
