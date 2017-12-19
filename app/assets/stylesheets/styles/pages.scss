@@ -5,16 +5,16 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 800px;
+  height: 700px;
   width: 100%;
+}
+.hero-header {
+  padding: 2em 0;
   text-align: center;
-  color: white;
+  color: #ffffff;
+  text-shadow: 4px 4px 10px black;
   h1 {
-    padding: .3em auto;
-    font-size: 4em;
-  }
-  h3 {
-    font-size: 3em;
+    font-size: 5em;
   }
 }
 
@@ -30,12 +30,11 @@
 }
 
 .section-benefits {
-  @include angle(after);
   text-align: center;
   color: $primary-dark;
   padding: 3em 0;
   background: $primary-light;
-  margin: 0 0 5em 0;
+  @include angle(after);
   h2 {
     padding: 1em 0 0 0;
   }
@@ -44,28 +43,46 @@
   margin: 1em
 }
 
-.learn-block {
-  padding: 5em 0;
-  text-align: center;
-}
 .section-learn {
-  margin: 8em auto;
-  color: $primary-light;
-  img {
-    border: 4px solid $primary-light;
-  }
-  button {
-    margin: 1em 0;
-    color: $primary-light;
-    background-color: $secondary-light;
-  }
+  position: relative;
+  background: $secondary-dark;
+  // height: 600px;
+  width: 100%;
+}
+.section-learn:after {
+  background: asset_url("bg1.jpg");
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  content: "";
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 0.3;
 }
 
-.section-popular-cars {
-  padding: 5em auto;
-  @include angle(before);
-  background: $primary-light;
+.learn-block {
+  position: relative;
+  z-index: 2;
+  padding: 10em 0;
+  color: $primary-light;
+  text-align: center;
 }
+// .section-learn {
+//   margin: 8em auto;
+//   color: $primary-light;
+//
+//   button {
+//     margin: 1em 0;
+//     color: $primary-light;
+//     background-color: $secondary-light;
+//   }
+// }
+
+
 
 
 .search-bar {
@@ -80,7 +97,8 @@
   text-align: center;
   background: $primary-light;
   color: $primary-dark;
-  @include angle(both)
+  @include angle(both);
+  margin: 0 0 4em 0;
 }
 
 .responsive-image {
@@ -89,6 +107,11 @@
   object-fit: cover;
 }
 // Popular cars styles
+.section-popular-cars {
+  padding: 5em auto;
+  @include angle(before);
+}
+
 .popular-car-image {
   padding: 1em;
   height: 300px;
