@@ -17,7 +17,7 @@ ol, ul {
 
 body {
   background-color: $primary-dark;
-  color: $secondary-light;
+  color: $primary-light;
   font-family: $skinny-font;
 }
 
@@ -36,10 +36,10 @@ html {
   color: $primary-dark;
 }
 .navbar {
-  background-color: $primary-dark;
+  background-color: $primary-light;
 
   a {
-    color: $primary-light;
+    color: $secondary-light;
   }
 }
 hr {
