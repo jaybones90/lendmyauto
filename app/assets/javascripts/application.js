@@ -11,9 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require popper
 //= require jquery_ujs
 //= require bootstrap
+//= require popper
+//= require turbolinks
 //= require moment
 //= require_tree .
 
@@ -34,4 +35,17 @@ document.addEventListener("DOMContentLoaded", function() {
       autoUpdateInput: true
     });
   });
+
+
+
 });
+
+
+// var options = {
+// 	url: function(phrase) {
+// 		return "api/countrySearch.php?phrase=" + phrase + "&format=json";
+// 	},
+// 	getValue: "name"
+// };
+//
+// $("#search_city").easyAutocomplete(options);

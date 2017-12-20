@@ -61,8 +61,10 @@ gem 'rails_admin', '~> 1.2'
 # bootstrap datepicker
 gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
                                   :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
-
+# required for daterangepicker
 gem 'momentjs-rails'
+# webpacker   
+gem 'webpacker', '~> 3.0'
 
 
 group :development, :test do

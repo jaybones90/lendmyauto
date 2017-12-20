@@ -21,5 +21,9 @@
 
 .byebug_history
 
+/public/packs
+/public/packs-test
+/node_modules
+
 # Ignore any variable stored in the .env file
 .env
