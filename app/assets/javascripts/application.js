@@ -15,18 +15,17 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require moment
-//= require turbolinks
 //= require_tree .
 
 
 
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener("DOMContentLoaded", function() {
   jQuery(function(){
     var start = moment();
     var end = moment().add(7, 'days');
     var lastPossibleDate = moment().add(2, 'years')
 
-    $('input[name="date_range"]').daterangepicker({
+    $('input[for="date_range"]').daterangepicker({
       startDate: start,
       endDate: end,
       minDate: start,

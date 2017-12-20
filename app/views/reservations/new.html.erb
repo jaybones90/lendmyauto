@@ -25,7 +25,7 @@
         </div>
         <div class="reservation-form">
           <%= simple_form_for [@vehicle, @reservation] do |f| %>
-          <%= f.input :date_range, as: :string, input_html: { name: "date_range" }  %>
+          <%= f.input :date_range, as: :string, input_html: { for: "date_range" }  %>
           <%= f.button :submit %>
           <% end %>
         </div>

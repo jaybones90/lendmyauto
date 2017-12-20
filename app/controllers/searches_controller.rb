@@ -1,11 +1,10 @@
 class SearchesController < ApplicationController
-  before_action :parse_date_range, only: :index
+  include DateRange
 
   def index
     @search = Search.new()
     search_attributes = Search.new(search_params)
-    search_attributes.date_start = @start_date
-    search_attributes.date_end = @end_date
+    format_dates(search_attributes)
     if search_attributes.valid?
       @vehicles = Vehicle.get_available_vehicles(search_attributes)
       flash[:alert] = "No Available Vehicles For #{@date_start} - #{@date_end}" if @vehicles.empty?
@@ -20,11 +19,10 @@ class SearchesController < ApplicationController
     params.require(:search).permit(:city, :date_range)
   end
 
-  def parse_date_range
-    split_dates = search_params[:date_range].split(' - ')
-    @start_date = Date.strptime(split_dates[0], '%m/%d/%Y')
-    @end_date = Date.strptime(split_dates[1], '%m/%d/%Y')
-    return @start_date, @end_date
+  def format_dates(search_attrs)
+    search_attrs.date_start = parse_start_date(search_params[:date_range])
+    search_attrs.date_end = parse_end_date(search_params[:date_range])
   end
+
 
 end

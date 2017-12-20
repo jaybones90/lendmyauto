@@ -12,7 +12,8 @@ class ChargesController < ApplicationController
   def create
     customer = StripePayment.create_customer(
       email: params[:stripeEmail],
-      stripe_token: params[:stripeToken])
+      stripe_token: params[:stripeToken]
+    )
 
     charge = StripePayment.create_charge(
       customer: customer.id,

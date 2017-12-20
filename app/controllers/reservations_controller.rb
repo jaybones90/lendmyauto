@@ -28,9 +28,9 @@ class ReservationsController < ApplicationController
   end
 
   private
-
+  #
   def reservation_params
-    params.permit(:date_range)
+    params.require(:reservation).permit(:date_range)
   end
 
   def parse_date_range
