@@ -17,6 +17,15 @@ GIT
       mimemagic (~> 0.3.0)
 
 GIT
+  remote: https://github.com/rails/webpacker.git
+  revision: 9a47275eecb96e6c9088a4e70a89ca840fc2371f
+  specs:
+    webpacker (3.2.0)
+      activesupport (>= 4.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 4.2)
+
+GIT
   remote: https://github.com/stympy/faker.git
   revision: 25e4b50a3c9afa1686ca5dc31631e76f69303a65
   branch: master
@@ -219,7 +228,7 @@ GEM
     rack-pjax (1.0.0)
       nokogiri (~> 1.5)
       rack (>= 1.1)
-    rack-proxy (0.6.2)
+    rack-proxy (0.6.3)
       rack
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
@@ -337,10 +346,6 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webpacker (3.0.1)
-      activesupport (>= 4.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 4.2)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
@@ -384,7 +389,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
-  webpacker (~> 3.0)
+  webpacker!
 
 BUNDLED WITH
    1.16.0

@@ -12,9 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
 //= require popper
-//= require turbolinks
+//= require bootstrap
 //= require moment
 //= require_tree .
 
