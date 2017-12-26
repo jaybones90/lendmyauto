@@ -18,11 +18,12 @@ export default {
       vehicleMakes: [],
       vehicleModels: [],
       vehicleStyles: [],
+      vehicleIdForApi: "",
       vehicle: {
         year: "",
         make: "",
         model: "",
-        style: ""
+        style: "",
       }
     }
   },
@@ -35,10 +36,10 @@ export default {
     },
     model() {
       return this.vehicle.model
+    },
+    style() {
+      return this.vehicle.style
     }
-  },
-  created() {
-    this.getVehicleYears()
   },
   watch: {
     year() {
@@ -49,23 +50,39 @@ export default {
     },
     model() {
       this.getVehicleStyles()
+    },
+    style() {
+      this.getExactVehicle(this.vehicleIdForApi)
     }
+  },
+  created() {
+    this.getVehicleYears()
   },
   components: {
     VehicleSelect
   },
   methods: {
-    updateVehicleAttributes(selectedValue, selectedAttribute) {
-      if (this.vehicle.hasOwnProperty(`${selectedAttribute}`)) {
-        this.vehicle[`${selectedAttribute}`] = selectedValue
+    updateVehicleAttributes(selectedValueObject, selectedAttribute) {
+      let selectedText = selectedValueObject.text
+      let selectedValue = selectedValueObject.value
+      this.vehicle[`${selectedAttribute}`] = selectedText
+      if (selectedAttribute === 'style') {
+        this.vehicleIdForApi = parseInt(selectedValue)
       }
+    },
+    assignAttributesToVehicle({cylinders, atvtype, trany, VClass, drive, fuelType, highway08}) {
+      this.vehicle.cylinders = cylinders
+      this.vehicle.alternative_fuel_type = atvtype
+      this.vehicle.transmission = trany
+      this.vehicle.category = VClass
+      this.vehicle.drive_type = drive
+      this.vehicle.fuel_type = fuelType
+      this.vehicle.highway_mpg = highway08
     },
     getVehicleYears() {
       axios.get('http://www.fueleconomy.gov/ws/rest/vehicle/menu/year')
         .then((response) => {
-          this.vehicleYears = response.data.menuItem.map((item) => {
-            return parseInt(item.value)
-          })
+          this.vehicleYears = response.data.menuItem
         })
       .catch((error) => {
         this.vehicleYears = 'Error! Could not reach the API. ' + error
@@ -74,9 +91,7 @@ export default {
     getVehicleMakes() {
       axios.get(`http://www.fueleconomy.gov/ws/rest/vehicle/menu/make?year=${this.vehicle.year}`)
         .then((response) => {
-          this.vehicleMakes = response.data.menuItem.map((item) => {
-            return item.value
-          })
+          this.vehicleMakes = response.data.menuItem
         })
       .catch((error) => {
         this.vehicleMakes = 'Error! Could not reach the API. ' + error
@@ -85,9 +100,7 @@ export default {
     getVehicleModels() {
       axios.get(`http://www.fueleconomy.gov/ws/rest/vehicle/menu/model?year=${this.vehicle.year}&make=${this.vehicle.make}`)
         .then((response) => {
-          this.vehicleModels = response.data.menuItem.map((item) => {
-            return item.value
-          })
+          this.vehicleModels = response.data.menuItem
         })
       .catch((error) => {
         this.vehicleModels = 'Error! Could not reach the API. ' + error
@@ -97,12 +110,24 @@ export default {
       axios.get(
         `http://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=${this.vehicle.year}&make=${this.vehicle.make}&model=${this.vehicle.model}`)
         .then((response) => {
-          this.vehicleStyles = response.data.menuItem.map((item) => {
-            return item.text
-          })
+          if (response.data.menuItem.length != undefined) {
+            this.vehicleStyles = response.data.menuItem
+          } else {
+            this.vehicleStyles.push(" ", response.data.menuItem)
+          }
         })
       .catch((error) => {
         this.vehicleStyles = 'Error! Could not reach the API. ' + error
+      })
+    },
+    getExactVehicle(vehicleId) {
+      axios.get(`http://www.fueleconomy.gov/ws/rest/vehicle/${vehicleId}`)
+        .then((response) => {
+          this.assignAttributesToVehicle(response.data)
+          console.log(this.vehicle)
+        })
+      .catch((error) => {
+        console.log('Error! Could not reach the API. ' + error)
       })
     }
   }

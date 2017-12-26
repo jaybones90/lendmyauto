@@ -31,11 +31,15 @@
 
 
 import Vue from 'vue/dist/vue.esm'
-import VehicleSelectControl from './vehicle-select-control.vue'
+import VehicleForm from './vehicle-form.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
-  const app = new Vue({
-    el: '#test-vue',
-    components: { VehicleSelectControl }
-  })
+  var element = document.getElementById("new-vehicle-form")
+  if (element != null ) {
+    const app = new Vue({
+      el: element,
+      components: { VehicleForm }
+    })
+
+  }
 })

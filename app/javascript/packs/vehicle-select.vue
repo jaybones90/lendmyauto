@@ -1,9 +1,10 @@
 <template>
   <div class="">
-    <select v-model="selected" v-on:change="updateParent">
-      <option v-for="option in options">{{option}}</option>
+    <label class="control-label" v-bind:for="'vehicle_'+attribute">Please select vehicle {{attribute}}</label>
+    <select class="form-control" v-model="selected" v-on:change="updateParent">
+      <option v-for="option in options" v-bind:value="option" >{{option.text}}</option>
     </select>
-    <p>{{selected}}</p>
+    <p>{{selected.text}}</p>
   </div>
 </template>
 
@@ -20,6 +21,7 @@ export default {
   },
   data() {
     return {
+      optionText: "",
       selected: "",
       attribute: this.vehicleAttribute
     }

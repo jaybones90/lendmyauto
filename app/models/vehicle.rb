@@ -1,7 +1,5 @@
 class Vehicle < ApplicationRecord
 
-  attribute :daily_price, :money
-
   belongs_to :current_location, class_name: "Location", inverse_of: :vehicles
   belongs_to :category, inverse_of: :vehicles, optional: true
   belongs_to :owner_account, inverse_of: :owned_vehicles, class_name: "Account", optional: true, foreign_key: 'owner_account_id'
