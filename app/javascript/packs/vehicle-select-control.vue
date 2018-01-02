@@ -14,10 +14,11 @@ import VehicleSelect from './vehicle-select.vue'
 export default {
   data() {
     return {
-      vehicleYears: [],
-      vehicleMakes: [],
-      vehicleModels: [],
-      vehicleStyles: [],
+      errors: [],
+      vehicleYears: [""],
+      vehicleMakes: [""],
+      vehicleModels: [""],
+      vehicleStyles: [""],
       vehicleIdForApi: "",
       vehicle: {
         year: "",
@@ -43,20 +44,20 @@ export default {
   },
   watch: {
     year() {
-      this.getVehicleMakes()
+      this.getVehicleOptions("makes")
     },
     make() {
-      this.getVehicleModels()
+      this.getVehicleOptions("models")
     },
     model() {
-      this.getVehicleStyles()
+      this.getVehicleOptions("styles")
     },
     style() {
       this.getExactVehicle(this.vehicleIdForApi)
     }
   },
   created() {
-    this.getVehicleYears()
+    this.getVehicleOptions("years")
   },
   components: {
     VehicleSelect
@@ -79,52 +80,39 @@ export default {
       this.vehicle.fuel_type = fuelType
       this.vehicle.highway_mpg = highway08
     },
-    getVehicleYears() {
-      axios.get('http://www.fueleconomy.gov/ws/rest/vehicle/menu/year')
-        .then((response) => {
+    getVehicleOptions(type) {
+      var urlTypes = {
+        'years': 'http://www.fueleconomy.gov/ws/rest/vehicle/menu/year',
+        'makes': `http://www.fueleconomy.gov/ws/rest/vehicle/menu/make?year=${this.vehicle.year}`,
+        'models': `http://www.fueleconomy.gov/ws/rest/vehicle/menu/model?year=${this.vehicle.year}&make=${this.vehicle.make}`,
+        'styles': `http://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=${this.vehicle.year}&make=${this.vehicle.make}&model=${this.vehicle.model}`
+      }
+      let selectedUrl = urlTypes[type]
+      axios.get(selectedUrl).then((response) => {
+        let onlyOneResult = function() {
+          return response.data.menuItem.length === undefined
+        }
+        if (type === "years") {
           this.vehicleYears = response.data.menuItem
-        })
-      .catch((error) => {
-        this.vehicleYears = 'Error! Could not reach the API. ' + error
-      })
-    },
-    getVehicleMakes() {
-      axios.get(`http://www.fueleconomy.gov/ws/rest/vehicle/menu/make?year=${this.vehicle.year}`)
-        .then((response) => {
+        }
+        if (type === "makes") {
           this.vehicleMakes = response.data.menuItem
-        })
-      .catch((error) => {
-        this.vehicleMakes = 'Error! Could not reach the API. ' + error
-      })
-    },
-    getVehicleModels() {
-      axios.get(`http://www.fueleconomy.gov/ws/rest/vehicle/menu/model?year=${this.vehicle.year}&make=${this.vehicle.make}`)
-        .then((response) => {
+        }
+        if (type === "models") {
           this.vehicleModels = response.data.menuItem
-        })
-      .catch((error) => {
-        this.vehicleModels = 'Error! Could not reach the API. ' + error
+        }
+        if (type === "styles") {
+          this.vehicleStyles = response.data.menuItem
+        }
       })
-    },
-    getVehicleStyles() {
-      axios.get(
-        `http://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=${this.vehicle.year}&make=${this.vehicle.make}&model=${this.vehicle.model}`)
-        .then((response) => {
-          if (response.data.menuItem.length != undefined) {
-            this.vehicleStyles = response.data.menuItem
-          } else {
-            this.vehicleStyles.push(" ", response.data.menuItem)
-          }
-        })
       .catch((error) => {
-        this.vehicleStyles = 'Error! Could not reach the API. ' + error
+        this.errors = 'Error! Could not reach the API. ' + error
       })
     },
     getExactVehicle(vehicleId) {
       axios.get(`http://www.fueleconomy.gov/ws/rest/vehicle/${vehicleId}`)
         .then((response) => {
           this.assignAttributesToVehicle(response.data)
-          console.log(this.vehicle)
         })
       .catch((error) => {
         console.log('Error! Could not reach the API. ' + error)
