@@ -89,8 +89,8 @@ export default {
       }
       let selectedUrl = urlTypes[type]
       axios.get(selectedUrl).then((response) => {
-        let onlyOneResult = function() {
-          return response.data.menuItem.length === undefined
+        if (response.data.menuItem.length === undefined) {
+          response.data.menuItem = Array.of(response.data.menuItem)
         }
         if (type === "years") {
           this.vehicleYears = response.data.menuItem
