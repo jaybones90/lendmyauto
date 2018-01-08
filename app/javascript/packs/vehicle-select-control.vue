@@ -53,7 +53,7 @@ export default {
       this.getVehicleOptions("styles")
     },
     style() {
-      this.getExactVehicle(this.vehicleIdForApi)
+      this.getVehicleOptions("id")
     }
   },
   created() {
@@ -85,7 +85,8 @@ export default {
         'years': 'http://www.fueleconomy.gov/ws/rest/vehicle/menu/year',
         'makes': `http://www.fueleconomy.gov/ws/rest/vehicle/menu/make?year=${this.vehicle.year}`,
         'models': `http://www.fueleconomy.gov/ws/rest/vehicle/menu/model?year=${this.vehicle.year}&make=${this.vehicle.make}`,
-        'styles': `http://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=${this.vehicle.year}&make=${this.vehicle.make}&model=${this.vehicle.model}`
+        'styles': `http://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=${this.vehicle.year}&make=${this.vehicle.make}&model=${this.vehicle.model}`,
+        'id': `http://www.fueleconomy.gov/ws/rest/vehicle/${this.vehicleIdForApi}`
       }
       let selectedUrl = urlTypes[type]
       axios.get(selectedUrl).then((response) => {
@@ -104,20 +105,23 @@ export default {
         if (type === "styles") {
           this.vehicleStyles = response.data.menuItem
         }
+        if (type === "id" && this.vehicleIdForApi !== "") {
+          this.assignAttributesToVehicle(response.data)
+        }
       })
       .catch((error) => {
         this.errors = 'Error! Could not reach the API. ' + error
       })
     },
-    getExactVehicle(vehicleId) {
-      axios.get(`http://www.fueleconomy.gov/ws/rest/vehicle/${vehicleId}`)
-        .then((response) => {
-          this.assignAttributesToVehicle(response.data)
-        })
-      .catch((error) => {
-        console.log('Error! Could not reach the API. ' + error)
-      })
-    }
+    // getExactVehicle(vehicleId) {
+    //   axios.get(`http://www.fueleconomy.gov/ws/rest/vehicle/${vehicleId}`)
+    //     .then((response) => {
+    //       this.assignAttributesToVehicle(response.data)
+    //     })
+    //   .catch((error) => {
+    //     console.log('Error! Could not reach the API. ' + error)
+    //   })
+    // }
   }
 }
 </script>
