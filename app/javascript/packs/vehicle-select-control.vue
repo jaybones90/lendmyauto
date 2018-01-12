@@ -1,26 +1,34 @@
 
 <template>
   <div>
-    <vehicle-select vehicleAttribute="year" :selectOptions="vehicleYears" @updateVehicle="updateVehicleAttributes"></vehicle-select>
-    <vehicle-select vehicleAttribute="make" :selectOptions="vehicleMakes" @updateVehicle="updateVehicleAttributes"></vehicle-select>
-    <vehicle-select vehicleAttribute="model" :selectOptions="vehicleModels" @updateVehicle="updateVehicleAttributes"></vehicle-select>
-    <vehicle-select vehicleAttribute="style" :selectOptions="vehicleStyles" @updateVehicle="updateVehicleAttributes"></vehicle-select>
-    <vehicle-select vehicleAttribute="color" :selectOptions="vehicleColors" @updateVehicle="updateVehicleAttributes"></vehicle-select>
-    <vehicle-select vehicleAttribute="seats" :selectOptions="vehicleSeats" @updateVehicle="updateVehicleAttributes"></vehicle-select>
-    <vehicle-input vehicleAttribute="milage" v-model="vehicle.milage"></vehicle-input>
-    <vehicle-input vehicleAttribute="price" v-model="vehicle.daily_price"></vehicle-input>
-    <button @click="submitVehicle">Save</button>
+    <vehicle-select vehicleAttribute="year" :selectOptions="vehicleYears" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
+    <vehicle-select vehicleAttribute="make" :selectOptions="vehicleMakes" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
+    <vehicle-select vehicleAttribute="model" :selectOptions="vehicleModels" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
+    <vehicle-select vehicleAttribute="style" :selectOptions="vehicleStyles" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
+    <vehicle-select vehicleAttribute="color" :selectOptions="vehicleColors" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
+    <vehicle-select vehicleAttribute="seats" :selectOptions="vehicleSeats" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
+    <vehicle-input vehicleAttribute="milage" v-model="vehicle.milage" :errorsFromParent="errors"></vehicle-input>
+    <vehicle-checkboxes :vehicleFeatures="featuresFromController" @updateCheckboxes="updateVehicleCheckboxes"></vehicle-checkboxes>
+    <vehicle-input vehicleAttribute="price" v-model="vehicle.daily_price" :errorsFromParent="errors"></vehicle-input>
+    <hotel-date-picker @checkInChanged="updateStartDate" @checkOutChanged="updateEndDate"></hotel-date-picker>
+    <button class="btn" @click="submitVehicle">Save</button>
   </div>
 </template>
 
 <script>
 import VehicleSelect from './vehicle-select.vue'
 import VehicleInput from './vehicle-input.vue'
+import HotelDatePicker from 'vue-hotel-datepicker'
+import VehicleCheckboxes from './vehicle-checkboxes.vue'
 
 export default {
   props: {
     vehicleFromController: {
       type: Object,
+      required: true
+    },
+    featuresFromController: {
+      type: Array,
       required: true
     }
   },
@@ -43,6 +51,8 @@ export default {
       vehicleStyles: [""],
       vehicleIdForApi: "",
       vehicle: this.vehicleFromController,
+      features: this.featuresFromController,
+      value: "",
       errors: {}
     }
   },
@@ -79,7 +89,9 @@ export default {
   },
   components: {
     'vehicle-select': VehicleSelect,
-    'vehicle-input' : VehicleInput
+    'vehicle-input' : VehicleInput,
+    'hotel-date-picker' : HotelDatePicker,
+    'vehicle-checkboxes' : VehicleCheckboxes
   },
   methods: {
     updateVehicleAttributes(selectedValueObject, selectedAttribute) {
@@ -98,6 +110,9 @@ export default {
       this.vehicle.drive_type = drive
       this.vehicle.fuel_type = fuelType
       this.vehicle.highway_mpg = highway08
+    },
+    updateVehicleCheckboxes(featuresFromChild) {
+      this.vehicle.feature_ids = featuresFromChild
     },
     getVehicleOptions(type) {
       var urlTypes = {
@@ -131,23 +146,28 @@ export default {
     getExactVehicle() {
       axios.get(`http://www.fueleconomy.gov/ws/rest/vehicle/${this.vehicleIdForApi}`).then((response)=>{
         this.assignAttributesToVehicle(response.data)
-        this.submitVehicle()
       }).catch((error) => {
         this.errors = 'Error! Could not reach the API. ' + error
       })
     },
+    updateStartDate(selectedStartDate) {
+      this.vehicle.availability_start = selectedStartDate
+    },
+    updateEndDate(selectedEndDate) {
+      this.vehicle.availability_end = selectedEndDate
+    },
     submitVehicle() {
       axios.post(`/locations/${this.vehicle.current_location_id}/vehicles`, {
-        vehicle: this.vehicle
+        vehicle: this.vehicle,
       })
       .then((response) => {
-        let locationId = response.data.vehicle.current_location_id
-        let vehicleId = response.data.vehicle.id
-        // window.location.href = (`/locations/${locationId}/vehicles/${vehicleId}/edit`)
+        console.log("response good:", response)
+        let accountId = response.data.current_user.account_id
+        window.location.href = (`/accounts/${accountId}`)
       })
-      .catch((error) => {
-        console.log(error)
-        this.errors = error
+      .catch((response) => {
+        console.log("error:", response.data.error)
+        this.errors = response.data.error
       });
     },
   }

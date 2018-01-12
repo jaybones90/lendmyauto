@@ -1,5 +1,8 @@
 
 
   <div id="new-vehicle-form">
-    <vehicle-select-control :vehicle-from-controller="<%=@vehicle%>"></vehicle-select-control>
+    <vehicle-select-control
+      :vehicle-from-controller="<%=@vehicle%>"
+      :features-from-controller="<%=@features%>" >
+    </vehicle-select-control>
   </div>

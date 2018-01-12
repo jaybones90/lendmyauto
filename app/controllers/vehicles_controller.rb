@@ -5,7 +5,7 @@ class VehiclesController < ApplicationController
   def new
     @location = Location.find(params[:location_id])
     @vehicle = @location.vehicles.new().to_json
-    @features = Feature.all
+    @features = Feature.all.to_json
   end
 
   def create
@@ -13,7 +13,7 @@ class VehiclesController < ApplicationController
     @vehicle = @location.vehicles.new(vehicle_params)
     @vehicle.owner_account_id = current_user.account.id
     if @vehicle.save
-      render json: { vehicle: @vehicle }
+      render json: { vehicle: @vehicle, current_user: current_user }
     else
       render json: { error: @vehicle.errors }, status: :unauthorized
     end

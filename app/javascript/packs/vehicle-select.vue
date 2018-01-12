@@ -4,6 +4,7 @@
     <select class="form-control" v-model="selected" v-on:change="updateParent">
       <option v-for="option in options" v-bind:value="option" >{{option.text}}</option>
     </select>
+    <span style="color:red">{{ errors[attribute] }}</span>
     <p>{{selected.text}}</p>
   </div>
 </template>
@@ -17,18 +18,24 @@ export default {
     },
     vehicleAttribute: {
       type: String
+    },
+    errorsFromParent: {
+      type: Object
     }
   },
   data() {
     return {
       optionText: "",
       selected: "",
-      attribute: this.vehicleAttribute
+      attribute: this.vehicleAttribute,
     }
   },
   computed: {
     options: function() {
       return this.selectOptions
+    },
+    errors: function() {
+      return this.errorsFromParent
     }
   },
   methods: {
