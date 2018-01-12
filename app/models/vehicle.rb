@@ -14,7 +14,9 @@ class Vehicle < ApplicationRecord
   validates_associated :images
   validates_associated :reviews
 
-  validates :make, :model, :year, :milage, :transmission, :color, :seats, :doors, :daily_price, :availability_start, :availability_end, :presence => true
+  validates :make, :model, :year, :transmission, :presence => true
+
+  validates :color, :seats, :milage, :doors, :daily_price, :availability_start, :availability_end, :presence => true, on: :edit
 
   private
 

@@ -4,8 +4,8 @@ class VehiclesController < ApplicationController
 
   def new
     @location = Location.find(params[:location_id])
-    @vehicle = @location.vehicles.new()
-    @features = @vehicle.features.new()
+    @vehicle = @location.vehicles.new().to_json
+    @features = Feature.all
   end
 
   def create
@@ -13,10 +13,9 @@ class VehiclesController < ApplicationController
     @vehicle = @location.vehicles.new(vehicle_params)
     @vehicle.owner_account_id = current_user.account.id
     if @vehicle.save
-      redirect_to account_path(current_user.account)
+      render json: { vehicle: @vehicle }
     else
-      flash[:alert] = "Something went wrong, please try again"
-      render :new
+      render json: { error: @vehicle.errors }, status: :unauthorized
     end
   end
 
@@ -46,7 +45,7 @@ class VehiclesController < ApplicationController
   private
 
   def vehicle_params
-    params.require(:vehicle).permit(:make, :model, :year, :milage, :transmission, :color, :seats, :doors, :category_id, :daily_price, :availability_start, :availability_end, feature_ids:[], images_attributes: [:id, :avatar, :_delete])
+    params.require(:vehicle).permit(:make, :model, :year, :milage, :transmission, :color, :seats, :doors, :style, :category_id, :daily_price, :availability_start, :availability_end, feature_ids:[], images_attributes: [:id, :avatar, :_delete])
   end
 
 

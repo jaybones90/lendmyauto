@@ -31,15 +31,17 @@
 
 
 import Vue from 'vue/dist/vue.esm'
+import VehicleSelectControl from './vehicle-select-control.vue'
 import VehicleForm from './vehicle-form.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
   var element = document.getElementById("new-vehicle-form")
+  axios.defaults.headers.post['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
   if (element != null ) {
     const app = new Vue({
       el: element,
-      components: { VehicleForm }
+      components: { VehicleSelectControl },
     })
-
   }
 })
