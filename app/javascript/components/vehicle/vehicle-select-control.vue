@@ -103,9 +103,9 @@ export default {
         this.vehicleIdForApi = parseInt(selectedValue)
       }
     },
-    assignAttributesToVehicle({cylinders, atvtype, trany, VClass, drive, fuelType, highway08}) {
+    assignAttributesToVehicle({cylinders, atvType, trany, VClass, drive, fuelType, highway08}) {
       this.vehicle.cylinders = cylinders
-      this.vehicle.alternative_fuel_type = atvtype
+      this.vehicle.alternative_fuel_type = (atvType != false) ? atvType : ""
       this.vehicle.transmission = trany
       this.vehicle.category = VClass
       this.vehicle.drive_type = drive
@@ -166,9 +166,9 @@ export default {
         let accountId = response.data.current_user.account_id
         window.location.href = (`/accounts/${accountId}`)
       })
-      .catch((response) => {
-        console.log("error:", response.data.error)
-        this.errors = response.data.error
+      .catch((error) => {
+        console.log("error:", error.response)
+        this.errors = error.response.errors
       });
     },
   }

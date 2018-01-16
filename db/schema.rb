@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180108235539) do
+ActiveRecord::Schema.define(version: 20180116213609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,6 +153,11 @@ ActiveRecord::Schema.define(version: 20180108235539) do
     t.date "availability_start"
     t.date "availability_end"
     t.string "style"
+    t.string "cylinders"
+    t.string "alternative_fuel_type"
+    t.string "drive_type"
+    t.string "fuel_type"
+    t.integer "highway_mpg"
     t.index ["category_id"], name: "index_vehicles_on_category_id"
     t.index ["current_location_id"], name: "index_vehicles_on_current_location_id"
     t.index ["owner_account_id"], name: "index_vehicles_on_owner_account_id"
