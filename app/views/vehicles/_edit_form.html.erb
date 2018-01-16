@@ -1,0 +1,11 @@
+<%= simple_form_for @vehicle do |f| %>
+  <%= f.input :milage %>
+  <%= f.input :color %>
+  <%= f.input :seats, collection: [2,3,4,5,6,7,8] %>
+  <%= f.input :doors, collection: [2,3,4,5,6,7,8]  %>
+  <div class="features">
+    <%= f.collection_check_boxes :feature_ids, Feature.all, :id, :description %>
+  </div>
+  <%= f.input :daily_price %>
+  <%= f.button :submit %>
+<% end %>

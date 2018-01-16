@@ -20,6 +20,7 @@ import VehicleSelect from './vehicle-select.vue'
 import VehicleInput from './vehicle-input.vue'
 import HotelDatePicker from 'vue-hotel-datepicker'
 import VehicleCheckboxes from './vehicle-checkboxes.vue'
+import axios from 'axios'
 
 export default {
   props: {

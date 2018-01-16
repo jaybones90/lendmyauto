@@ -31,8 +31,10 @@
 
 
 import Vue from 'vue/dist/vue.esm'
-import VehicleSelectControl from './vehicle-select-control.vue'
-import VehicleForm from './vehicle-form.vue'
+import VehicleSelectControl from '../components/vehicle/vehicle-select-control.vue'
+// import VehicleForm from './vehicle-form.vue'
+import axios from 'axios'
+
 
 document.addEventListener('DOMContentLoaded', () => {
   var element = document.getElementById("new-vehicle-form")

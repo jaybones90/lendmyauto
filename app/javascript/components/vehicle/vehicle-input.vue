@@ -13,7 +13,7 @@ export default {
       type: String
     },
     value: {
-      type: String
+      required: true
     },
     errorsFromParent: {
       type: Object

@@ -1,4 +1,4 @@
-<%= simple_form_for @location do |f| %>
+<!-- <%= simple_form_for @location do |f| %>
   <%= f.input :street_address, autofocus: true %>
   <%= f.input :city %>
   <%= f.input :state %>
@@ -6,4 +6,10 @@
   <%= f.country_select :country, { selected: "US" }, class_name: "form-control" %>
 
   <%= f.button :submit %>
-<% end %>
+<% end %> -->
+
+<div id="new-location-form">
+  <location-form :location-from-controller="<%=@location%>"></location-form>
+</div>
+
+<%= javascript_pack_tag 'location' %>

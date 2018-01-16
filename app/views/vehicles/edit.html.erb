@@ -1,9 +1,9 @@
 <section>
   <div class="container">
-<%= render 'layouts/errors', :object => @vehicle %>
+    <%= render 'layouts/errors', :object => @vehicle %>
 
     <h1>Edit Your Vehicle Details</h1>
-    <%= render "form" %>
+    <%= render 'edit_form' %>
     <%= link_to "Remove Vehicle", vehicle_path(@vehicle), :data => {:confirm => "Are you sure you want to remove your vehicle from the system?", :method => "delete"} %>
   </div>
 </section>

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <vehicle-select-control></vehicle-select-control>
 
 </template>
@@ -27,4 +27,4 @@ p {
   font-size: 2em;
   text-align: center;
 }
-</style>
+</style> -->
