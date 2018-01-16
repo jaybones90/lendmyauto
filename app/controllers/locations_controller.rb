@@ -7,11 +7,10 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
-    if @location.save!
+    if @location.save
       render json: { location: @location, current_user: current_user }
-      # redirect_to new_location_vehicle_path(@location)
     else
-      render json: { errors: @location.errors }, status: :unauthorized
+      render json: { errors: @location.errors }, status: :bad_request
     end
   end
 

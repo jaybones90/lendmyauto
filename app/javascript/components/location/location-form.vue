@@ -1,16 +1,19 @@
 <template>
     <div>
+      <div v-for="(value, key, index) in errors" :key="index">
+        <span>{{key}} : {{value}}</span>
+      </div>
       <vue-google-autocomplete
           ref="address"
           id="map"
           classname="form-control"
           placeholder="Please type your address"
-          v-on:placechanged="getAddressData"
           country="us"
-          enable-geolocation=true
+          :enable-geolocation='true'
+          @no-results-found="noResults"
+          @placechanged="getAddressData"
       >
       </vue-google-autocomplete>
-      <button class='btn' @click='submitLocation'>Submit</button>
     </div>
 </template>
 
@@ -29,7 +32,8 @@
       data: function () {
         return {
           address: '',
-          location: this.locationFromController
+          location: this.locationFromController,
+          errors: {}
         }
       },
       mounted() {
@@ -45,6 +49,12 @@
         },
         getAddressData: function (addressData, placeResultData, id) {
           this.assignAttributesToLocation(addressData);
+          this.submitLocation()
+        },
+        noResults: function(errorObject) {
+          this.errors = {
+            "Address" : "was not found, Please enter a different address"
+          }
         },
         submitLocation: function() {
           axios.post('/locations', {
@@ -53,11 +63,10 @@
           .then((response) => {
             let locationId = response.data.location.id
             window.location.href = (`/locations/${locationId}/vehicles/new`)
-            console.log(response)
           })
-          .catch((response) => {
-            console.log(response)
-          })
+          .catch((error) => {
+            this.errors = error.response.data.errors
+          });
         }
       }
 
