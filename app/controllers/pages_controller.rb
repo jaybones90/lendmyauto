@@ -2,7 +2,7 @@ class PagesController < ApplicationController
 
 
   def home
-    @vehicles = Vehicle.all.limit(3)
+    @vehicles = Vehicle.all.last(3)
     @location = Location.new()
     @search = Search.new()
     @reservation = Reservation.new()

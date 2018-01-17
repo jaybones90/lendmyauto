@@ -2,10 +2,13 @@
   <h1> <%= @vehicle.year %> </h1>
   <h1> <%= @vehicle.make %> </h1>
   <h1> <%= @vehicle.model %></h1>
-  <ul>
-    <li> Milage: <%= @vehicle.milage %> </li>
-    <li> Color: <%= @vehicle.color %> </li>
-    <li> Seats: <%= @vehicle.seats %> </li>
-    <li> Doors: <%= @vehicle.doors %> </li>
+  <ul class="">
+    <li><span class="bold">Color:</span>  <%= @vehicle.color %> </li>
+    <li><span class="bold">Milage:</span>  <%= @vehicle.milage %> </li>
+    <li><span class="bold">Transmission:</span>  <%= @vehicle.transmission %> </li>
+    <li><span class="bold">Cylinders:</span>  <%= @vehicle.cylinders %> </li>
+    <li><span class="bold">Drive Type:</span>  <%= @vehicle.drive_type %> </li>
+    <li><span class="bold">Fuel:</span>  <%= @vehicle.fuel_type %> </li>
+    <li><span class="bold">MPG:</span>  <%= @vehicle.highway_mpg %> </li>
   </ul>
 </div>

@@ -14,8 +14,8 @@ class Vehicle < ApplicationRecord
   validates_associated :images
   validates_associated :reviews
 
-  validates :make, :model, :year, :transmission, :color, :seats, :cylinders, :alternative_fuel_type,
-            :drive_type, :fuel_type, :highway_mpg, :milage, :daily_price, :availability_start, :availability_end,
+  validates :make, :model, :year, :transmission, :color, :seats, :cylinders, :drive_type, :fuel_type,
+            :highway_mpg, :milage, :daily_price, :availability_start, :availability_end,
             :presence => true
 
   private

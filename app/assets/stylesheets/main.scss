@@ -46,6 +46,10 @@ hr {
   background-color: $secondary-light;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 // no gutter for bootstrap columns helper class
 .no-gutter > [class*='col-'] {
     padding-right:0;

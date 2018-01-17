@@ -105,7 +105,7 @@ export default {
     },
     assignAttributesToVehicle({cylinders, atvType, trany, VClass, drive, fuelType, highway08}) {
       this.vehicle.cylinders = cylinders
-      this.vehicle.alternative_fuel_type = (atvType != false) ? atvType : ""
+      this.vehicle.alternative_fuel_type = atvType
       this.vehicle.transmission = trany
       this.vehicle.category = VClass
       this.vehicle.drive_type = drive
@@ -146,6 +146,7 @@ export default {
     },
     getExactVehicle() {
       axios.get(`https://www.fueleconomy.gov/ws/rest/vehicle/${this.vehicleIdForApi}`).then((response)=>{
+        console.log(response.data )
         this.assignAttributesToVehicle(response.data)
       }).catch((error) => {
         this.errors = 'Error! Could not reach the API. ' + error
@@ -162,12 +163,10 @@ export default {
         vehicle: this.vehicle,
       })
       .then((response) => {
-        console.log("response good:", response)
-        let accountId = response.data.current_user.account_id
-        window.location.href = (`/accounts/${accountId}`)
+        let vehicleId = response.data.vehicle.id
+        window.location.href = (`/vehicles/${vehicleId}/images/new`)
       })
       .catch((error) => {
-        console.log("error:", error.response)
         this.errors = error.response.errors
       });
     },
