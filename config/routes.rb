@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :vehicles
   end
 
-  resources :searches, only: :index
+  resources :searches, only: [:index, :create]
 
   resources :reservations, only: :show
 
@@ -23,5 +23,5 @@ Rails.application.routes.draw do
   end
 
   resources :charges
-  
+
 end

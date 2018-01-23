@@ -167,6 +167,7 @@ export default {
         window.location.href = (`/vehicles/${vehicleId}/images/new`)
       })
       .catch((error) => {
+        console.log(error.response)
         this.errors = error.response.errors
       });
     },

@@ -1,11 +1,6 @@
 
-<%= simple_form_for @search, wrapper: :inline_form,
-                    wrapper_mappings: { date: :multi_select_search_bar },
-                    html: { class: 'search form-inline' },
-                    url: searches_path, method: :get do |f| %>
-  <%= f.input :city, placeholder: "City" %>
-  <%= f.input :date_range, as: :string, input_html: { for: "date_range" }  %>
-  <div class="form-group col-xs-12 col-sm-8 col-md-6 col-lg-3">
-    <%= f.button :submit, "Search" %>
-  </div>
-<% end %>
+<div id="new-search-form">
+  <search-bar></search-bar>
+</div>
+
+<%= javascript_pack_tag 'search' %>

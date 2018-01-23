@@ -2,33 +2,14 @@
 
 <section class="vehicles-list">
   <div class="container">
+    <div class="errors">
+      <%= render 'layouts/errors', object: @search if @search %>
+    </div>
     <div class="search-bar">
       <%= render "pages/search_bar" %>
     </div>
-    <% if @vehicles %>
-      <% @vehicles.each do |vehicle| %>
-        <div class="row">
-          <div class="col-md-4">
-            <%= image_tag vehicle.images.first.avatar, class: "responsive-image" %>
-          </div>
-          <div class="col-md-8">
-            <div class="reservation-vehicle">
-              <%= link_to new_vehicle_reservation_path(vehicle) do %>
-                <h1> <%= vehicle.year %> </h1>
-                <h1> <%= vehicle.make %> </h1>
-                <h1> <%= vehicle.model %></h1>
-              <% end %>
-              <ul>
-                <li> Milage: <%= vehicle.milage %> </li>
-                <li> Color: <%= vehicle.color %> </li>
-                <li> Seats: <%= vehicle.seats %> </li>
-                <li> Doors: <%= vehicle.doors %> </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <hr>
-      <% end %>
-    <% end %>
+    <div id="vehicle-list">
+      <%= render "vehicle_list" %>
+    </div>
   </div>
 </section>
