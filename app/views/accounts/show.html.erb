@@ -1,21 +1,53 @@
 <section id="profile-dashboard">
   <div class="container">
     <h1> <%= "#{@account.user_first_name}'s Dashboard" if @account.user_last_name %></h1>
-
+    <hr>
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-8">
         <%= image_tag @account.remote_image if @account.remote_image %>
         <%= image_tag @account.image.avatar(:thumb) if @account.image %>
         <div class="profile-details">
-          <p> <%=@account.user_first_name%> <%=@account.user_last_name%> </p>
-          <p> <%= @account.user_phone_number %> </p>
+          <p> Name: <%=@account.user_first_name%> <%=@account.user_last_name%> </p>
+          <p> Phone Number: <%= @account.user_phone_number %> </p>
           <p> Member Since: <%= @account.created_at.to_formatted_s(:month_day_comma_year) %> </p>
           <p><%= "Drivers License On File   ✔️ "  if @account.drivers_license %></p>
         </div>
         <%= link_to "Edit Password", edit_user_registration_path(@user) %> |
         <%= link_to "Edit Profile Details", edit_account_path(@account) %>
+        <hr>
+        <div class="upcoming-loans">
+          <h3>Upcoming Vehicle Reservations</h3>
+          <% if @account.loans.nil? %>
+            <% @account.loans.each do |loan| %>
+              <ul>
+                <li> Renter: <%= Account.find(loan.renter_account_id).user_first_name %></li>
+                <li> Start Date: <%= loan.start_date.strftime("%B %e, %Y") %></li>
+                <li> Duration: <%= distance_of_time_in_words(loan.start_date, loan.end_date) %> </li>
+              </ul>
+            <% end %>
+          <% else %>
+            <p> You have no upcoming reservations on your vehicles </p>
+          <% end %>
+        </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
+
+        <div class="upcoming-reservations">
+          <h3>Upcoming Vehicle Rentals</h3>
+          <% if @account.reservations %>
+            <% @account.reservations.each do |reservation| %>
+              <ul>
+                <li> Lender: <%= Account.find(reservation.lender_account_id).user_first_name %></li>
+                <li> Start Date: <%= reservation.start_date.strftime("%B %e, %Y") %></li>
+                <li> Duration: <%= distance_of_time_in_words(reservation.start_date, reservation.end_date) %> </li>
+                <hr>
+              </ul>
+            <% end %>
+          <% else %>
+            <p>You have no upcoming reservations</p>
+          <% end %>
+        </div>
+
         <% if @vehicles.empty? == false %>
           <h3>Your Vehicles</h3>
           <% @vehicles.each do |vehicle| %>

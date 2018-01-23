@@ -20,7 +20,8 @@ class Reservation < ApplicationRecord
   private
 
   scope :exclude_existing_reservations, -> (date_start, date_end) {
-    where.not( start_date: date_start..date_end, end_date: date_start..date_end )
+    where.not( start_date: date_start..date_end, end_date: date_start..date_end ) if (start_date.present? &&
+                                                                                      end_date.present?)
   }
 
   def update_status

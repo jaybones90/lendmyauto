@@ -38,9 +38,11 @@ class Vehicle < ApplicationRecord
     starting_date = search_params.date_start
     ending_date = search_params.date_end
     city = search_params.city
-    Vehicle.includes(:features).in_city(city)
+    Vehicle.includes(:features).includes(:images).in_city(city)
     .with_availability(starting_date, ending_date)
-    .without_reservations(starting_date, ending_date)
+  end
+
+  def self.exclude_vehicles_with_reservations(vehicles)
   end
 
 
