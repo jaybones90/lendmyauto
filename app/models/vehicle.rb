@@ -20,13 +20,13 @@ class Vehicle < ApplicationRecord
 
   private
 
-  scope :with_availability, -> (start_date, end_date) {
-    where( "availability_start <= ? and availability_end >= ?", start_date, end_date )
+  scope :with_availability, -> (date) {
+    where( "availability_start <= ? and availability_end >= ?", date[:start], date[:end])
   }
 
-  scope :without_reservations, -> (start_date, end_date) {
-    joins(:reservations)
-    .merge(Reservation.exclude_existing_reservations(start_date,end_date))
+  scope :exclude_reservations, -> (date) {
+    left_outer_joins(:reservations)
+    .merge(Reservation.exclude_existing_reservations(date))
   }
 
   scope :in_city, -> (city) {
@@ -35,14 +35,10 @@ class Vehicle < ApplicationRecord
   }
 
   def self.get_available_vehicles(search_params)
-    starting_date = search_params.date_start
-    ending_date = search_params.date_end
-    city = search_params.city
-    Vehicle.includes(:features).includes(:images).in_city(city)
-    .with_availability(starting_date, ending_date)
-  end
-
-  def self.exclude_vehicles_with_reservations(vehicles)
+    date = {start: search_params.date_start, end: search_params.date_end}
+    Vehicle.includes(:features).includes(:images).in_city(search_params.city)
+    .with_availability(date)
+    .exclude_reservations(date)
   end
 
 

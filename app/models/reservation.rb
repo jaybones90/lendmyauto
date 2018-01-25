@@ -19,10 +19,11 @@ class Reservation < ApplicationRecord
 
   private
 
-  scope :exclude_existing_reservations, -> (date_start, date_end) {
-    where.not( start_date: date_start..date_end, end_date: date_start..date_end ) if (start_date.present? &&
-                                                                                      end_date.present?)
+  scope :exclude_existing_reservations, -> (date) {
+    where.not("reservations.start_date <= ? and reservations.end_date >= ?", date[:start], date[:end])
+    .or(where(id: nil))
   }
+
 
   def update_status
     self.status = "In Progress" if self.status.nil?
