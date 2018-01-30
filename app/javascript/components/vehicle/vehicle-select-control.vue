@@ -1,15 +1,47 @@
 
 <template>
   <div>
-    <vehicle-select vehicleAttribute="year" :selectOptions="vehicleYears" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
-    <vehicle-select vehicleAttribute="make" :selectOptions="vehicleMakes" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
-    <vehicle-select vehicleAttribute="model" :selectOptions="vehicleModels" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
-    <vehicle-select vehicleAttribute="style" :selectOptions="vehicleStyles" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
-    <vehicle-select vehicleAttribute="color" :selectOptions="vehicleColors" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
-    <vehicle-select vehicleAttribute="seats" :selectOptions="vehicleSeats" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
-    <vehicle-input vehicleAttribute="milage" v-model="vehicle.milage" :errorsFromParent="errors"></vehicle-input>
-    <vehicle-checkboxes :vehicleFeatures="featuresFromController" @updateCheckboxes="updateVehicleCheckboxes"></vehicle-checkboxes>
-    <vehicle-input vehicleAttribute="price" v-model="vehicle.daily_price" :errorsFromParent="errors"></vehicle-input>
+    <h1>Enter Your Vehicle Details</h1>
+    <div class="form-group">
+      <vehicle-select vehicleAttribute="year" :selectOptions="vehicleYears" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <vehicle-select vehicleAttribute="make" :selectOptions="vehicleMakes" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
+      </div>
+      <div class="col-md-4">
+        <vehicle-select vehicleAttribute="model" :selectOptions="vehicleModels" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
+      </div>
+      <div class="col-md-4">
+        <vehicle-select vehicleAttribute="style" :selectOptions="vehicleStyles" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <vehicle-select vehicleAttribute="color" :selectOptions="vehicleColors" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
+      </div>
+      <div class="col-md-6">
+        <vehicle-select vehicleAttribute="seats" :selectOptions="vehicleSeats" @updateVehicle="updateVehicleAttributes" :errorsFromParent="errors"></vehicle-select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <vehicle-input vehicleAttribute="milage" v-model="vehicle.milage" :errorsFromParent="errors"></vehicle-input>
+      </div>
+      <div class="col-md-6">
+        <vehicle-input vehicleAttribute="price" v-model="vehicle.daily_price" :errorsFromParent="errors"></vehicle-input>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+    <vehicle-checkboxes :vehicleFeatures="featuresFromController" @updateCheckboxes="updateVehicleCheckboxes" ></vehicle-checkboxes>
+
     <hotel-date-picker @checkInChanged="updateStartDate" @checkOutChanged="updateEndDate"></hotel-date-picker>
     <button class="btn" @click="submitVehicle">Save</button>
   </div>
@@ -146,7 +178,6 @@ export default {
     },
     getExactVehicle() {
       axios.get(`https://www.fueleconomy.gov/ws/rest/vehicle/${this.vehicleIdForApi}`).then((response)=>{
-        console.log(response.data )
         this.assignAttributesToVehicle(response.data)
       }).catch((error) => {
         this.errors = 'Error! Could not reach the API. ' + error
@@ -168,7 +199,7 @@ export default {
       })
       .catch((error) => {
         console.log(error.response)
-        this.errors = error.response.errors
+        this.errors = error.response.data.errors
       });
     },
   }
@@ -176,8 +207,8 @@ export default {
 </script>
 
 <style scoped>
-p {
-  font-size: 2em;
+h1 {
+  margin: 1em auto;
   text-align: center;
 }
 </style>

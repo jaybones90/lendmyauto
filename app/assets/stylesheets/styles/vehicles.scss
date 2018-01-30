@@ -1,4 +1,4 @@
-.features span {
+.features div {
   padding: 1em;
   label {
     padding: .5em;
@@ -11,4 +11,11 @@
 
 .vehicles-list {
   padding: 4em;
+}
+
+#new-vehicle-form {
+  margin: 1em auto 10em auto;
+  .btn {
+    margin: 1em auto;
+  }
 }

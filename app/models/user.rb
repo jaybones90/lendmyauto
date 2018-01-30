@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook]
 
   # Call method to create a new account once a user is saved to the database
-  after_create :save_account
+  after_create :save_account, :send_welcome_email_to_new_user
 
   # Assocations
   has_one :account, dependent: :destroy
@@ -14,10 +14,6 @@ class User < ApplicationRecord
   # Validations
   validates :email, :presence => true
 
-  # Create an account for each user after they sucessfully signup
-  def save_account
-    self.create_account()
-  end
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -40,6 +36,15 @@ class User < ApplicationRecord
 
 private
 
+  # Create an account for each user after they sucessfully signup
+  def save_account
+    self.create_account()
+  end
+
+  def send_welcome_email_to_new_user
+    SendEmailJob.set(wait: 20.seconds).perform_later(self)
+  end
+
   def self.update_account_details(account, auth)
     account.skip_phone_validation = true
     account.skip_birthdate_validation = true
@@ -48,6 +53,7 @@ private
     account.remote_image = auth.info.image if auth.info.image?
     account.save
   end
+
 
 
 end

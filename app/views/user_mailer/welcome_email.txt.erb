@@ -1,0 +1,12 @@
+<% if @account.user_first_name %>
+  <h1>Welcome to lendmyauto.com, <%= @account.user_first_name %></h1>
+<% else %>
+  <h1>Welcome to lendmyauto.com, <%= @user.email %></h1>
+<% end %>
+===============================================
+
+You have successfully signed up to lendmyauto.com!
+
+To login to the site, just follow this link: <%= @url %>.
+
+Thanks for joining and have a great day!

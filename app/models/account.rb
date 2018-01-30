@@ -13,7 +13,7 @@ class Account < ApplicationRecord
             class_name: 'Reservation', dependent: :nullify
   has_many :owned_vehicles, :foreign_key => "owner_account_id", class_name: "Vehicle",
             inverse_of: :owner_account, dependent: :destroy
-  has_many :reviews, inverse_of: :reviewer_account, dependent: :destroy
+  has_many :reviews, inverse_of: :reviewer_account
 
   accepts_nested_attributes_for :image
 

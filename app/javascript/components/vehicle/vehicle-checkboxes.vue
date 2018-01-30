@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="feature in features">
+    <div v-for="feature in features" class="form-check form-check-inline">
       <input type="checkbox" v-bind:value="feature.id" v-model="checkedFeatures" v-on:change="updateParentCheckboxes(checkedFeatures)">
       <label>{{feature.description}}</label>
     </div>

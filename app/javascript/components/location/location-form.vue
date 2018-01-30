@@ -1,5 +1,6 @@
 <template>
     <div>
+      <h1>Enter Your Vehicles Current Location</h1>
       <div v-for="(value, key, index) in errors" :key="index">
         <span>{{key}} : {{value}}</span>
       </div>
@@ -72,3 +73,10 @@
 
   }
 </script>
+
+<style scoped>
+h1 {
+  margin: 1em auto;
+  text-align: center;
+}
+</style>
