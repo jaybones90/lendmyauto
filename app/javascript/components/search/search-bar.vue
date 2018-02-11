@@ -15,7 +15,7 @@
     <hotel-date-picker @checkInChanged="updateStartDate" @checkOutChanged="updateEndDate"></hotel-date-picker>
     <input type="hidden" name="search[date_start]" :value="date_start">
     <input type="hidden" name="search[date_end]" :value="date_end">
-    <button class="btn" type="submit">Search Mother Fuckers</button>
+    <button class="btn" type="submit">Search</button>
   </form>
 </template>
 

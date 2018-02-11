@@ -32,16 +32,7 @@
         <vehicle-input vehicleAttribute="price" v-model="vehicle.daily_price" :errorsFromParent="errors"></vehicle-input>
       </div>
     </div>
-
-
-
-
-
-
-
-
     <vehicle-checkboxes :vehicleFeatures="featuresFromController" @updateCheckboxes="updateVehicleCheckboxes" ></vehicle-checkboxes>
-
     <hotel-date-picker @checkInChanged="updateStartDate" @checkOutChanged="updateEndDate"></hotel-date-picker>
     <button class="btn" @click="submitVehicle">Save</button>
   </div>
@@ -117,7 +108,7 @@ export default {
       this.getExactVehicle()
     }
   },
-  created() {
+  mounted() {
     this.getVehicleOptions("years")
   },
   components: {
