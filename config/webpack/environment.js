@@ -11,5 +11,4 @@ environment.loaders.insert('vue', {
 )
 
 
-
 module.exports = environment

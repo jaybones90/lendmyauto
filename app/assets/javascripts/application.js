@@ -18,7 +18,7 @@
 //= require_tree .
 
 
-
+  
 document.addEventListener("DOMContentLoaded", function() {
   jQuery(function(){
     var start = moment();
@@ -34,8 +34,6 @@ document.addEventListener("DOMContentLoaded", function() {
       autoUpdateInput: true
     });
   });
-
-
 
 });
 
